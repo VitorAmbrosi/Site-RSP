@@ -198,6 +198,7 @@ select {
 
 .opcoes {
     font-size: 20px;
+    white-space: nowrap;
 }
 
 .opcoes:hover {
@@ -381,8 +382,7 @@ img {
     cursor: pointer;
 }
 
-
-@media (max-width: 750px) {
+@media (max-width: 800px) {
     .menu {
         display: block;
     }
