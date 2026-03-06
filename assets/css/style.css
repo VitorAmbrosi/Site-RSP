@@ -1,9 +1,9 @@
 body {
-    font-family: Arial;
     margin: 0;
     color: #111;
     background: #f4f6f9;
     font-size: 18px;
+    font-family: 'Inter', sans-serif;
 }
 
 header {
@@ -142,10 +142,17 @@ select {
     border-radius: 6px;
     font-size: 18px;
     box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+textarea {
+    resize: none;
+    height: 90px;
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
     outline: none;
     border-color: #0a3d91;
 }
@@ -175,8 +182,6 @@ i {
 
 select {
     width: 100%;
-    border: 1px solid #ccc;
-    background-color: #fff;
     color: gray;
 }
 
@@ -233,7 +238,7 @@ select {
     font-size: 18px;
 }
 
-#epson .card:last-child {
+#epson .card {
     margin-top: 22px;
 }
 
@@ -331,6 +336,10 @@ footer {
     border: 5px solid #fff;
 }
 
+#section-mapa {
+    text-align: center;
+}
+
 .mapa-container iframe {
     position: absolute;
     top: 0;
@@ -380,6 +389,30 @@ img {
     border: none;
     font-size: 50px;
     cursor: pointer;
+}
+
+#btn-topo {
+    position: fixed;
+    display: none;
+    left: 25px;
+    bottom: 20px;
+    background-color: lightgray;
+    color: white;
+    z-index: 99;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+#btn-topo:hover {
+    background-color: gray;
+}
+
+#honeypot {
+    display: none;
 }
 
 @media (max-width: 800px) {
