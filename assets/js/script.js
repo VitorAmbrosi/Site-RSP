@@ -14,9 +14,9 @@ form.addEventListener('submit', function(event) {
 })
 
 function validarFormulario() {
-    const nome = document.querySelector('input[placeholder="Nome"]').value.trim()
-    const empresa = document.querySelector('input[placeholder="Empresa"]').value.trim()
-    const email = document.querySelector('input[placeholder="Email para Contato"]').value.trim()
+    const nome = document.querySelector('input[id="nome"]').value.trim()
+    const empresa = document.querySelector('input[id="empresa"]').value.trim()
+    const email = document.querySelector('input[id="email"]').value.trim()
     const tipo = document.getElementById('tipoEtiqueta').value
     const detalhes = document.querySelector('textarea').value.trim()
 
@@ -48,11 +48,11 @@ function validarFormulario() {
 }
 
 function enviarWhatsAppPronto() {
-    const nome = document.querySelector('input[placeholder="Nome"]').value.trim()
-    const empresa = document.querySelector('input[placeholder="Empresa"]').value.trim()
-    const email = document.querySelector('input[placeholder="Email para Contato"]').value.trim()
+    const nome = document.querySelector('input[id="nome"]').value.trim()
+    const empresa = document.querySelector('input[id="empresa"]').value.trim()
+    const email = document.querySelector('input[id="email"]').value.trim()
     const tipo = document.getElementById('tipoEtiqueta').value
-    const detalhes = document.querySelector('textarea').value.trim()
+    const detalhes = document.querySelector('textarea[id="especificacoes"]').value.trim()
     
     const mensagem = `Olá, gostaria de um orçamento:
 

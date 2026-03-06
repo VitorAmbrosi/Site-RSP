@@ -235,9 +235,9 @@
         <h2>Solicite um Orçamento</h2>
         <p>Resposta rápida da nossa equipe.</p>
         <form class="form" id="formOrcamento">
-            <input placeholder="Nome">
-            <input placeholder="Empresa">
-            <input placeholder="Email para Contato" type="email">
+            <input placeholder="Nome" name="nome" id="nome">
+            <input placeholder="Empresa" name="empresa" id="empresa">
+            <input placeholder="Email para Contato" type="email" name="email" id="email">
             <select name="tipoEtiqueta" id="tipoEtiqueta">
                 <option value="" hidden>Selecione o tipo de etiqueta</option>
 
@@ -248,7 +248,7 @@
                 <option value="Papel Brilho">Papel Brilho</option>
                 <option value="Papel Fosco">Papel Fosco</option>
             </select>
-            <textarea placeholder="Especificações"></textarea>
+            <textarea placeholder="Especificações" name="especificacoes" id="especificacoes"></textarea>
 
             <div id="honeypot">
                 <label for="bot">Não preencha o campo abaixo se for humano</label>
