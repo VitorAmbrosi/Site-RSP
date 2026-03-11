@@ -15,6 +15,7 @@ header {
     top: 0;
     border-bottom: grey 1px solid;
     z-index: 1000;
+    padding: 0px;
 }
 
 nav {
@@ -353,8 +354,8 @@ footer {
 
 #logo {
     border: none;
-    width: 180px !important;
-    height: 120px !important;
+    width: 190px !important;
+    height: 130px !important;
 }
 
 .bg-white { 
@@ -422,7 +423,6 @@ img {
     max-width: 100% !important;
     height: auto !important;
     display: block;
-    border: black 2px solid;
 }
 
 .img-card {
@@ -431,6 +431,23 @@ img {
     object-fit: cover !important;
     object-position: center !important;
     border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.catalogo {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+.formato-img {
+    width: 100% !important;
+    height: 300px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+.card-formato {
+    height: min-content !important;
 }
 
 @media (max-width: 825px) {
