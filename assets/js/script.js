@@ -128,7 +128,7 @@ const displayLargura = document.getElementById('txt-largura');
 const displayAltura = document.getElementById('txt-altura');
 const containerGrade = document.getElementById('grade-colunas');
 
-function atualizarLayout() {
+function atualizarPrevia() {
     const vLargura = parseFloat(inLargura.value) || 0
     const vAltura = parseFloat(inAltura.value) || 0
     const numColunas = parseInt(inColunas.value) || 0
@@ -198,6 +198,6 @@ function atualizarLayout() {
     }
 }
 
-inLargura.addEventListener('input', atualizarLayout);
-inAltura.addEventListener('input', atualizarLayout);
-inColunas.addEventListener('input', atualizarLayout);
+inLargura.addEventListener('input', atualizarPrevia);
+inAltura.addEventListener('input', atualizarPrevia);
+inColunas.addEventListener('input', atualizarPrevia);
