@@ -122,8 +122,8 @@ h2 {
 }
 
 .form {
-    max-width: 600px;
-    margin: auto;
+    max-width: 100%;
+    margin: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -450,6 +450,94 @@ img {
     height: min-content !important;
 }
 
+#lateral {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+#exemplo-container {
+    position: relative;
+    width: 400px;
+    margin: 0;
+}
+
+#exemplo {
+    width: 100%;
+    display: block;
+}
+
+#dimensoes {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+}
+
+#campos {
+    max-width: 600px;
+    margin-left: 200px;
+}
+
+.btn-enviar {
+    max-width: 390px;
+    margin-top: 30px;
+}
+
+#exemplo-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+#txt-largura, #txt-altura {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2px 6px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #0a3d91;
+    border: 1px solid #0a3d91;
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 10;
+    white-space: nowrap;
+}
+
+#txt-largura {
+    top: 25%;
+    left: 30%;
+    transform: translateX(-50%);
+}
+
+#txt-altura {
+    left: 4%;
+    top: 48%;
+    transform: translateY(-50%) rotate(270deg);
+}
+
+#grade-colunas {
+    position: absolute;
+    top: 35%;
+    left: 17%;
+    display: grid;
+    gap: 7px;
+    justify-items: center; 
+    align-items: center;
+}
+
+.quadrado-coluna {
+    border: 2px solid #0a3d91;
+    background: white;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+}
+
 @media (max-width: 825px) {
     .menu {
         display: block;
@@ -504,6 +592,23 @@ img {
         flex-direction: column;
         gap: 12px;
         width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 1300px) {
+    #campos {
+        margin-left: 0 !important; /* Remove a margem que empurra para a direita */
+        width: 100%;              /* Garante que ele use o espaço disponível */
+        max-width: 600px;         /* Mantém o limite que você definiu */
+        display: flex;
+        flex-direction: column;
+        align-items: center;      /* Centraliza os itens dentro do bloco */
+    }
+
+    #lateral {
+        flex-direction: column;
+        align-items: center;
         text-align: center;
     }
 }
