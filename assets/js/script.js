@@ -84,6 +84,12 @@ function enviarWhatsAppPronto() {
     Empresa: ${empresa}
     Email: ${email}
 
+    
+    *METRAGEM E EQUIPAMENTOS:
+    Tamanho do Rolo: ${tamanho} metros
+    Tipo de Impressora: ${impressora}
+    Detalhes: ${detalhes || 'Nenhuma'} 
+
     *INFORMAÇÕES DA ETIQUETA:
     Tipo de Etiqueta: ${tipo}
     Tamanho da Etiqueta: ${largura} mm X ${altura} mm
@@ -91,14 +97,7 @@ function enviarWhatsAppPronto() {
     Espaço entre Colunas: ${gapColunas} mm
     Espaço entre Linhas: ${gapLinhas} mm
     Tamanho das Bordas: ${gapBordas} mm
-
-    *INFORMAÇÕES DO ROLO:
-    Largura Total: ${larguraTotal} mm
-    Tamanho do Rolo: ${tamanho} metros
-
-    *INFORMAÇÕES ADICIONAIS:
-    Tipo de Impressora: ${impressora}
-    Detalhes: ${detalhes || 'Nenhuma'} `
+    Largura Total: ${larguraTotal} mm`
 
     const numero = "5554999126702"
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`
@@ -173,7 +172,7 @@ function atualizarPrevia() {
         const larguraTotalRolo = (vLargura * numColunas) + (vGapColunas * (numColunas - 1)) + (vGapBordas * 2)
         displayRolo.textContent = `${larguraTotalRolo}mm`
     } else {
-        displayRolo.textContent = 'Largura do Rolo'
+        displayRolo.textContent = 'Largura Total'
     }
 
     containerGrade.innerHTML = ''
