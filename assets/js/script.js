@@ -127,77 +127,74 @@ const inColunas = document.getElementById('qtd-colunas');
 const displayLargura = document.getElementById('txt-largura');
 const displayAltura = document.getElementById('txt-altura');
 const containerGrade = document.getElementById('grade-colunas');
+const inGapColunas = document.getElementById('inGapColunas');
+const inGapLinhas = document.getElementById('inGapLinhas');
+const displayRolo = document.getElementById('txt-rolo');
+const inGapBordas = document.getElementById('inGapBordas');
 
 function atualizarPrevia() {
-    const vLargura = parseFloat(inLargura.value) || 0
-    const vAltura = parseFloat(inAltura.value) || 0
-    const numColunas = parseInt(inColunas.value) || 0
-    const numLinhas = 2
+    const vLargura = parseFloat(inLargura.value) || 0;
+    const vAltura = parseFloat(inAltura.value) || 0;
+    const numColunas = parseInt(inColunas.value) || 0;
+    const vGapColunas = parseFloat(inGapColunas.value) || 0;
+    const vGapLinhas = parseFloat(inGapLinhas.value) || 0;
+    const vGapBordas = parseFloat(inGapBordas.value) || 0; 
+    const numLinhas = 2;
 
-    displayLargura.textContent = vLargura > 0 ? `${vLargura}mm` : ''
-    displayAltura.textContent = vAltura > 0 ? `${vAltura}mm` : ''
+    displayLargura.textContent = vLargura > 0 ? `${vLargura}mm` : 'Largura';
+    displayAltura.textContent = vAltura > 0 ? `${vAltura}mm` : 'Altura';
 
-    containerGrade.innerHTML = ''
+    if (vLargura > 0 && numColunas > 0) {
+        const larguraTotalRolo = (vLargura * numColunas) + (vGapColunas * (numColunas - 1)) + (vGapBordas * 2);
+        displayRolo.textContent = `Largura rolo: ${larguraTotalRolo.toFixed(1)}mm`;
+    } else {
+        displayRolo.textContent = 'Largura do Rolo';
+    }
+
+    containerGrade.innerHTML = '';
 
     if (numColunas > 0 && vLargura > 0 && vAltura > 0) {
-        const vLargura = parseFloat(inLargura.value) || 0
-        const vAltura = parseFloat(inAltura.value) || 0
-        const numColunas = parseInt(inColunas.value) || 0
-        const numLinhas = 2
+        const larguraMaximaGrade = 48;
+        const alturaMaximaGrade = 50; 
+        
+        const proporcaoEtiqueta = vAltura / vLargura;
+        
+        let finalW = larguraMaximaGrade;
+        let finalH = (finalW / numColunas) * proporcaoEtiqueta * numLinhas;
 
-        displayLargura.textContent = vLargura > 0 ? `${vLargura}mm` : ''
-        displayAltura.textContent = vAltura > 0 ? `${vAltura}mm` : ''
-
-        containerGrade.innerHTML = ''
-
-        if (numColunas > 0 && vLargura > 0 && vAltura > 0) {
-            let fatorEscala = 9
-            const larguraTotalSimulada = vLargura * numColunas
-            const alturaTotalSimulada = vAltura * numLinhas
-
-            const maxPorcentagemW = 45
-            const maxPorcentagemH = 50
-
-            let finalW = larguraTotalSimulada * (fatorEscala / 10)
-            let finalH = alturaTotalSimulada * (fatorEscala / 10)
-
-            if (finalW > maxPorcentagemW || finalH > maxPorcentagemH) {
-                const escalaW = maxPorcentagemW / larguraTotalSimulada
-                const escalaH = maxPorcentagemH / alturaTotalSimulada
-                const novaEscala = Math.min(escalaW, escalaH)
-
-                finalW = larguraTotalSimulada * novaEscala
-                finalH = alturaTotalSimulada * novaEscala
-            }
-
-            containerGrade.style.width = `${finalW}%`
-            containerGrade.style.height = `${finalH}%`
-
-            containerGrade.style.display = 'grid'
-            containerGrade.style.gridTemplateColumns = `repeat(${numColunas}, 1fr)`
-            containerGrade.style.gridTemplateRows = `repeat(${numLinhas}, 1fr)`
-            containerGrade.style.gap = '7px'
-
-            const totalQuadrados = numColunas * numLinhas
-
-            for (let i = 0; i < totalQuadrados; i++) {
-                const divQuadrado = document.createElement('div')
-                divQuadrado.classList.add('quadrado-coluna')
-                divQuadrado.style.backgroundColor = 'white'
-                divQuadrado.style.border = '2px solid #0a3d91'
-                divQuadrado.style.borderRadius = '7px'
-                divQuadrado.style.width = '100%'
-                divQuadrado.style.height = '100%'
-
-                containerGrade.appendChild(divQuadrado)
-            }
-        } else {
-            containerGrade.style.width = "45%"
-            containerGrade.style.height = "50%"
+        if (finalH > alturaMaximaGrade) {
+            const fatorAjuste = alturaMaximaGrade / finalH;
+            finalH = alturaMaximaGrade;
+            finalW = finalW * fatorAjuste;
         }
+
+        containerGrade.style.width = finalW + "%";
+        containerGrade.style.height = finalH + "%";
+        containerGrade.style.gridTemplateColumns = `repeat(${numColunas}, 1fr)`;
+        containerGrade.style.gridTemplateRows = `repeat(${numLinhas}, 1fr)`;
+        
+        containerGrade.style.columnGap = vGapColunas + "px";
+        containerGrade.style.rowGap = vGapLinhas + "px";
+        
+        containerGrade.style.padding = `${vGapBordas}px`;
+        containerGrade.style.boxSizing = "border-box";
+
+        const totalQuadrados = numColunas * numLinhas;
+        for (let i = 0; i < totalQuadrados; i++) {
+            const divQuadrado = document.createElement('div');
+            divQuadrado.classList.add('quadrado-coluna');
+            containerGrade.appendChild(divQuadrado);
+        }
+    } else {
+        containerGrade.style.width = "45%";
+        containerGrade.style.height = "50%";
+        containerGrade.style.padding = "0";
     }
 }
 
 inLargura.addEventListener('input', atualizarPrevia);
 inAltura.addEventListener('input', atualizarPrevia);
 inColunas.addEventListener('input', atualizarPrevia);
+inGapColunas.addEventListener('input', atualizarPrevia);
+inGapLinhas.addEventListener('input', atualizarPrevia);
+inGapBordas.addEventListener('input', atualizarPrevia);

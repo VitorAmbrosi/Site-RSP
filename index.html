@@ -172,7 +172,10 @@
                 <img src="./assets/img/catalogoImpressoras.jpg" alt="Catalogo de impressoras compatíveis" loading="lazy"
                     class="img-card catalogo">
                 <p class="texto-apresentacao">
-                    Se você utiliza impressoras <strong>Epson ColorWorks, Primera ou AfiniaLabel</strong>, a RSP Etiquetas fornece materiais especiais desenvolvidos para entregar <strong>impressão nítida</strong>, <strong>secagem rápida</strong> e <strong>acabamento profissional</strong> em aplicações de rotulagem e identificação.
+                    Se você utiliza impressoras <strong>Epson ColorWorks, Primera ou AfiniaLabel</strong>, a RSP
+                    Etiquetas fornece materiais especiais desenvolvidos para entregar <strong>impressão nítida</strong>,
+                    <strong>secagem rápida</strong> e <strong>acabamento profissional</strong> em aplicações de
+                    rotulagem e identificação.
                 </p>
             </div>
 
@@ -231,55 +234,66 @@
             <h2>Solicite um Orçamento</h2>
             <p>Resposta rápida da nossa equipe.</p>
             <form class="form" id="formOrcamento">
-            <div id="lateral">
-                <div id="campos">
-                    <input placeholder="Nome" name="nome" id="nome">
-                    <input placeholder="Empresa" name="empresa" id="empresa">
-                    <input placeholder="Email para Contato" type="email" name="email" id="email">
-                    <select name="tipoEtiqueta" id="tipoEtiqueta" aria-label="Escolha o tipo de etiqueta">
-                        <option value="" selected disabled hidden id="primeiro-option">Selecione o tipo de etiqueta
-                        </option>
+                <div id="lateral">
+                    <div id="campos">
+                        <input placeholder="Nome" name="nome" id="nome">
+                        <input placeholder="Empresa" name="empresa" id="empresa">
+                        <input placeholder="Email para Contato" type="email" name="email" id="email">
+                        <select name="tipoEtiqueta" id="tipoEtiqueta" aria-label="Escolha o tipo de etiqueta">
+                            <option value="" selected disabled hidden id="primeiro-option">Selecione o tipo de etiqueta
+                            </option>
 
-                        <option value="BOPP Brilho">BOPP Brilho</option>
-                        <option value="BOPP Fosco">BOPP Fosco</option>
-                        <option value="BOPP Transparente">BOPP Transparente</option>
-                        <option value="BOPP Metalizado">BOPP Metalizado</option>
-                        <option value="Papel Brilho">Papel Brilho</option>
-                        <option value="Papel Fosco">Papel Fosco</option>
-                    </select>
-                    <div id="dimensoes">
-                        <input type="number" id="largura" name="largura" placeholder="Largura (mm)" aria-label="Largura da etiqueta em milímetros">
-                        <input type="number" id="altura" name="altura" placeholder="Altura (mm)" aria-label="Altura da etiqueta em milímetros">
+                            <option value="BOPP Brilho">BOPP Brilho</option>
+                            <option value="BOPP Fosco">BOPP Fosco</option>
+                            <option value="BOPP Transparente">BOPP Transparente</option>
+                            <option value="BOPP Metalizado">BOPP Metalizado</option>
+                            <option value="Papel Brilho">Papel Brilho</option>
+                            <option value="Papel Fosco">Papel Fosco</option>
+                        </select>
+                        <div id="dimensoes">
+                            <input type="number" id="largura" name="largura" placeholder="Largura (mm)"
+                                aria-label="Largura da etiqueta em milímetros">
+                            <input type="number" id="altura" name="altura" placeholder="Altura (mm)"
+                                aria-label="Altura da etiqueta em milímetros">
+                        </div>
+                        <input type="number" id="qtd-colunas" name="qtd-colunas" placeholder="Quantidade de colunas"
+                            aria-label="Quantidade de colunas por linha" min="1" max="20">
+                        <div id="espacamentos">
+                                <input type="number" id="inGapColunas" placeholder="Espaço entre colunas (mm)" aria-label="Espaço entre cada coluna em milímetros">
+                                <input type="number" id="inGapLinhas" placeholder="Espaço entre linhas (mm)" aria-label="Espaço entre cada linha em milímetros">
+                        </div>
+                        <input type="number" id="inGapBordas" placeholder="Tamanho das bordas (mm)" aria-label="Tamanho das bordas em milímetros">    
+                        <input type="number" id="tamanho-rolo" name="tamanho-rolo" placeholder="Tamanho do rolo"
+                            aria-label="Tamanho do rolo em metros">
+                        <input type="text" id="tipo-impressora" name="tipo-impressora" placeholder="Tipo de Impressora"
+                            aria-label="Tipo de impressora utilizada">
+                        <textarea placeholder="Especificações" name="especificacoes" id="especificacoes"></textarea>
+
+                        <div id="honeypot">
+                            <label for="bot">Não preencha o campo abaixo se for humano</label>
+                            <input type="text" name="bot" id="bot">
+                        </div>
                     </div>
-                    <input type="number" id="qtd-colunas" name="qtd-colunas" placeholder="Quantidade de colunas" aria-label="Quantidade de colunas por linha" min="1" max="20">
-                    <input type="number" id="tamanho-rolo" name="tamanho-rolo" placeholder="Tamanho do rolo (mm)" aria-label="Tamanho do rolo em metros">
-                    <input type="text" id="tipo-impressora" name="tipo-impressora" placeholder="Tipo de Impressora" aria-label="Tipo de impressora utilizada">
-                    <textarea placeholder="Especificações" name="especificacoes" id="especificacoes"></textarea>
 
-                    <div id="honeypot">
-                        <label for="bot">Não preencha o campo abaixo se for humano</label>
-                        <input type="text" name="bot" id="bot">
-                    </div>
-                </div>
+                    <div id="exemplo-visual">
+                        <h3>Prévia</h3>
+                        <div id="exemplo-container">
+                            <img src="./assets/img/exemplo.png" alt="Exemplo de rolo de etiquetas" loading="lazy"
+                                id="exemplo">
 
-                <div id="exemplo-visual">
-                    <h3>Prévia</h3>
-                    <div id="exemplo-container">
-                        <img src="./assets/img/exemplo.png" alt="Exemplo de rolo de etiquetas" loading="lazy"
-                            id="exemplo">
-
-                        <div id="etiqueta-dinamica" class="etiqueta-overlay">
-                            <div id="grade-colunas"></div>
-                            <span id="txt-largura">Largura</span>
-                            <span id="txt-altura">Altura</span>
+                            <div id="etiqueta-dinamica" class="etiqueta-overlay">
+                                <div id="grade-colunas"></div>
+                                <span id="txt-largura">Largura</span>
+                                <span id="txt-altura">Altura</span>
+                                <span id="txt-rolo">Largura do Rolo</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <button class="btn btn-enviar" aria-label="Eviar orçamento por WhatsApp" type="submit" id="requisicao">
-                Enviar solicitação
-            </button>
+                <button class="btn btn-enviar" aria-label="Eviar orçamento por WhatsApp" type="submit" id="requisicao">
+                    Enviar solicitação
+                </button>
             </form>
 
         </section>
