@@ -22,11 +22,15 @@ function validarFormulario() {
     const altura = document.querySelector('input[id="altura"]').value.trim()
     const colunas = document.querySelector('input[id="qtd-colunas"]').value.trim()
     const tamanho = document.querySelector('input[id="tamanho-rolo"]').value.trim()
+    const gapColunas = document.querySelector('input[id="inGapColunas"]').value.trim()
+    const gapLinhas = document.querySelector('input[id="inGapLinhas"]').value.trim()
+    const gapBordas = document.querySelector('input[id="inGapBordas"]').value.trim()
     const impressora = document.querySelector('input[id="tipo-impressora"]').value.trim()
+
 
     const alerta = document.getElementById('mensagem-alerta')
 
-    if (!nome || !empresa || !email || !tipo || !largura || !altura || !colunas || !tamanho || !impressora) {
+    if (!nome || !empresa || !email || !tipo || !largura || !altura || !colunas || !gapColunas || !gapLinhas || !gapBordas || !tamanho || !impressora) {
         alerta.textContent = 'Por favor, preencha todos os campos.'
         alerta.style.display = 'block'
 
@@ -60,23 +64,43 @@ function enviarWhatsAppPronto() {
     const altura = document.querySelector('input[id="altura"]').value.trim()
     const colunas = document.querySelector('input[id="qtd-colunas"]').value.trim()
     const tamanho = document.querySelector('input[id="tamanho-rolo"]').value.trim()
+    const gapColunas = document.querySelector('input[id="inGapColunas"]').value.trim()
+    const gapLinhas = document.querySelector('input[id="inGapLinhas"]').value.trim()
+    const gapBordas = document.querySelector('input[id="inGapBordas"]').value.trim()
     const impressora = document.querySelector('input[id="tipo-impressora"]').value.trim()
     const detalhes = document.querySelector('textarea[id="especificacoes"]').value.trim()
 
+    const vLargura = parseFloat(largura) || 0
+    const vColunas = parseInt(colunas) || 0
+    const vGapCol = parseFloat(gapColunas) || 0
+    const vBorda = parseFloat(gapBordas) || 0
+
+    const larguraTotal = (vLargura * vColunas) + (vGapCol * (vColunas - 1)) + (vBorda * 2)
+
     const mensagem = `Olá, gostaria de um orçamento:
 
+    *DADOS:
     Nome: ${nome}
     Empresa: ${empresa}
     Email: ${email}
-    Tipo de etiqueta: ${tipo}
-    Largura da etiqueta: ${largura} mm
-    Altura da etiqueta: ${altura} mm
-    Quantidade de colunas: ${colunas}
-    Tamanho do rolo: ${tamanho} m
-    Tipo de impressora: ${impressora}
-    Detalhes: ${detalhes}`
 
-    const numero = "5554999126702";
+    *INFORMAÇÕES DA ETIQUETA:
+    Tipo de Etiqueta: ${tipo}
+    Tamanho da Etiqueta: ${largura} mm X ${altura} mm
+    Quantidade de Colunas: ${colunas}
+    Espaço entre Colunas: ${gapColunas} mm
+    Espaço entre Linhas: ${gapLinhas} mm
+    Tamanho das Bordas: ${gapBordas} mm
+
+    *INFORMAÇÕES DO ROLO:
+    Largura Total: ${larguraTotal} mm
+    Tamanho do Rolo: ${tamanho} metros
+
+    *INFORMAÇÕES ADICIONAIS:
+    Tipo de Impressora: ${impressora}
+    Detalhes: ${detalhes || 'Nenhuma'} `
+
+    const numero = "5554999126702"
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`
     window.open(url, '_blank')
 }
@@ -121,80 +145,94 @@ function verificarBot() {
     }
 }
 
-const inLargura = document.getElementById('largura');
-const inAltura = document.getElementById('altura');
-const inColunas = document.getElementById('qtd-colunas');
-const displayLargura = document.getElementById('txt-largura');
-const displayAltura = document.getElementById('txt-altura');
-const containerGrade = document.getElementById('grade-colunas');
-const inGapColunas = document.getElementById('inGapColunas');
-const inGapLinhas = document.getElementById('inGapLinhas');
-const displayRolo = document.getElementById('txt-rolo');
-const inGapBordas = document.getElementById('inGapBordas');
+
+const inLargura = document.getElementById('largura')
+const inAltura = document.getElementById('altura')
+const inColunas = document.getElementById('qtd-colunas')
+const displayLargura = document.getElementById('txt-largura')
+const displayAltura = document.getElementById('txt-altura')
+const containerGrade = document.getElementById('grade-colunas')
+const inGapColunas = document.getElementById('inGapColunas')
+const inGapLinhas = document.getElementById('inGapLinhas')
+const displayRolo = document.getElementById('txt-rolo')
+const inGapBordas = document.getElementById('inGapBordas')
 
 function atualizarPrevia() {
-    const vLargura = parseFloat(inLargura.value) || 0;
-    const vAltura = parseFloat(inAltura.value) || 0;
-    const numColunas = parseInt(inColunas.value) || 0;
-    const vGapColunas = parseFloat(inGapColunas.value) || 0;
-    const vGapLinhas = parseFloat(inGapLinhas.value) || 0;
-    const vGapBordas = parseFloat(inGapBordas.value) || 0; 
-    const numLinhas = 2;
+    const vLargura = parseFloat(inLargura.value) || 0
+    const vAltura = parseFloat(inAltura.value) || 0
+    const numColunas = parseInt(inColunas.value) || 0
+    const vGapColunas = parseFloat(inGapColunas.value) || 0
+    const vGapLinhas = parseFloat(inGapLinhas.value) || 0
+    const vGapBordas = parseFloat(inGapBordas.value) || 0
+    const numLinhas = 2
 
-    displayLargura.textContent = vLargura > 0 ? `${vLargura}mm` : 'Largura';
-    displayAltura.textContent = vAltura > 0 ? `${vAltura}mm` : 'Altura';
+    displayLargura.textContent = vLargura > 0 ? `${vLargura}mm` : 'Largura'
+    displayAltura.textContent = vAltura > 0 ? `${vAltura}mm` : 'Altura'
 
     if (vLargura > 0 && numColunas > 0) {
-        const larguraTotalRolo = (vLargura * numColunas) + (vGapColunas * (numColunas - 1)) + (vGapBordas * 2);
-        displayRolo.textContent = `Largura rolo: ${larguraTotalRolo.toFixed(1)}mm`;
+        const larguraTotalRolo = (vLargura * numColunas) + (vGapColunas * (numColunas - 1)) + (vGapBordas * 2)
+        displayRolo.textContent = `${larguraTotalRolo}mm`
     } else {
-        displayRolo.textContent = 'Largura do Rolo';
+        displayRolo.textContent = 'Largura do Rolo'
     }
 
-    containerGrade.innerHTML = '';
+    containerGrade.innerHTML = ''
 
     if (numColunas > 0 && vLargura > 0 && vAltura > 0) {
-        const larguraMaximaGrade = 48;
-        const alturaMaximaGrade = 50; 
-        
-        const proporcaoEtiqueta = vAltura / vLargura;
-        
+        const larguraMaximaGrade = 48
+        const alturaMaximaGrade = 50
+
+        const proporcaoEtiqueta = vAltura / vLargura
+
         let finalW = larguraMaximaGrade;
-        let finalH = (finalW / numColunas) * proporcaoEtiqueta * numLinhas;
+        let finalH = (finalW / numColunas) * proporcaoEtiqueta * numLinhas
 
         if (finalH > alturaMaximaGrade) {
-            const fatorAjuste = alturaMaximaGrade / finalH;
-            finalH = alturaMaximaGrade;
-            finalW = finalW * fatorAjuste;
+            const fatorAjuste = alturaMaximaGrade / finalH
+            finalH = alturaMaximaGrade
+            finalW = finalW * fatorAjuste
         }
 
-        containerGrade.style.width = finalW + "%";
-        containerGrade.style.height = finalH + "%";
-        containerGrade.style.gridTemplateColumns = `repeat(${numColunas}, 1fr)`;
-        containerGrade.style.gridTemplateRows = `repeat(${numLinhas}, 1fr)`;
-        
-        containerGrade.style.columnGap = vGapColunas + "px";
-        containerGrade.style.rowGap = vGapLinhas + "px";
-        
-        containerGrade.style.padding = `${vGapBordas}px`;
-        containerGrade.style.boxSizing = "border-box";
+        containerGrade.style.width = finalW + "%"
+        containerGrade.style.height = finalH + "%"
+        containerGrade.style.gridTemplateColumns = `repeat(${numColunas}, 1fr)`
+        containerGrade.style.gridTemplateRows = `repeat(${numLinhas}, 1fr)`
 
-        const totalQuadrados = numColunas * numLinhas;
+        containerGrade.style.columnGap = vGapColunas + "px"
+        containerGrade.style.rowGap = vGapLinhas + "px"
+
+        containerGrade.style.padding = `${vGapBordas}px`
+        containerGrade.style.boxSizing = "border-box"
+
+        const totalQuadrados = numColunas * numLinhas
         for (let i = 0; i < totalQuadrados; i++) {
-            const divQuadrado = document.createElement('div');
-            divQuadrado.classList.add('quadrado-coluna');
-            containerGrade.appendChild(divQuadrado);
+            const divQuadrado = document.createElement('div')
+            divQuadrado.classList.add('quadrado-coluna')
+            containerGrade.appendChild(divQuadrado)
         }
     } else {
-        containerGrade.style.width = "45%";
-        containerGrade.style.height = "50%";
-        containerGrade.style.padding = "0";
+        containerGrade.style.width = "45%"
+        containerGrade.style.height = "50%"
+        containerGrade.style.padding = "0"
     }
 }
 
-inLargura.addEventListener('input', atualizarPrevia);
-inAltura.addEventListener('input', atualizarPrevia);
-inColunas.addEventListener('input', atualizarPrevia);
-inGapColunas.addEventListener('input', atualizarPrevia);
-inGapLinhas.addEventListener('input', atualizarPrevia);
-inGapBordas.addEventListener('input', atualizarPrevia);
+inLargura.addEventListener('input', atualizarPrevia)
+inAltura.addEventListener('input', atualizarPrevia)
+inColunas.addEventListener('input', atualizarPrevia)
+inGapColunas.addEventListener('input', atualizarPrevia)
+inGapLinhas.addEventListener('input', atualizarPrevia)
+inGapBordas.addEventListener('input', atualizarPrevia)
+
+
+const select = document.getElementById('tipoEtiqueta')
+
+function mudarCorSelect() {
+    if (select.value !== "") {
+        select.style.setProperty('color', 'black', 'important')
+    } else {
+        select.style.setProperty('color', 'grey', 'important')
+    }
+}
+
+select.addEventListener('change', mudarCorSelect)

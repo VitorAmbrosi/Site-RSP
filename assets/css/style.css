@@ -10,7 +10,6 @@ body {
 header {
     background: whitesmoke;
     color: black;
-    padding: 18px 30px;
     position: sticky;
     top: 0;
     border-bottom: grey 1px solid;
@@ -123,11 +122,12 @@ h2 {
 
 .form {
     max-width: 100%;
-    margin: 0;
+    margin: 0 35px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: start;
 }
 
 input,
@@ -141,12 +141,15 @@ select {
     font-size: 18px;
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
-    
+}
+
+select {
+    color: gray;
 }
 
 textarea {
     resize: none;
-    height: 90px;
+    height: 125px;
 }
 
 input:focus,
@@ -178,11 +181,6 @@ footer {
 i {
     font-size: 30px;
     font-weight: 900;
-}
-
-select {
-    width: 100%;
-    color: black;
 }
 
 #requisicao {
@@ -451,16 +449,6 @@ img {
     height: min-content !important;
 }
 
-#lateral {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
 #exemplo-container {
     position: relative;
     width: 400px;
@@ -487,8 +475,14 @@ img {
 }
 
 #campos {
-    max-width: 600px;
-    margin-left: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+#campos > div {
+    flex: 1;
 }
 
 .btn-enviar {
@@ -545,11 +539,19 @@ img {
 }
 
 .quadrado-coluna {
-    border: 2px solid #0a3d91;
+    border: 1px solid #0a3d91;
     background: white;
     border-radius: 5px;
     width: 100%;
     height: 100%;
+}
+
+.corPreta {
+    color: black;
+}
+
+#exemplo-visual {
+    text-align: center;
 }
 
 @media (max-width: 825px) {
@@ -626,19 +628,15 @@ img {
     }
 }
 
-@media (max-width: 1300px) {
-    #campos {
-        margin-left: 0 !important; 
+@media (max-width: 1100px) {
+    #campos { 
         width: 100%;            
         max-width: 600px;         
         display: flex;
         flex-direction: column;
         align-items: center;      
     }
-
-    #lateral {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+    #campos > div {
+        width: 100%;
     }
 }

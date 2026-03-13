@@ -42,8 +42,8 @@
             <div id="header">
                 <a href="#produtos" class="opcoes">Produtos</a>
                 <a href="#formatos" class="opcoes">Formatos</a>
-                <a href="#epson" class="opcoes">Epson ColorWorks</a>
                 <a href="#aplicacoes" class="opcoes">Aplicações</a>
+                <a href="#epson" class="opcoes">Epson ColorWorks</a>
                 <a href="#orcamento" class="opcoes">Orçamento</a>
             </div>
         </nav>
@@ -234,45 +234,59 @@
             <h2>Solicite um Orçamento</h2>
             <p>Resposta rápida da nossa equipe.</p>
             <form class="form" id="formOrcamento">
-                <div id="lateral">
                     <div id="campos">
-                        <input placeholder="Nome" name="nome" id="nome">
-                        <input placeholder="Empresa" name="empresa" id="empresa">
-                        <input placeholder="Email para Contato" type="email" name="email" id="email">
-                        <select name="tipoEtiqueta" id="tipoEtiqueta" aria-label="Escolha o tipo de etiqueta">
-                            <option value="" selected disabled hidden id="primeiro-option">Selecione o tipo de etiqueta
-                            </option>
+                        <div>
+                          <h4>Dados:</h4>
+                            <input placeholder="Nome" name="nome" id="nome">
+                            <input placeholder="Empresa" name="empresa" id="empresa">
+                            <input placeholder="Email para Contato" type="email" name="email" id="email">  
+                        </div>
+                        
+                        <div>
+                                <h4 class="legenda">Informações da Etiqueta:</h4>
+                            <select name="tipoEtiqueta" id="tipoEtiqueta" aria-label="Escolha o tipo de etiqueta">
+                                <option value="" selected hidden id="primeiro-option">Selecione o tipo de etiqueta
+                                </option>
 
-                            <option value="BOPP Brilho">BOPP Brilho</option>
-                            <option value="BOPP Fosco">BOPP Fosco</option>
-                            <option value="BOPP Transparente">BOPP Transparente</option>
-                            <option value="BOPP Metalizado">BOPP Metalizado</option>
-                            <option value="Papel Brilho">Papel Brilho</option>
-                            <option value="Papel Fosco">Papel Fosco</option>
-                        </select>
-                        <div id="dimensoes">
-                            <input type="number" id="largura" name="largura" placeholder="Largura (mm)"
-                                aria-label="Largura da etiqueta em milímetros">
-                            <input type="number" id="altura" name="altura" placeholder="Altura (mm)"
-                                aria-label="Altura da etiqueta em milímetros">
+                                <option value="BOPP Brilho" class="corPreta">BOPP Brilho</option>
+                                <option value="BOPP Fosco" class="corPreta">BOPP Fosco</option>
+                                <option value="BOPP Transparente" class="corPreta">BOPP Transparente</option>
+                                <option value="BOPP Metalizado" class="corPreta">BOPP Metalizado</option>
+                                <option value="Papel Brilho" class="corPreta">Papel Brilho</option>
+                                <option value="Papel Fosco" class="corPreta">Papel Fosco</option>
+                            </select>
+                            <div id="dimensoes">
+                                <input type="number" id="largura" name="largura" placeholder="Largura (mm)"
+                                    aria-label="Largura da etiqueta em milímetros" min="1">
+                                <input type="number" id="altura" name="altura" placeholder="Altura (mm)"
+                                    aria-label="Altura da etiqueta em milímetros" min="1">
+                            </div>
+                            <input type="number" id="qtd-colunas" name="qtd-colunas" placeholder="Quantidade de colunas"
+                                aria-label="Quantidade de colunas por linha" min="1" max="5">
+                            <div id="espacamentos">
+                                    <input type="number" id="inGapColunas" placeholder="Espaço entre colunas (mm)" aria-label="Espaço entre cada coluna em milímetros" min="1">
+                                    <input type="number" id="inGapLinhas" placeholder="Espaço entre linhas (mm)" aria-label="Espaço entre cada linha em milímetros" min="1">
+                            </div>
+                            <input type="number" id="inGapBordas" placeholder="Tamanho das bordas (mm)" aria-label="Tamanho das bordas em milímetros" min="1">
                         </div>
-                        <input type="number" id="qtd-colunas" name="qtd-colunas" placeholder="Quantidade de colunas"
-                            aria-label="Quantidade de colunas por linha" min="1" max="20">
-                        <div id="espacamentos">
-                                <input type="number" id="inGapColunas" placeholder="Espaço entre colunas (mm)" aria-label="Espaço entre cada coluna em milímetros">
-                                <input type="number" id="inGapLinhas" placeholder="Espaço entre linhas (mm)" aria-label="Espaço entre cada linha em milímetros">
-                        </div>
-                        <input type="number" id="inGapBordas" placeholder="Tamanho das bordas (mm)" aria-label="Tamanho das bordas em milímetros">    
-                        <input type="number" id="tamanho-rolo" name="tamanho-rolo" placeholder="Tamanho do rolo"
-                            aria-label="Tamanho do rolo em metros">
-                        <input type="text" id="tipo-impressora" name="tipo-impressora" placeholder="Tipo de Impressora"
-                            aria-label="Tipo de impressora utilizada">
-                        <textarea placeholder="Especificações" name="especificacoes" id="especificacoes"></textarea>
 
-                        <div id="honeypot">
-                            <label for="bot">Não preencha o campo abaixo se for humano</label>
-                            <input type="text" name="bot" id="bot">
+                        
+                        <div>
+                            <h4>Informações do Rolo:</h4>
+                            <input type="number" id="tamanho-rolo" name="tamanho-rolo" placeholder="Tamanho do rolo (metros)"
+                                aria-label="Tamanho do rolo em metros" min="1">
+
+                                <h4>Informações Adicionais:</h4>
+                            <input type="text" id="tipo-impressora" name="tipo-impressora" placeholder="Tipo de Impressora"
+                                aria-label="Tipo de impressora utilizada">
+                            <textarea placeholder="Especificações (opcional)" name="especificacoes" id="especificacoes"></textarea>
+
+                            <div id="honeypot">
+                                <label for="bot">Não preencha o campo abaixo se for humano</label>
+                                <input type="text" name="bot" id="bot">
+                            </div> 
                         </div>
+                        
                     </div>
 
                     <div id="exemplo-visual">
@@ -289,7 +303,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
                 <button class="btn btn-enviar" aria-label="Eviar orçamento por WhatsApp" type="submit" id="requisicao">
                     Enviar solicitação
