@@ -84,11 +84,10 @@ function enviarWhatsAppPronto() {
     Empresa: ${empresa}
     Email: ${email}
 
-    
     *METRAGEM E EQUIPAMENTOS:
     Tamanho do Rolo: ${tamanho} metros
     Tipo de Impressora: ${impressora}
-    Detalhes: ${detalhes || 'Nenhuma'} 
+    Detalhes: ${detalhes || 'Nenhum'} 
 
     *INFORMAÇÕES DA ETIQUETA:
     Tipo de Etiqueta: ${tipo}

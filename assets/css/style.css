@@ -83,7 +83,7 @@ nav a {
 
 .section {
     padding: 70px 20px;
-    max-width: 1100px;
+    max-width: 1500px;
     margin: auto;
 }
 
@@ -114,11 +114,22 @@ h2 {
 }
 
 .highlight {
-    background: linear-gradient(50deg,#042661, #76a0e2);
+    background-image: 
+        linear-gradient(30deg, rgba(255,255,255,0.05) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.05) 87.5%, rgba(255,255,255,0.05)), 
+        linear-gradient(150deg, rgba(255,255,255,0.05) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.05) 87.5%, rgba(255,255,255,0.05)), 
+        linear-gradient(30deg, rgba(255,255,255,0.05) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.05) 87.5%, rgba(255,255,255,0.05)), 
+        linear-gradient(150deg, rgba(255,255,255,0.05) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.05) 87.5%, rgba(255,255,255,0.05)), 
+        linear-gradient(60deg, rgba(255,255,255,0.03) 25%, transparent 25.5%, transparent 75%, rgba(255,255,255,0.03) 75%, rgba(255,255,255,0.03)), 
+        linear-gradient(60deg, rgba(255,255,255,0.03) 25%, transparent 25.5%, transparent 75%, rgba(255,255,255,0.03) 75%, rgba(255,255,255,0.03)),
+
+        linear-gradient(50deg, #042661, #4681e0);
+    background-size: 80px 140px, 80px 140px, 80px 140px, 80px 140px, 80px 140px, 80px 140px, 100% 100%;
+    background-position: 0 0, 0 0, 40px 72px, 40px 72px, 0 0, 40px 72px, 0 0;
     color: #fff;
     text-align: center;
     padding: 50px 20px;
 }
+
 
 .form {
     max-width: 100%;
@@ -176,6 +187,10 @@ footer {
     margin: 4px;
     display: inline-block;
     font-weight: 600;
+}
+
+.badge i {
+    font-size: 18px !important;
 }
 
 i {
@@ -291,6 +306,7 @@ footer {
     margin-top: 40px;
 }
 
+
 .footer-container {
     max-width: 1100px;
     margin: auto;
@@ -298,6 +314,10 @@ footer {
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     text-align: left;
+}
+
+.footer-container i{
+    font-size: 18px !important;
 }
 
 .footer-bottom {
@@ -320,37 +340,86 @@ footer {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.mapa-container {
-    position: relative; 
-    z-index: 1;         
-    overflow: hidden;
-    width: 100%;
-    padding-top: 56.25%;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    border: 5px solid #fff;
+#section-mapa {
+    background: 
+        linear-gradient(30deg, rgba(255,255,255,0.05) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.05) 87.5%, rgba(255,255,255,0.05)), 
+        linear-gradient(150deg, rgba(255,255,255,0.05) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.05) 87.5%, rgba(255,255,255,0.05)), 
+        linear-gradient(30deg, rgba(255,255,255,0.05) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.05) 87.5%, rgba(255,255,255,0.05)), 
+        linear-gradient(150deg, rgba(255,255,255,0.05) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.05) 87.5%, rgba(255,255,255,0.05)), 
+        linear-gradient(60deg, rgba(255,255,255,0.03) 25%, transparent 25.5%, transparent 75%, rgba(255,255,255,0.03) 75%, rgba(255,255,255,0.03)), 
+        linear-gradient(60deg, rgba(255,255,255,0.03) 25%, transparent 25.5%, transparent 75%, rgba(255,255,255,0.03) 75%, rgba(255,255,255,0.03)),
+        linear-gradient(50deg, #042661, #4681e0);
+    background-size: 80px 140px, 80px 140px, 80px 140px, 80px 140px, 80px 140px, 80px 140px, 100% 100%;
+    background-position: 0 0, 0 0, 40px 72px, 40px 72px, 0 0, 40px 72px, 0 0;
+    
+    padding: 80px 0;
+    color: white;
+
+    max-width: none !important; 
+    width: 100% !important;
+    margin: 0 !important;
+
+    margin-bottom: -39px !important;
 }
 
-#section-mapa {
-    text-align: center;
+#section-mapa .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    padding: 0 20px;
+}
+
+.info-local {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info-local > button {
+    max-width: 220px;
+}
+
+.info-local h2 {
+    font-size: 32px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    white-space: nowrap;
+}
+
+.info-local h2::after {
+    content: "";
+    height: 1px;
+    background-color: white;
+    flex-grow: 1;
+}
+
+.info-local .endereco {
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mapa-container {
+    flex: 1;
+    height: 400px;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
 .mapa-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
     border: none;
-    filter: grayscale(20%);
-    transition: filter 0.3s ease;
 }
-
-.mapa-container:hover iframe {
-    filter: grayscale(0%);
-}
-
 #logo {
     border: none;
     width: 195px !important;
@@ -447,6 +516,12 @@ img {
 
 .card-formato {
     height: min-content !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-formato > img {
+    margin: auto;
 }
 
 #exemplo-container {
@@ -557,7 +632,29 @@ img {
     align-items: center;
 }
 
-@media (max-width: 825px) {
+#aumentar-texto {
+    font-size: 23px;
+}
+
+#dimimuir-img {
+    height: 300px !important;
+    width: 320px !important;
+}
+
+#produtos > .grid > .card {
+    max-width: 500px;
+    height: 200px;
+}
+
+.grid-material {
+    grid-template-columns: repeat(4, 1fr) !important;
+}
+
+.card-material {
+    max-width: 300px !important;
+}
+
+@media (max-width: 900px) {
     .menu {
         display: block;
         margin-right: 40px;
@@ -628,6 +725,41 @@ img {
         margin: 20px auto;
         text-align: center;
         line-height: 1.6;
+    }
+
+    #section-mapa .container {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .info-local h2::after { 
+        display: none; 
+    }
+
+    .info-local h2, .info-local .endereco { 
+        justify-content: center; 
+    }
+
+    .info-local .btn.whats {
+        display: block;
+        margin: 0 auto;
+        width: fit-content;
+    }
+
+    .mapa-container {
+        width: 100%;
+        height: 300px;
+    }
+
+    .grid-material {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
+    }
+
+    .card-material {
+        max-width: 200px;
+        width: 100%;
+        margin: auto;
     }
 }
 

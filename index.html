@@ -63,37 +63,37 @@
             <p>A RSP Etiquetas produz materiais técnicos para empresas que precisam imprimir rótulos com qualidade
                 profissional.</p>
             <div>
-                <span class="badge">Produção personalizada</span>
-                <span class="badge">Entrega ágil</span>
-                <span class="badge">Compatível com impressoras industriais</span>
-                <span class="badge">Alta definição de impressão</span>
+                <span class="badge"><i class="fa-regular fa-pen-to-square"></i> Produção personalizada</span>
+                <span class="badge"><i class="fa-regular fa-clock"></i> Entrega ágil</span>
+                <span class="badge"><i class="fa-regular fa-circle-check"></i> Compatível com impressoras industriais</span>
+                <span class="badge"><i class="fa-regular fa-file-lines"></i> Alta definição de impressão</span>
             </div>
         </section>
 
         <section class="section" id="produtos">
             <h2>Materiais Disponíveis</h2>
-            <div class="grid">
-                <div class="card">
+            <div class="grid grid-material">
+                <div class="card card-material">
                     <h3>BOPP Brilho</h3>
                     <p>Alta resistência e acabamento premium.</p>
                 </div>
-                <div class="card">
+                <div class="card card-material">
                     <h3>BOPP Fosco</h3>
                     <p>Elegante e com ótima leitura.</p>
                 </div>
-                <div class="card">
+                <div class="card card-material">
                     <h3>BOPP Transparente</h3>
                     <p>Efeito "no label look".</p>
                 </div>
-                <div class="card">
+                <div class="card card-material">
                     <h3>BOPP Metalizado</h3>
                     <p>Visual premium para produtos especiais.</p>
                 </div>
-                <div class="card">
+                <div class="card card-material">
                     <h3>Papel Brilho</h3>
                     <p>Cores vivas e ótimo custo.</p>
                 </div>
-                <div class="card">
+                <div class="card card-material">
                     <h3>Papel Fosco</h3>
                     <p>Acabamento sofisticado.</p>
                 </div>
@@ -116,11 +116,11 @@
                 <div class="card card-formato">
                     <h3>Rolos Contínuos</h3>
                     <p>Disponíveis em 40m e 100m de comprimento.</p>
-                    <img src="./assets/img/rolo.webp" alt="Rolos Contínuos" loading="lazy" class="formato-img">
+                    <img src="./assets/img/rolo.webp" alt="Rolos Contínuos" loading="lazy" class="formato-img" id="dimimuir-img">
                 </div>
             </div>
 
-            <p><strong>Etiquetas podem ser produzidas com borda ou sem borda para facilitar o destaque.</strong></p>
+            <p id="aumentar-texto"><strong>Etiquetas podem ser produzidas com borda ou sem borda para facilitar o destaque.</strong></p>
         </section>
 
         <section class="highlight">
@@ -239,11 +239,11 @@
                         <h3>Dados:</h3>
                         <input placeholder="Nome" name="nome" id="nome">
                         <input placeholder="Empresa" name="empresa" id="empresa">
-                        <input placeholder="Email para Contato" type="email" name="email" id="email">
+                        <input placeholder="Email para Contato" type="email" name="email" id="email" inputmode="email">
 
                         <h3>Metragem e Equipamento:</h3>
                         <input type="number" id="tamanho-rolo" name="tamanho-rolo"
-                            placeholder="Tamanho do rolo (metros)" aria-label="Tamanho do rolo em metros" min="1">
+                            placeholder="Tamanho do rolo (metros)" aria-label="Tamanho do rolo em metros" min="1" inputmode="numeric">
                         <input type="text" id="tipo-impressora" name="tipo-impressora" placeholder="Tipo de Impressora"
                             aria-label="Tipo de impressora utilizada">
                         <textarea placeholder="Especificações (opcional)" name="especificacoes"
@@ -265,20 +265,20 @@
                         </select>
                         <div id="dimensoes">
                             <input type="number" id="largura" name="largura" placeholder="Largura (mm)"
-                                aria-label="Largura da etiqueta em milímetros" min="1">
+                                aria-label="Largura da etiqueta em milímetros" min="1" inputmode="numeric">
                             <input type="number" id="altura" name="altura" placeholder="Altura (mm)"
-                                aria-label="Altura da etiqueta em milímetros" min="1">
+                                aria-label="Altura da etiqueta em milímetros" min="1" inputmode="numeric">
                         </div>
                         <input type="number" id="qtd-colunas" name="qtd-colunas" placeholder="Quantidade de colunas"
-                            aria-label="Quantidade de colunas por linha" min="1" max="5">
+                            aria-label="Quantidade de colunas por linha" min="1" max="5" inputmode="numeric">
                         <div id="espacamentos">
                             <input type="number" id="inGapColunas" placeholder="Espaço entre colunas (mm)"
-                                aria-label="Espaço entre cada coluna em milímetros" min="1">
+                                aria-label="Espaço entre cada coluna em milímetros" min="1" inputmode="numeric">
                             <input type="number" id="inGapLinhas" placeholder="Espaço entre linhas (mm)"
-                                aria-label="Espaço entre cada linha em milímetros" min="1">
+                                aria-label="Espaço entre cada linha em milímetros" min="1" inputmode="numeric">
                         </div>
                         <input type="number" id="inGapBordas" placeholder="Tamanho das bordas (mm)"
-                            aria-label="Tamanho das bordas em milímetros" min="1">
+                            aria-label="Tamanho das bordas em milímetros" min="1" inputmode="numeric">
 
                         <div id="exemplo-visual">
                             <h3>Prévia</h3>
@@ -311,12 +311,22 @@
 
 
         <section class="section" id="section-mapa">
-            <h2>Localização</h2>
-            <div class="mapa-container">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1573.0679187606543!2d-51.52452370212637!3d-29.153833568206167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951c3b50dbbae035%3A0xcaa4b7845308e6ae!2sRua%20Ulysses%20Roman%20Ross%2C%2017%20-%20Universit%C3%A1rio%2C%20Bento%20Gon%C3%A7alves%20-%20RS%2C%2095705-200!5e1!3m2!1spt-BR!2sbr!4v1772649068691!5m2!1spt-BR!2sbr"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade" title="Mapa com localização RSP Etiquetas"></iframe>
+            <div class="container">
+                <div class="info-local">
+                    <h2>Localização</h2>
+                    <p class="endereco">
+                        <i class="fa-solid fa-location-dot"></i>
+                        Rua Ulysses Roman Ross, 17  Andar Superior - Bairro Universitário - Bento Gonçalves - CEP: 95.705-200
+                    </p>
+                    <p>Venha nos conhecer ou fale conosco atavés do botão abaixo.</p>
+                    <button
+                        class="btn whats" id="whatsapp-button-2" onclick="AbrirWhatsApp()"
+                        aria-label="Falar no WhatsApp">Fale Conosco
+                    </button>
+                </div>
+                <div class="mapa-container">
+                  <iframe src="https://www.google.com/maps/embed?pb=!4v1773664401704!6m8!1m7!1sur2zeY2RJ6E34pclbWaW_g!2m2!1d-29.15400191518316!2d-51.52303278101903!3f256.5457736652915!4f1.8511640527662365!5f1.537424297278041" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa com a Localização da empresa"></iframe>  
+                </div>
             </div>
         </section>
     </main>
@@ -331,7 +341,7 @@
                 <p><strong>Ramo:</strong> Etiquetas Adesivas</p>
             </div>
             <div>
-                <h3>Endereço</h3>
+                <h3><i class="fa-solid fa-location-dot"></i> Endereço</h3>
                 <p>Rua Ulysses Roman Ross, 17 - Andar Superior</p>
                 <p>Bairro Universitário</p>
                 <p>Bento Gonçalves - RS</p>
@@ -339,9 +349,9 @@
             </div>
             <div>
                 <h3>Contato</h3>
-                <p><strong>Telefone:</strong> (54) 9 9173-1783</p>
-                <p><strong>Email geral:</strong> atendimento@rspetiquetas.com.br</p>
-                <p><strong>Financeiro / NFe:</strong> nfe@rspetiquetas.com.br</p>
+                <p><strong><i class="fa-solid fa-phone"></i> Telefone:</strong> (54) 9 9173-1783</p>
+                <p><strong><i class="fa-solid fa-envelope"></i> Email geral:</strong> atendimento@rspetiquetas.com.br</p>
+                <p><strong><i class="fa-solid fa-comments-dollar"></i> Financeiro / NFe:</strong> nfe@rspetiquetas.com.br</p>
             </div>
         </div>
         <div class="footer-bottom">
