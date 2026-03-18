@@ -1,7 +1,7 @@
 body {
     margin: 0;
     color: #111;
-    background: #f4f6f9;
+    background: white;
     font-size: 18px;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
@@ -56,9 +56,10 @@ nav a:hover::after {
     width: 100%;
 }
 
-.hero {
+.hero { 
     background-image: url('../img/fundoAzul.png');
     background-size: cover;
+    clip-path: ellipse(110% 90% at 50% 10%);
     background-position: center;
     color: #fff;
     padding: 90px 20px;
@@ -81,6 +82,14 @@ nav a:hover::after {
 .hero .btn {
     display: inline-block;
     margin: 20px auto 0 auto;
+}
+
+.sem-borda-sup {
+    border-top: none !important;
+}
+
+#fundoGeral {
+    background-color: #f4f6f9;
 }
 
 .btn {
@@ -199,14 +208,6 @@ select:focus {
     border-color: #0a3d91;
     box-shadow: 0 0 0 2px rgba(10,61,145,0.12);
     background-color: #f8fbff;
-}
-
-footer {
-    background: #000;
-    color: #fff;
-    text-align: center;
-    padding: 35px;
-    margin-top: 40px;
 }
 
 .badge {
@@ -337,6 +338,7 @@ footer {
     color: #fff;
     padding: 35px;
     margin-top: 40px;
+    font-size: 16px;
 }
 
 
@@ -355,7 +357,7 @@ footer {
 
 .footer-bottom {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     padding-top: 15px;
 }
@@ -787,6 +789,8 @@ img {
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
         box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+        top: 110px;
+        overflow-x: hidden;
     }
 
     #header.active {
@@ -986,10 +990,6 @@ img {
     .menu {
         margin-right: 10px;
         font-size: 44px;
-    }
-
-    #header {
-        top: 110px;
     }
 
     #campos {
