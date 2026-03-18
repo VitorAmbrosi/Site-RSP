@@ -72,6 +72,7 @@
 
         <section class="section" id="produtos">
             <h2>Materiais Disponíveis</h2>
+            <p class="subtitle">Etiquetas InkJet em BOPP e papel para Epson ColorWorks, Primera e AfiniaLabel.</p>
             <div class="grid grid-material">
                 <div class="card card-material">
                     <h3>BOPP Brilho</h3>
@@ -102,6 +103,7 @@
 
         <section class="section" id="formatos">
             <h2>Formatos de Fornecimento</h2>
+            <p class="subtitle">Bobinas, sanfonas e rolos contínuos para impressoras de etiquetas InkJet.</p>
             <div class="grid">
                 <div class="card card-formato">
                     <h3>Bobinas</h3>
@@ -131,6 +133,7 @@
 
         <section class="section" id="aplicacoes">
             <h2>Aplicações</h2>
+            <p class="subtitle">Etiquetas adesivas para laboratórios, alimentos, vinícolas, bebidas e logística.</p>
             <div class="grid">
 
                 <div class="card card-img-container">
@@ -156,6 +159,7 @@
 
         <section class="section" id="epson">
             <h2>Compatível com Impressoras InkJet</h2>
+            <p class="subtitle">Etiquetas para Epson ColorWorks, Primera e AfiniaLabel em Bento Gonçalves – RS.</p>
             <div class="grid">
                 <div class="card"><strong>Epson ColorWorks</strong>
                     <p>Etiquetas preparadas para alta definição, boa absorção de tinta e secagem rápida.</p>
@@ -225,7 +229,7 @@
                     <div>Medidas e quantidade</div>
                 </div>
                 <p id="btns-container"><a class="btn" href="#orcamento">Solicitar orçamento</a> <button
-                        class="btn whats" id="whatsapp-button-2" onclick="AbrirWhatsApp()"
+                        class="btn whats" id="whatsapp-button-header" onclick="AbrirWhatsApp()"
                         aria-label="Falar no WhatsApp">Falar no WhatsApp</button></p>
             </div>
         </section>
@@ -235,23 +239,42 @@
             <p>Resposta rápida da nossa equipe.</p>
             <form class="form" id="formOrcamento">
                 <div id="campos">
-                    <div>
-                        <h3>Dados:</h3>
-                        <input placeholder="Nome" name="nome" id="nome">
-                        <input placeholder="Empresa" name="empresa" id="empresa">
-                        <input placeholder="Email para Contato" type="email" name="email" id="email" inputmode="email">
+                    <div class="form-step" data-step="1">
+                        <h3>Passo 1: Dados e contato</h3>
+                        <label for="nome">Nome</label>
+                        <input placeholder="Seu nome completo" name="nome" id="nome">
+                        <span class="erro-msg" id="erro-nome"></span>
 
-                        <h3>Metragem e Equipamento:</h3>
-                        <input type="number" id="tamanho-rolo" name="tamanho-rolo"
-                            placeholder="Tamanho do rolo (metros)" aria-label="Tamanho do rolo em metros" min="1" inputmode="numeric">
-                        <input type="text" id="tipo-impressora" name="tipo-impressora" placeholder="Tipo de Impressora"
-                            aria-label="Tipo de impressora utilizada">
-                        <textarea placeholder="Especificações (opcional)" name="especificacoes"
-                            id="especificacoes"></textarea>
+                        <label for="empresa">Empresa</label>
+                        <input placeholder="Nome da empresa" name="empresa" id="empresa">
+                        <span class="erro-msg" id="erro-empresa"></span>
+
+                        <label for="email">Email para contato</label>
+                        <input placeholder="seuemail@empresa.com" type="email" name="email" id="email" inputmode="email">
+                        <span class="erro-msg" id="erro-email"></span>
                     </div>
 
-                    <div>
-                        <h3 class="legenda">Informações da Etiqueta:</h3>
+                    <div class="form-step" data-step="2">
+                        <h3>Passo 2: Metragem e equipamento</h3>
+                        <label for="tamanho-rolo">Tamanho do rolo (metros)</label>
+                        <input type="number" id="tamanho-rolo" name="tamanho-rolo"
+                            placeholder="Ex.: 20" aria-label="Tamanho do rolo em metros" min="1" inputmode="numeric">
+                        <span class="erro-msg" id="erro-tamanho-rolo"></span>
+
+                        <label for="tipo-impressora">Tipo de impressora</label>
+                        <input type="text" id="tipo-impressora" name="tipo-impressora" placeholder="Ex.: Epson CW-C4000"
+                            aria-label="Tipo de impressora utilizada">
+                        <span class="erro-msg" id="erro-tipo-impressora"></span>
+
+                        <label for="especificacoes">Especificações (opcional)</label>
+                        <textarea
+                            placeholder="Ex.: temperatura de uso, se será refrigerado, tipo de superfície, se terá contato com umidade, etc."
+                            name="especificacoes" id="especificacoes"></textarea>
+                    </div>
+
+                    <div class="form-step" data-step="3">
+                        <h3 class="legenda">Passo 3: Informações da etiqueta</h3>
+                        <label for="tipoEtiqueta">Tipo de etiqueta</label>
                         <select name="tipoEtiqueta" id="tipoEtiqueta" aria-label="Escolha o tipo de etiqueta">
                             <option value="" selected hidden id="primeiro-option">Selecione o tipo de etiqueta
                             </option>
@@ -263,22 +286,43 @@
                             <option value="Papel Brilho" class="corPreta">Papel Brilho</option>
                             <option value="Papel Fosco" class="corPreta">Papel Fosco</option>
                         </select>
+                        <span class="erro-msg" id="erro-tipoEtiqueta"></span>
                         <div id="dimensoes">
-                            <input type="number" id="largura" name="largura" placeholder="Largura (mm)"
-                                aria-label="Largura da etiqueta em milímetros" min="1" inputmode="numeric">
-                            <input type="number" id="altura" name="altura" placeholder="Altura (mm)"
-                                aria-label="Altura da etiqueta em milímetros" min="1" inputmode="numeric">
+                            <div class="campo-grupo">
+                                <label for="largura">Largura (mm)</label>
+                                <input type="number" id="largura" name="largura" placeholder="Largura (mm)"
+                                    aria-label="Largura da etiqueta em milímetros" min="1" inputmode="numeric" max="120">
+                                <span class="erro-msg" id="erro-largura"></span>
+                            </div>
+                            <div class="campo-grupo">
+                                <label for="altura">Altura (mm)</label>
+                                <input type="number" id="altura" name="altura" placeholder="Altura (mm)"
+                                    aria-label="Altura da etiqueta em milímetros" min="1" inputmode="numeric" max="120">
+                                <span class="erro-msg" id="erro-altura"></span>
+                            </div>
                         </div>
+                        <label for="qtd-colunas">Quantidade de colunas</label>
                         <input type="number" id="qtd-colunas" name="qtd-colunas" placeholder="Quantidade de colunas"
                             aria-label="Quantidade de colunas por linha" min="1" max="5" inputmode="numeric">
+                        <span class="erro-msg" id="erro-qtd-colunas"></span>
                         <div id="espacamentos">
-                            <input type="number" id="inGapColunas" placeholder="Espaço entre colunas (mm)"
-                                aria-label="Espaço entre cada coluna em milímetros" min="1" inputmode="numeric">
-                            <input type="number" id="inGapLinhas" placeholder="Espaço entre linhas (mm)"
-                                aria-label="Espaço entre cada linha em milímetros" min="1" inputmode="numeric">
+                            <div class="campo-grupo">
+                                <label for="inGapColunas">Espaço entre colunas (mm)</label>
+                                <input type="number" id="inGapColunas" placeholder="Espaço entre colunas (mm)"
+                                    aria-label="Espaço entre cada coluna em milímetros" min="1" inputmode="numeric">
+                                <span class="erro-msg" id="erro-inGapColunas"></span>
+                            </div>
+                            <div class="campo-grupo">
+                                <label for="inGapLinhas">Espaço entre linhas (mm)</label>
+                                <input type="number" id="inGapLinhas" placeholder="Espaço entre linhas (mm)"
+                                    aria-label="Espaço entre cada linha em milímetros" min="1" inputmode="numeric">
+                                <span class="erro-msg" id="erro-inGapLinhas"></span>
+                            </div>
                         </div>
+                        <label for="inGapBordas">Tamanho das bordas (mm)</label>
                         <input type="number" id="inGapBordas" placeholder="Tamanho das bordas (mm)"
                             aria-label="Tamanho das bordas em milímetros" min="1" inputmode="numeric">
+                        <span class="erro-msg" id="erro-inGapBordas"></span>
 
                         <div id="exemplo-visual">
                             <h3>Prévia</h3>
@@ -295,6 +339,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-secondary" id="btn-voltar" aria-label="Voltar passo" disabled>Voltar</button>
+                    <button type="button" class="btn" id="btn-proximo" aria-label="Avançar passo">Próximo</button>
                 </div>
 
                 <div id="honeypot">
@@ -320,12 +369,15 @@
                     </p>
                     <p>Venha nos conhecer ou fale conosco atavés do botão abaixo.</p>
                     <button
-                        class="btn whats" id="whatsapp-button-2" onclick="AbrirWhatsApp()"
+                        class="btn whats" id="whatsapp-button-mapa" onclick="AbrirWhatsApp()"
                         aria-label="Falar no WhatsApp">Fale Conosco
                     </button>
                 </div>
-                <div class="mapa-container">
-                  <iframe src="https://www.google.com/maps/embed?pb=!4v1773664401704!6m8!1m7!1sur2zeY2RJ6E34pclbWaW_g!2m2!1d-29.15400191518316!2d-51.52303278101903!3f256.5457736652915!4f1.8511640527662365!5f1.537424297278041" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa com a Localização da empresa"></iframe>  
+                <div class="mapa-area">
+                    <div class="mapa-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!4v1773664401704!6m8!1m7!1sur2zeY2RJ6E34pclbWaW_g!2m2!1d-29.15400191518316!2d-51.52303278101903!3f256.5457736652915!4f1.8511640527662365!5f1.537424297278041" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa com a Localização da empresa" allow="accelerometer; gyroscope; magnetometer"></iframe>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Rua%20Ulysses%20Roman%20Ross%2C%2017%2C%20Bento%20Gon%C3%A7alves%20-%20RS%2C%2095705-200" target="_blank" rel="noopener" class="link-mapa">Abrir no Google Maps</a>
                 </div>
             </div>
         </section>

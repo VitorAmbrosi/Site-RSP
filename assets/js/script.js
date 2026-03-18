@@ -14,24 +14,70 @@ form.addEventListener('submit', function (event) {
 })
 
 function validarFormulario() {
-    const nome = document.querySelector('input[id="nome"]').value.trim()
-    const empresa = document.querySelector('input[id="empresa"]').value.trim()
-    const email = document.querySelector('input[id="email"]').value.trim()
-    const tipo = document.getElementById('tipoEtiqueta').value
-    const largura = document.querySelector('input[id="largura"]').value.trim()
-    const altura = document.querySelector('input[id="altura"]').value.trim()
-    const colunas = document.querySelector('input[id="qtd-colunas"]').value.trim()
-    const tamanho = document.querySelector('input[id="tamanho-rolo"]').value.trim()
-    const gapColunas = document.querySelector('input[id="inGapColunas"]').value.trim()
-    const gapLinhas = document.querySelector('input[id="inGapLinhas"]').value.trim()
-    const gapBordas = document.querySelector('input[id="inGapBordas"]').value.trim()
-    const impressora = document.querySelector('input[id="tipo-impressora"]').value.trim()
-
+    const nomeInput = document.getElementById('nome')
+    const empresaInput = document.getElementById('empresa')
+    const emailInput = document.getElementById('email')
+    const tipoSelect = document.getElementById('tipoEtiqueta')
+    const larguraInput = document.getElementById('largura')
+    const alturaInput = document.getElementById('altura')
+    const colunasInput = document.getElementById('qtd-colunas')
+    const tamanhoInput = document.getElementById('tamanho-rolo')
+    const gapColunasInput = document.getElementById('inGapColunas')
+    const gapLinhasInput = document.getElementById('inGapLinhas')
+    const gapBordasInput = document.getElementById('inGapBordas')
+    const impressoraInput = document.getElementById('tipo-impressora')
 
     const alerta = document.getElementById('mensagem-alerta')
 
-    if (!nome || !empresa || !email || !tipo || !largura || !altura || !colunas || !gapColunas || !gapLinhas || !gapBordas || !tamanho || !impressora) {
-        alerta.textContent = 'Por favor, preencha todos os campos.'
+    const campos = [
+        { input: nomeInput, erroId: 'erro-nome', mensagem: 'Informe o nome.' },
+        { input: empresaInput, erroId: 'erro-empresa', mensagem: 'Informe a empresa.' },
+        { input: emailInput, erroId: 'erro-email', mensagem: 'Informe um email válido.' },
+        { input: tipoSelect, erroId: 'erro-tipoEtiqueta', mensagem: 'Selecione o tipo de etiqueta.' },
+        { input: larguraInput, erroId: 'erro-largura', mensagem: 'Informe a largura da etiqueta.' },
+        { input: alturaInput, erroId: 'erro-altura', mensagem: 'Informe a altura da etiqueta.' },
+        { input: colunasInput, erroId: 'erro-qtd-colunas', mensagem: 'Informe a quantidade de colunas.' },
+        { input: tamanhoInput, erroId: 'erro-tamanho-rolo', mensagem: 'Informe o tamanho do rolo.' },
+        { input: gapColunasInput, erroId: 'erro-inGapColunas', mensagem: 'Informe o espaço entre colunas.' },
+        { input: gapLinhasInput, erroId: 'erro-inGapLinhas', mensagem: 'Informe o espaço entre linhas.' },
+        { input: gapBordasInput, erroId: 'erro-inGapBordas', mensagem: 'Informe o tamanho das bordas.' },
+        { input: impressoraInput, erroId: 'erro-tipo-impressora', mensagem: 'Informe o tipo de impressora.' }
+    ]
+
+    campos.forEach(campo => {
+        campo.input.classList.remove('erro')
+        const spanErro = document.getElementById(campo.erroId)
+        if (spanErro) {
+            spanErro.textContent = ''
+        }
+    })
+
+    let valido = true
+
+    campos.forEach(campo => {
+        if (!campo.input.value.trim()) {
+            campo.input.classList.add('erro')
+            const spanErro = document.getElementById(campo.erroId)
+            if (spanErro) {
+                spanErro.textContent = campo.mensagem
+            }
+            valido = false
+        }
+    })
+
+    const emailValor = emailInput.value.trim()
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (emailValor && !emailRegex.test(emailValor)) {
+        emailInput.classList.add('erro')
+        const spanErroEmail = document.getElementById('erro-email')
+        if (spanErroEmail) {
+            spanErroEmail.textContent = 'Informe um email válido (ex.: seuemail@empresa.com).'
+        }
+        valido = false
+    }
+
+    if (!valido) {
+        alerta.textContent = 'Por favor, preencha ou corrija os campos destacados.'
         alerta.style.display = 'block'
 
         setTimeout(() => {
@@ -112,11 +158,40 @@ function alterarMenu() {
     if (header.classList.contains('active')) {
         menu.innerHTML = '<i class="fa-solid fa-xmark"></i>'
         menu.setAttribute('aria-expanded', 'true')
+        document.body.style.overflow = 'hidden'
     } else {
         menu.innerHTML = '<i class="fa-solid fa-bars"></i>'
         menu.setAttribute('aria-expanded', 'false')
+        document.body.style.overflow = ''
     }
 }
+
+function fecharMenuMobile() {
+    const header = document.getElementById('header')
+    const menu = document.querySelector('.menu')
+    if (header && header.classList.contains('active')) {
+        header.classList.remove('active')
+    }
+    if (menu) {
+        menu.innerHTML = '<i class="fa-solid fa-bars"></i>'
+        menu.setAttribute('aria-expanded', 'false')
+    }
+    document.body.style.overflow = ''
+}
+
+document.querySelectorAll('#header .opcoes').forEach(link => {
+    link.addEventListener('click', function () {
+        if (window.innerWidth <= 900) {
+            fecharMenuMobile()
+        }
+    })
+})
+
+window.addEventListener('resize', function () {
+    if (window.innerWidth > 900) {
+        document.body.style.overflow = ''
+    }
+})
 
 btnTopo = document.getElementById('btn-topo')
 window.onscroll = function () {
@@ -136,7 +211,6 @@ function voltarAoTopo() {
 const campoParaBots = document.getElementById('bot')
 function verificarBot() {
     if (campoParaBots.value.trim()) {
-        console.log("Bot detectado, envio cancelado")
         return true
     } else {
         return false
@@ -234,3 +308,51 @@ function mudarCorSelect() {
 }
 
 select.addEventListener('change', mudarCorSelect)
+const steps = document.querySelectorAll('.form-step')
+let passoAtual = 1
+
+function mostrarPasso(passo) {
+    steps.forEach(step => {
+        if (parseInt(step.getAttribute('data-step')) === passo) {
+            step.classList.add('active')
+        } else {
+            step.classList.remove('active')
+        }
+    })
+
+    const btnVoltar = document.getElementById('btn-voltar')
+    const btnProximo = document.getElementById('btn-proximo')
+
+    if (btnVoltar) {
+        btnVoltar.disabled = passo === 1
+    }
+
+    if (btnProximo) {
+        btnProximo.textContent = passo === steps.length ? 'Revisar dados' : 'Próximo'
+    }
+}
+
+const btnVoltar = document.getElementById('btn-voltar')
+const btnProximo = document.getElementById('btn-proximo')
+
+if (steps.length > 0) {
+    mostrarPasso(passoAtual)
+}
+
+if (btnVoltar) {
+    btnVoltar.addEventListener('click', function () {
+        if (passoAtual > 1) {
+            passoAtual--
+            mostrarPasso(passoAtual)
+        }
+    })
+}
+
+if (btnProximo) {
+    btnProximo.addEventListener('click', function () {
+        if (passoAtual < steps.length) {
+            passoAtual++
+            mostrarPasso(passoAtual)
+        }
+    })
+}
