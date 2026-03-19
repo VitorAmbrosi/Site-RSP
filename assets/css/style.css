@@ -57,7 +57,7 @@ nav a:hover::after {
 }
 
 .hero { 
-    background-image: url('../img/fundoAzul.png');
+    background-image: url('../img/fundoAzul.webp');
     background-size: cover;
     clip-path: ellipse(110% 90% at 50% 10%);
     background-position: center;
@@ -120,7 +120,7 @@ nav a:hover::after {
     margin: 0 auto;
 }
 
-.subtitle {
+.subtitulo {
     font-size: 16px;
     color: #555;
     margin-top: 8px;
@@ -160,7 +160,7 @@ h2 {
     font-size: 18px;
 }
 
-.highlight {
+.destaque {
     background-image: linear-gradient(135deg, #042661, #4681e0);
     color: #fff;
     text-align: center;

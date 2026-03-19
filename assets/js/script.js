@@ -245,7 +245,7 @@ function atualizarPrevia() {
         const larguraTotalRolo = (vLargura * numColunas) + (vGapColunas * (numColunas - 1)) + (vGapBordas * 2)
         displayRolo.textContent = `${larguraTotalRolo}mm`
     } else {
-        displayRolo.textContent = 'Largura Total'
+        displayRolo.textContent = 'Largura Total do Rolo'
     }
 
     containerGrade.innerHTML = ''
@@ -308,6 +308,7 @@ function mudarCorSelect() {
 }
 
 select.addEventListener('change', mudarCorSelect)
+
 const steps = document.querySelectorAll('.form-step')
 let passoAtual = 1
 
