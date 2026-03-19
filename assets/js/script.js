@@ -14,34 +14,34 @@ form.addEventListener('submit', function (event) {
 })
 
 function validarFormulario() {
-    const nomeInput = document.getElementById('nome')
-    const empresaInput = document.getElementById('empresa')
-    const emailInput = document.getElementById('email')
+    const nome = document.getElementById('nome')
+    const empresa = document.getElementById('empresa')
+    const email = document.getElementById('email')
     const tipoSelect = document.getElementById('tipoEtiqueta')
-    const larguraInput = document.getElementById('largura')
-    const alturaInput = document.getElementById('altura')
-    const colunasInput = document.getElementById('qtd-colunas')
-    const tamanhoInput = document.getElementById('tamanho-rolo')
-    const gapColunasInput = document.getElementById('inGapColunas')
-    const gapLinhasInput = document.getElementById('inGapLinhas')
-    const gapBordasInput = document.getElementById('inGapBordas')
-    const impressoraInput = document.getElementById('tipo-impressora')
+    const largura = document.getElementById('largura')
+    const altura = document.getElementById('altura')
+    const colunas = document.getElementById('qtd-colunas')
+    const tamanho = document.getElementById('tamanho-rolo')
+    const gapColunas = document.getElementById('GapColunas')
+    const gapLinhas = document.getElementById('GapLinhas')
+    const gapBordas = document.getElementById('GapBordas')
+    const impressora = document.getElementById('tipo-impressora')
 
     const alerta = document.getElementById('mensagem-alerta')
 
     const campos = [
-        { input: nomeInput, erroId: 'erro-nome', mensagem: 'Informe o nome.' },
-        { input: empresaInput, erroId: 'erro-empresa', mensagem: 'Informe a empresa.' },
-        { input: emailInput, erroId: 'erro-email', mensagem: 'Informe um email válido.' },
+        { input: nome, erroId: 'erro-nome', mensagem: 'Informe o nome.' },
+        { input: empresa, erroId: 'erro-empresa', mensagem: 'Informe a empresa.' },
+        { input: email, erroId: 'erro-email', mensagem: 'Informe um email válido.' },
         { input: tipoSelect, erroId: 'erro-tipoEtiqueta', mensagem: 'Selecione o tipo de etiqueta.' },
-        { input: larguraInput, erroId: 'erro-largura', mensagem: 'Informe a largura da etiqueta.' },
-        { input: alturaInput, erroId: 'erro-altura', mensagem: 'Informe a altura da etiqueta.' },
-        { input: colunasInput, erroId: 'erro-qtd-colunas', mensagem: 'Informe a quantidade de colunas.' },
-        { input: tamanhoInput, erroId: 'erro-tamanho-rolo', mensagem: 'Informe o tamanho do rolo.' },
-        { input: gapColunasInput, erroId: 'erro-inGapColunas', mensagem: 'Informe o espaço entre colunas.' },
-        { input: gapLinhasInput, erroId: 'erro-inGapLinhas', mensagem: 'Informe o espaço entre linhas.' },
-        { input: gapBordasInput, erroId: 'erro-inGapBordas', mensagem: 'Informe o tamanho das bordas.' },
-        { input: impressoraInput, erroId: 'erro-tipo-impressora', mensagem: 'Informe o tipo de impressora.' }
+        { input: largura, erroId: 'erro-largura', mensagem: 'Informe a largura da etiqueta.' },
+        { input: altura, erroId: 'erro-altura', mensagem: 'Informe a altura da etiqueta.' },
+        { input: colunas, erroId: 'erro-qtd-colunas', mensagem: 'Informe a quantidade de colunas.' },
+        { input: tamanho, erroId: 'erro-tamanho-rolo', mensagem: 'Informe o tamanho do rolo.' },
+        { input: gapColunas, erroId: 'erro-GapColunas', mensagem: 'Informe o espaço entre colunas.' },
+        { input: gapLinhas, erroId: 'erro-GapLinhas', mensagem: 'Informe o espaço entre linhas.' },
+        { input: gapBordas, erroId: 'erro-GapBordas', mensagem: 'Informe o tamanho das bordas.' },
+        { input: impressora, erroId: 'erro-tipo-impressora', mensagem: 'Informe o tipo de impressora.' }
     ]
 
     campos.forEach(campo => {
@@ -65,10 +65,10 @@ function validarFormulario() {
         }
     })
 
-    const emailValor = emailInput.value.trim()
+    const emailValor = email.value.trim()
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (emailValor && !emailRegex.test(emailValor)) {
-        emailInput.classList.add('erro')
+        email.classList.add('erro')
         const spanErroEmail = document.getElementById('erro-email')
         if (spanErroEmail) {
             spanErroEmail.textContent = 'Informe um email válido (ex.: seuemail@empresa.com).'
@@ -105,14 +105,15 @@ function enviarWhatsAppPronto() {
     const nome = document.querySelector('input[id="nome"]').value.trim()
     const empresa = document.querySelector('input[id="empresa"]').value.trim()
     const email = document.querySelector('input[id="email"]').value.trim()
+    const telefone = document.querySelector('input[id="telefone"]').value.trim()
     const tipo = document.getElementById('tipoEtiqueta').value
     const largura = document.querySelector('input[id="largura"]').value.trim()
     const altura = document.querySelector('input[id="altura"]').value.trim()
     const colunas = document.querySelector('input[id="qtd-colunas"]').value.trim()
     const tamanho = document.querySelector('input[id="tamanho-rolo"]').value.trim()
-    const gapColunas = document.querySelector('input[id="inGapColunas"]').value.trim()
-    const gapLinhas = document.querySelector('input[id="inGapLinhas"]').value.trim()
-    const gapBordas = document.querySelector('input[id="inGapBordas"]').value.trim()
+    const gapColunas = document.querySelector('input[id="GapColunas"]').value.trim()
+    const gapLinhas = document.querySelector('input[id="GapLinhas"]').value.trim()
+    const gapBordas = document.querySelector('input[id="GapBordas"]').value.trim()
     const impressora = document.querySelector('input[id="tipo-impressora"]').value.trim()
     const detalhes = document.querySelector('textarea[id="especificacoes"]').value.trim()
 
@@ -129,6 +130,7 @@ function enviarWhatsAppPronto() {
     Nome: ${nome}
     Empresa: ${empresa}
     Email: ${email}
+    Telefone: ${telefone}
 
     *METRAGEM E EQUIPAMENTOS:
     Tamanho do Rolo: ${tamanho} metros
@@ -218,24 +220,24 @@ function verificarBot() {
 }
 
 
-const inLargura = document.getElementById('largura')
-const inAltura = document.getElementById('altura')
-const inColunas = document.getElementById('qtd-colunas')
+const Largura = document.getElementById('largura')
+const Altura = document.getElementById('altura')
+const Colunas = document.getElementById('qtd-colunas')
 const displayLargura = document.getElementById('txt-largura')
 const displayAltura = document.getElementById('txt-altura')
 const containerGrade = document.getElementById('grade-colunas')
-const inGapColunas = document.getElementById('inGapColunas')
-const inGapLinhas = document.getElementById('inGapLinhas')
+const GapColunas = document.getElementById('GapColunas')
+const GapLinhas = document.getElementById('GapLinhas')
 const displayRolo = document.getElementById('txt-rolo')
-const inGapBordas = document.getElementById('inGapBordas')
+const GapBordas = document.getElementById('GapBordas')
 
 function atualizarPrevia() {
-    const vLargura = parseFloat(inLargura.value) || 0
-    const vAltura = parseFloat(inAltura.value) || 0
-    const numColunas = parseInt(inColunas.value) || 0
-    const vGapColunas = parseFloat(inGapColunas.value) || 0
-    const vGapLinhas = parseFloat(inGapLinhas.value) || 0
-    const vGapBordas = parseFloat(inGapBordas.value) || 0
+    const vLargura = parseFloat(Largura.value) || 0
+    const vAltura = parseFloat(Altura.value) || 0
+    const numColunas = parseInt(Colunas.value) || 0
+    const vGapColunas = parseFloat(GapColunas.value) || 0
+    const vGapLinhas = parseFloat(GapLinhas.value) || 0
+    const vGapBordas = parseFloat(GapBordas.value) || 0
     const numLinhas = 2
 
     displayLargura.textContent = vLargura > 0 ? `${vLargura}mm` : 'Largura'
@@ -245,7 +247,7 @@ function atualizarPrevia() {
         const larguraTotalRolo = (vLargura * numColunas) + (vGapColunas * (numColunas - 1)) + (vGapBordas * 2)
         displayRolo.textContent = `${larguraTotalRolo}mm`
     } else {
-        displayRolo.textContent = 'Largura Total do Rolo'
+        displayRolo.textContent = 'Largura Total'
     }
 
     containerGrade.innerHTML = ''
@@ -289,12 +291,12 @@ function atualizarPrevia() {
     }
 }
 
-inLargura.addEventListener('input', atualizarPrevia)
-inAltura.addEventListener('input', atualizarPrevia)
-inColunas.addEventListener('input', atualizarPrevia)
-inGapColunas.addEventListener('input', atualizarPrevia)
-inGapLinhas.addEventListener('input', atualizarPrevia)
-inGapBordas.addEventListener('input', atualizarPrevia)
+Largura.addEventListener('input', atualizarPrevia)
+Altura.addEventListener('input', atualizarPrevia)
+Colunas.addEventListener('input', atualizarPrevia)
+GapColunas.addEventListener('input', atualizarPrevia)
+GapLinhas.addEventListener('input', atualizarPrevia)
+GapBordas.addEventListener('input', atualizarPrevia)
 
 
 const select = document.getElementById('tipoEtiqueta')
@@ -308,6 +310,24 @@ function mudarCorSelect() {
 }
 
 select.addEventListener('change', mudarCorSelect)
+
+let telefone = document.getElementById('telefone')
+
+telefone.addEventListener('input', () => {
+    let telefoneLimpo = telefone.value.replace(/\D/g, "").substring(0, 11)
+    let numeroArray = telefoneLimpo.split("")
+    let numeroFormatado = ""
+    
+    if(numeroArray.length > 0) {
+        numeroFormatado += `(${numeroArray.slice(0,2).join("")})`
+    } if (numeroArray.length > 2) {
+        numeroFormatado += ` ${numeroArray.slice(2,7).join("")}`
+    } if (numeroArray.length > 7) {
+        numeroFormatado += `-${numeroArray.slice(7,11).join("")}`
+    }
+
+    telefone.value = numeroFormatado
+})
 
 const steps = document.querySelectorAll('.form-step')
 let passoAtual = 1

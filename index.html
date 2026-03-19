@@ -245,28 +245,31 @@
                     <div id="campos">
                         <div class="form-step" data-step="1">
                             <h3>Passo 1: Dados e contato</h3>
-                            <label for="nome">Nome</label>
-                            <input placeholder="Seu nome completo" name="nome" id="nome">
+                            <label for="nome">Nome*</label>
+                            <input placeholder="Seu nome completo" name="nome" id="nome" aria-label="Nome completo">
                             <span class="erro-msg" id="erro-nome"></span>
 
-                            <label for="empresa">Empresa</label>
-                            <input placeholder="Nome da empresa" name="empresa" id="empresa">
+                            <label for="empresa">Empresa*</label>
+                            <input placeholder="Nome da empresa" name="empresa" id="empresa" aria-label="Empresa">
                             <span class="erro-msg" id="erro-empresa"></span>
 
-                            <label for="email">Email para contato</label>
+                            <label for="email">Email para contato*</label>
                             <input placeholder="seuemail@empresa.com" type="email" name="email" id="email"
-                                inputmode="email">
+                                inputmode="email" aria-label="Email para contato">
                             <span class="erro-msg" id="erro-email"></span>
+
+                            <label for="telefone">Telefone para contato (opcional)</label>
+                            <input type="tel" id="telefone" name="telefone" placeholder="Ex.: (00) 00000-0000" inputmode="numeric" aria-label="Telefone para contato">
                         </div>
 
                         <div class="form-step" data-step="2">
                             <h3>Passo 2: Metragem e equipamento</h3>
-                            <label for="tamanho-rolo">Tamanho do rolo (metros)</label>
+                            <label for="tamanho-rolo">Tamanho do rolo*(metros)</label>
                             <input type="number" id="tamanho-rolo" name="tamanho-rolo" placeholder="Ex.: 20"
                                 aria-label="Tamanho do rolo em metros" min="1" inputmode="numeric">
                             <span class="erro-msg" id="erro-tamanho-rolo"></span>
 
-                            <label for="tipo-impressora">Tipo de impressora</label>
+                            <label for="tipo-impressora">Tipo de impressora*</label>
                             <input type="text" id="tipo-impressora" name="tipo-impressora"
                                 placeholder="Ex.: Epson CW-C4000" aria-label="Tipo de impressora utilizada">
                             <span class="erro-msg" id="erro-tipo-impressora"></span>
@@ -279,7 +282,7 @@
 
                         <div class="form-step" data-step="3">
                             <h3 class="legenda">Passo 3: Informações da etiqueta</h3>
-                            <label for="tipoEtiqueta">Tipo de etiqueta</label>
+                            <label for="tipoEtiqueta">Tipo de etiqueta*</label>
                             <select name="tipoEtiqueta" id="tipoEtiqueta" aria-label="Escolha o tipo de etiqueta">
                                 <option value="" selected hidden id="primeiro-option">Selecione o tipo de etiqueta
                                 </option>
@@ -294,40 +297,40 @@
                             <span class="erro-msg" id="erro-tipoEtiqueta"></span>
                             <div id="dimensoes">
                                 <div class="campo-grupo">
-                                    <label for="largura">Largura (mm)</label>
+                                    <label for="largura">Largura* (mm)</label>
                                     <input type="number" id="largura" name="largura" placeholder="Largura da etiqueta"
                                         aria-label="Largura da etiqueta em milímetros" min="1" inputmode="numeric"
                                         max="120">
                                     <span class="erro-msg" id="erro-largura"></span>
                                 </div>
                                 <div class="campo-grupo">
-                                    <label for="altura">Altura (mm)</label>
+                                    <label for="altura">Altura* (mm)</label>
                                     <input type="number" id="altura" name="altura" placeholder="Altura da etiqueta"
                                         aria-label="Altura da etiqueta em milímetros" min="1" inputmode="numeric"
                                         max="120">
                                     <span class="erro-msg" id="erro-altura"></span>
                                 </div>
                             </div>
-                            <label for="qtd-colunas">Quantidade de colunas</label>
+                            <label for="qtd-colunas">Quantidade de colunas*</label>
                             <input type="number" id="qtd-colunas" name="qtd-colunas" placeholder="Ex.: 2"
                                 aria-label="Quantidade de colunas por linha" min="1" max="5" inputmode="numeric">
                             <span class="erro-msg" id="erro-qtd-colunas"></span>
                             <div id="espacamentos">
                                 <div class="campo-grupo">
-                                    <label for="inGapColunas">Espaço entre colunas (mm)</label>
-                                    <input type="number" id="inGapColunas" placeholder="Ex.: 5"
+                                    <label for="inGapColunas">Espaço entre colunas* (mm)</label>
+                                    <input type="number" id="GapColunas" placeholder="Ex.: 5"
                                         aria-label="Espaço entre cada coluna em milímetros" min="1" inputmode="numeric">
                                     <span class="erro-msg" id="erro-inGapColunas"></span>
                                 </div>
                                 <div class="campo-grupo">
-                                    <label for="inGapLinhas">Espaço entre linhas (mm)</label>
-                                    <input type="number" id="inGapLinhas" placeholder="Ex.: 5"
+                                    <label for="inGapLinhas">Espaço entre linhas* (mm)</label>
+                                    <input type="number" id="GapLinhas" placeholder="Ex.: 5"
                                         aria-label="Espaço entre cada linha em milímetros" min="1" inputmode="numeric">
                                     <span class="erro-msg" id="erro-inGapLinhas"></span>
                                 </div>
                             </div>
-                            <label for="inGapBordas">Tamanho das bordas (mm)</label>
-                            <input type="number" id="inGapBordas" placeholder="Ex.: 3"
+                            <label for="inGapBordas">Tamanho das bordas* (mm)</label>
+                            <input type="number" id="GapBordas" placeholder="Ex.: 3"
                                 aria-label="Tamanho das bordas em milímetros" min="1" inputmode="numeric">
                             <span class="erro-msg" id="erro-inGapBordas"></span>
 
@@ -341,7 +344,7 @@
                                         <div id="grade-colunas"></div>
                                         <span id="txt-largura">Largura</span>
                                         <span id="txt-altura">Altura</span>
-                                        <span id="txt-rolo">Largura Total do Rolo</span>
+                                        <span id="txt-rolo">Largura Total</span>
                                     </div>
                                 </div>
                             </div>
@@ -361,7 +364,7 @@
 
                     <button class="btn btn-enviar" aria-label="Eviar orçamento por WhatsApp" type="submit"
                         id="requisicao">
-                        Enviar solicitação
+                        Enviar solicitação pelo Whatsapp
                     </button>
                 </form>
 
