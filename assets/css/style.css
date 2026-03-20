@@ -59,18 +59,12 @@ nav a:hover::after {
 .hero { 
     background-image: url('../img/fundoAzul.webp');
     background-size: cover;
-    clip-path: ellipse(110% 100% at 50% 0%);
     background-position: center;
     color: #fff;
     padding: 90px 20px;
     text-align: center;
 }
 
-@media (max-width: 900px) {
-    .hero {
-        clip-path: ellipse(150% 100% at 50% 0%);
-    }
-}
 
 .hero h1 {
     font-size: 46px;
@@ -458,6 +452,7 @@ footer {
 }
 
 .link-mapa {
+    align-self: center;
     display: inline-block;
     margin-top: 12px;
     color: #ffffff;
