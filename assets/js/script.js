@@ -101,6 +101,24 @@ function validarFormulario() {
     return true
 }
 
+const camposMedida = document.querySelectorAll('.validar-max');
+
+camposMedida.forEach(campo => {
+    // Recomendo usar 'input' para uma resposta instantânea, 
+    // ou manter 'change' se preferir que valide só ao sair do campo.
+    campo.addEventListener('input', (e) => {
+        const valor = parseFloat(e.target.value);
+        const max = parseFloat(e.target.max);
+        const min = parseFloat(e.target.min) || 1; // Pega o min do HTML ou assume 1
+
+        if (valor > max) {
+            e.target.value = max;
+        } else if (valor < min) {
+            e.target.value = min;
+        }
+    });
+});
+
 function enviarWhatsAppPronto() {
     const nome = document.querySelector('input[id="nome"]').value.trim()
     const empresa = document.querySelector('input[id="empresa"]').value.trim()
@@ -126,18 +144,18 @@ function enviarWhatsAppPronto() {
 
     const mensagem = `Olá, gostaria de um orçamento:
 
-    *DADOS:
+    *DADOS:*
     Nome: ${nome}
     Empresa: ${empresa}
     Email: ${email}
     Telefone: ${telefone}
 
-    *METRAGEM E EQUIPAMENTOS:
+    *METRAGEM E EQUIPAMENTOS:*
     Tamanho do Rolo: ${tamanho} metros
     Tipo de Impressora: ${impressora}
     Detalhes: ${detalhes || 'Nenhum'} 
 
-    *INFORMAÇÕES DA ETIQUETA:
+    *INFORMAÇÕES DA ETIQUETA:*
     Tipo de Etiqueta: ${tipo}
     Tamanho da Etiqueta: ${largura} mm X ${altura} mm
     Quantidade de Colunas: ${colunas}
