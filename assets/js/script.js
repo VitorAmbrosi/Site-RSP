@@ -104,20 +104,18 @@ function validarFormulario() {
 const camposMedida = document.querySelectorAll('.validar-max');
 
 camposMedida.forEach(campo => {
-    // Recomendo usar 'input' para uma resposta instantânea, 
-    // ou manter 'change' se preferir que valide só ao sair do campo.
     campo.addEventListener('input', (e) => {
-        const valor = parseFloat(e.target.value);
-        const max = parseFloat(e.target.max);
-        const min = parseFloat(e.target.min) || 1; // Pega o min do HTML ou assume 1
+        const valor = parseFloat(e.target.value)
+        const max = parseFloat(e.target.max)
+        const min = parseFloat(e.target.min) || 1
 
         if (valor > max) {
-            e.target.value = max;
+            e.target.value = max
         } else if (valor < min) {
-            e.target.value = min;
+            e.target.value = min
         }
-    });
-});
+    })
+})
 
 function enviarWhatsAppPronto() {
     const nome = document.querySelector('input[id="nome"]').value.trim()
