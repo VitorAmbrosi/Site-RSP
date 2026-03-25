@@ -457,7 +457,11 @@ footer {
     margin-top: 12px;
     color: #ffffff;
     font-weight: 600;
-    text-decoration: underline;
+    text-decoration: none;
+}
+
+.link-mapa i {
+    font-size: 14px !important;
 }
 
 .link-mapa:hover {
@@ -503,20 +507,15 @@ footer {
     display: none;
     left: 20px;
     bottom: 20px;
-    background-color: lightgray;
     color: white;
     z-index: 9999;
     border: none;
     padding: 12px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-#btn-topo:hover {
-    background-color: rgb(177, 170, 170);
+    font-size: 25px;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 1);
+    background-color: transparent;
 }
 
 #honeypot {
