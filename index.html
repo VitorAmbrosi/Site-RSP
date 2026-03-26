@@ -255,7 +255,8 @@
 
                             <label for="email">Email para contato*</label>
                             <input placeholder="seuemail@empresa.com" type="email" name="email" id="email"
-                                inputmode="email" aria-label="Email para contato">
+                                inputmode="email" aria-label="Email para contato"
+                                autocomplete="email">
                             <span class="erro-msg" id="erro-email"></span>
 
                             <label for="telefone">Telefone para contato (opcional)</label>
@@ -317,19 +318,19 @@
                             <span class="erro-msg" id="erro-qtd-colunas"></span>
                             <div id="espacamentos">
                                 <div class="campo-grupo">
-                                    <label for="inGapColunas">Distância colunas* (mm)</label>
+                                    <label for="GapColunas">Distância colunas* (mm)</label>
                                     <input type="number" id="GapColunas" placeholder="Ex.: 5"
                                         aria-label="Espaço entre cada coluna em milímetros" min="1" max="10" inputmode="numeric" class="validar-max">
                                     <span class="erro-msg" id="erro-inGapColunas"></span>
                                 </div>
                                 <div class="campo-grupo">
-                                    <label for="inGapLinhas">Distância linhas* (mm)</label>
+                                    <label for="GapLinhas">Distância linhas* (mm)</label>
                                     <input type="number" id="GapLinhas" placeholder="Ex.: 5"
                                         aria-label="Espaço entre cada linha em milímetros" min="1" max="10" inputmode="numeric" class="validar-max">
                                     <span class="erro-msg" id="erro-inGapLinhas"></span>
                                 </div>
                             </div>
-                            <label for="inGapBordas">Tamanho das bordas* (mm)</label>
+                            <label for="GapBordas">Tamanho das bordas* (mm)</label>
                             <input type="number" id="GapBordas" placeholder="Ex.: 3"
                                 aria-label="Tamanho das bordas em milímetros" min="1" max="10" inputmode="numeric" class="validar-max">
                             <span class="erro-msg" id="erro-inGapBordas"></span>
