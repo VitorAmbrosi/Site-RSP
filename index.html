@@ -8,6 +8,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
     <meta property="og:title" content="RSP Etiquetas">
     <meta name="title" content="RSP Etiquetas">
     <meta property="og:description"
@@ -17,6 +18,7 @@
     <meta property="og:image" content="./assets/img/logo.webp">
     <meta property="og:url" content="https://rspetiquetas.com.br">
     <meta name="google-site-verification" content="A7HMbnCsUc4LTlzNujQ3S7xIVo_dJ8L3oLxaNfSzVD8" />
+    <link rel="canonical" href="https://rspetiquetas.com.br">
     <title>RSP Etiquetas</title>
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -320,20 +322,20 @@
                                 <div class="campo-grupo">
                                     <label for="GapColunas">Distância colunas* (mm)</label>
                                     <input type="number" id="GapColunas" placeholder="Ex.: 5"
-                                        aria-label="Espaço entre cada coluna em milímetros" min="1" max="10" inputmode="numeric" class="validar-max">
-                                    <span class="erro-msg" id="erro-inGapColunas"></span>
+                                        aria-label="Espaço entre cada coluna em milímetros" min="0" max="10" inputmode="numeric" class="validar-max">
+                                    <span class="erro-msg" id="erro-GapColunas"></span>
                                 </div>
                                 <div class="campo-grupo">
                                     <label for="GapLinhas">Distância linhas* (mm)</label>
                                     <input type="number" id="GapLinhas" placeholder="Ex.: 5"
-                                        aria-label="Espaço entre cada linha em milímetros" min="1" max="10" inputmode="numeric" class="validar-max">
-                                    <span class="erro-msg" id="erro-inGapLinhas"></span>
+                                        aria-label="Espaço entre cada linha em milímetros" min="0" max="10" inputmode="numeric" class="validar-max">
+                                    <span class="erro-msg" id="erro-GapLinhas"></span>
                                 </div>
                             </div>
                             <label for="GapBordas">Tamanho das bordas* (mm)</label>
                             <input type="number" id="GapBordas" placeholder="Ex.: 3"
-                                aria-label="Tamanho das bordas em milímetros" min="1" max="10" inputmode="numeric" class="validar-max">
-                            <span class="erro-msg" id="erro-inGapBordas"></span>
+                                aria-label="Tamanho das bordas em milímetros" min="0" max="10" inputmode="numeric" class="validar-max">
+                            <span class="erro-msg" id="erro-GapBordas"></span>
 
                             <div id="exemplo-visual">
                                 <h3>Prévia</h3>
@@ -363,7 +365,7 @@
                         <input type="text" name="bot" id="bot">
                     </div>
 
-                    <button class="btn btn-enviar" aria-label="Eviar orçamento por WhatsApp" type="submit"
+                    <button class="btn btn-enviar" aria-label="Enviar orçamento por WhatsApp" type="submit"
                         id="requisicao">
                         Enviar solicitação pelo Whatsapp
                     </button>
@@ -381,7 +383,7 @@
                             Rua Ulysses Roman Ross, 17 Andar Superior - Bairro Universitário - Bento Gonçalves - CEP:
                             95.705-200
                         </p>
-                        <p>Venha nos conhecer ou fale conosco atavés do botão abaixo.</p>
+                        <p>Venha nos conhecer ou fale conosco através do botão abaixo.</p>
                         <button class="btn whats" id="whatsapp-button-mapa" onclick="AbrirWhatsApp()"
                             aria-label="Falar no WhatsApp">Fale Conosco
                         </button>

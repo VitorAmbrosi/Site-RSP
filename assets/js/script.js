@@ -107,7 +107,7 @@ camposMedida.forEach(campo => {
     campo.addEventListener('input', (e) => {
         const valor = parseFloat(e.target.value)
         const max = parseFloat(e.target.max)
-        const min = parseFloat(e.target.min) || 1
+        const min = parseFloat(e.target.min)
 
         if (valor > max) {
             e.target.value = max
@@ -146,12 +146,12 @@ function enviarWhatsAppPronto() {
     Nome: ${nome}
     Empresa: ${empresa}
     Email: ${email}
-    Telefone: ${telefone}
+    Telefone: ${telefone || 'Número não informado'}
 
     *METRAGEM E EQUIPAMENTOS:*
     Tamanho do Rolo: ${tamanho} metros
     Tipo de Impressora: ${impressora}
-    Detalhes: ${detalhes || 'Nenhum'} 
+    Detalhes: ${detalhes || 'Nenhuma especificação'} 
 
     *INFORMAÇÕES DA ETIQUETA:*
     Tipo de Etiqueta: ${tipo}
@@ -211,7 +211,7 @@ window.addEventListener('resize', function () {
     }
 })
 
-btnTopo = document.getElementById('btn-topo')
+let btnTopo = document.getElementById('btn-topo')
 window.onscroll = function () {
     if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
         btnTopo.style.display = 'block'
