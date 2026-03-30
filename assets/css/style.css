@@ -351,6 +351,15 @@ footer {
     text-align: left;
 }
 
+.footer-container a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-container a:hover {
+    text-decoration: underline;
+}
+
 .footer-container i{
     font-size: 18px !important;
 }
@@ -465,8 +474,7 @@ footer {
 }
 
 .link-mapa:hover {
-    text-decoration: none;
-    opacity: 0.9;
+    text-decoration: underline;
 }
 #logo {
     border: none;
