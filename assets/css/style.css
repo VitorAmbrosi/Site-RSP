@@ -577,12 +577,6 @@ img {
     margin: auto;
 }
 
-#exemplo-container {
-    position: relative;
-    width: 400px;
-    margin: 0;
-}
-
 #exemplo {
     width: 100%;
     display: block;
@@ -760,7 +754,7 @@ img {
     font-size: 23px;
 }
 
-#dimimuir-img {
+#diminuir-img {
     height: 300px !important;
     width: 320px !important;
 }
@@ -794,7 +788,6 @@ img {
         border-bottom: 1px solid grey;
         border-top: 1px solid grey;
         position: fixed;
-        top: 130px;
         left: 0;
         color: black;
         margin-left: -8px;
@@ -895,9 +888,7 @@ img {
         padding-left: 15px;
         padding-right: 15px;
         white-space: normal;
-        line-height: 1.4;
         font-size: 1rem;
-        text-align: center;
         margin: 20px auto;
         text-align: center;
         line-height: 1.6;

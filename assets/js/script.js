@@ -211,7 +211,7 @@ window.addEventListener('resize', function () {
     }
 })
 
-btnTopo = document.getElementById('btn-topo')
+let btnTopo = document.getElementById('btn-topo')
 window.onscroll = function () {
     if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
         btnTopo.style.display = 'block'
