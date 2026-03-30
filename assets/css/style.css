@@ -1034,3 +1034,41 @@ img {
         bottom: 14px;
     }
 }
+
+.steps-progress {
+    margin-bottom: 28px;
+}
+
+.step-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.step-progress-label {
+    font-weight: 700;
+    color: #0a3d91;
+}
+
+.step-progress-nome {
+    color: #555;
+    font-weight: 600;
+}
+
+.step-progress-barra-fundo {
+    width: 100%;
+    height: 10px;
+    background: #e0e0e0;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.step-progress-barra-preenchida {
+    height: 100%;
+    background: #0a3d91;
+    border-radius: 999px;
+    width: 33.33%;
+    transition: width 0.4s ease;
+}

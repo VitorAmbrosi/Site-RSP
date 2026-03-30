@@ -107,7 +107,7 @@ camposMedida.forEach(campo => {
     campo.addEventListener('input', (e) => {
         const valor = parseFloat(e.target.value)
         const max = parseFloat(e.target.max)
-        const min = parseFloat(e.target.min)
+        const min = parseFloat(e.target.min) || 1
 
         if (valor > max) {
             e.target.value = max
@@ -146,12 +146,12 @@ function enviarWhatsAppPronto() {
     Nome: ${nome}
     Empresa: ${empresa}
     Email: ${email}
-    Telefone: ${telefone || 'Número não informado'}
+    Telefone: ${telefone}
 
     *METRAGEM E EQUIPAMENTOS:*
     Tamanho do Rolo: ${tamanho} metros
     Tipo de Impressora: ${impressora}
-    Detalhes: ${detalhes || 'Nenhuma especificação'} 
+    Detalhes: ${detalhes || 'Nenhum'} 
 
     *INFORMAÇÕES DA ETIQUETA:*
     Tipo de Etiqueta: ${tipo}
@@ -211,7 +211,7 @@ window.addEventListener('resize', function () {
     }
 })
 
-let btnTopo = document.getElementById('btn-topo')
+btnTopo = document.getElementById('btn-topo')
 window.onscroll = function () {
     if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
         btnTopo.style.display = 'block'
@@ -348,6 +348,90 @@ telefone.addEventListener('input', () => {
 const steps = document.querySelectorAll('.form-step')
 let passoAtual = 1
 
+
+const camposPorPasso = {
+    1: [
+        { id: 'nome', erroId: 'erro-nome', mensagem: 'Informe o nome.' },
+        { id: 'empresa', erroId: 'erro-empresa', mensagem: 'Informe a empresa.' },
+        { id: 'email', erroId: 'erro-email', mensagem: 'Informe um email válido.' }
+    ],
+    2: [
+        { id: 'tamanho-rolo', erroId: 'erro-tamanho-rolo', mensagem: 'Informe o tamanho do rolo.' },
+        { id: 'tipo-impressora', erroId: 'erro-tipo-impressora', mensagem: 'Informe o tipo de impressora.' }
+    ],
+    3: [
+        { id: 'tipoEtiqueta', erroId: 'erro-tipoEtiqueta', mensagem: 'Selecione o tipo de etiqueta.' },
+        { id: 'largura', erroId: 'erro-largura', mensagem: 'Informe a largura da etiqueta.' },
+        { id: 'altura', erroId: 'erro-altura', mensagem: 'Informe a altura da etiqueta.' },
+        { id: 'qtd-colunas', erroId: 'erro-qtd-colunas', mensagem: 'Informe a quantidade de colunas.' },
+        { id: 'tamanho-rolo', erroId: 'erro-tamanho-rolo', mensagem: 'Informe o tamanho do rolo.' },
+        { id: 'GapColunas', erroId: 'erro-GapColunas', mensagem: 'Informe o espaço entre colunas.' },
+        { id: 'GapLinhas', erroId: 'erro-GapLinhas', mensagem: 'Informe o espaço entre linhas.' },
+        { id: 'GapBordas', erroId: 'erro-GapBordas', mensagem: 'Informe o tamanho das bordas.' }
+    ]
+}
+
+function validarPasso(passo) {
+    const campos = camposPorPasso[passo] || []
+    const alerta = document.getElementById('mensagem-alerta')
+    let valido = true
+
+    campos.forEach(campo => {
+        const input = document.getElementById(campo.id)
+        const spanErro = document.getElementById(campo.erroId)
+        if (input) input.classList.remove('erro')
+        if (spanErro) spanErro.textContent = ''
+    })
+
+    campos.forEach(campo => {
+        const input = document.getElementById(campo.id)
+        const spanErro = document.getElementById(campo.erroId)
+        if (input && !input.value.trim()) {
+            input.classList.add('erro')
+            if (spanErro) spanErro.textContent = campo.mensagem
+            valido = false
+        }
+    })
+
+
+    if (passo === 1) {
+        const emailInput = document.getElementById('email')
+        const emailValor = emailInput ? emailInput.value.trim() : ''
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        if (emailValor && !emailRegex.test(emailValor)) {
+            emailInput.classList.add('erro')
+            const spanErroEmail = document.getElementById('erro-email')
+            if (spanErroEmail) spanErroEmail.textContent = 'Informe um email válido (ex.: seuemail@empresa.com).'
+            valido = false
+        }
+    }
+
+    if (!valido && alerta) {
+        alerta.textContent = 'Por favor, preencha ou corrija os campos destacados.'
+        alerta.style.display = 'block'
+        setTimeout(() => { alerta.style.display = 'none' }, 3000)
+    }
+
+    return valido
+}
+
+const nomesPasso = {
+    1: 'Dados e contato',
+    2: 'Metragem e equipamento',
+    3: 'Informações da etiqueta'
+}
+
+function atualizarIndicadorProgresso(passo) {
+    const barra = document.getElementById('barra-progresso')
+    const numEl = document.getElementById('passo-atual-num')
+    const nomeEl = document.getElementById('passo-nome')
+    const total = steps.length
+
+    if (barra) barra.style.width = `${(passo / total) * 100}%`
+    if (numEl) numEl.textContent = passo
+    if (nomeEl) nomeEl.textContent = nomesPasso[passo] || ''
+}
+
 function mostrarPasso(passo) {
     steps.forEach(step => {
         if (parseInt(step.getAttribute('data-step')) === passo) {
@@ -367,6 +451,8 @@ function mostrarPasso(passo) {
     if (btnProximo) {
         btnProximo.textContent = passo === steps.length ? 'Revisar dados' : 'Próximo'
     }
+
+    atualizarIndicadorProgresso(passo)
 }
 
 const btnVoltar = document.getElementById('btn-voltar')
@@ -387,6 +473,7 @@ if (btnVoltar) {
 
 if (btnProximo) {
     btnProximo.addEventListener('click', function () {
+        if (!validarPasso(passoAtual)) return
         if (passoAtual < steps.length) {
             passoAtual++
             mostrarPasso(passoAtual)
