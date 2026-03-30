@@ -333,13 +333,13 @@ telefone.addEventListener('input', () => {
     let telefoneLimpo = telefone.value.replace(/\D/g, "").substring(0, 11)
     let numeroArray = telefoneLimpo.split("")
     let numeroFormatado = ""
-    
-    if(numeroArray.length > 0) {
-        numeroFormatado += `(${numeroArray.slice(0,2).join("")})`
+
+    if (numeroArray.length > 0) {
+        numeroFormatado += `(${numeroArray.slice(0, 2).join("")})`
     } if (numeroArray.length > 2) {
-        numeroFormatado += ` ${numeroArray.slice(2,7).join("")}`
+        numeroFormatado += ` ${numeroArray.slice(2, 7).join("")}`
     } if (numeroArray.length > 7) {
-        numeroFormatado += `-${numeroArray.slice(7,11).join("")}`
+        numeroFormatado += `-${numeroArray.slice(7, 11).join("")}`
     }
 
     telefone.value = numeroFormatado
