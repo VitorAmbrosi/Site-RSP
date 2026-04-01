@@ -1104,7 +1104,7 @@ li>img {
     transition: width 0.4s ease;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
     .nav-container {
         padding: 0 12px;
         box-sizing: border-box;
@@ -1126,7 +1126,6 @@ li>img {
     }
 
     li>img {
-        max-width: 100% !important;
         height: 160px !important;
     }
 
@@ -1138,10 +1137,6 @@ li>img {
 @media (max-width: 520px) {
     .destaque h2 {
         font-size: 20px;
-    }
-
-    li>img {
-        height: 130px !important;
     }
 
     main section {
