@@ -560,21 +560,50 @@ img {
     height: auto !important;
 }
 
-.formato-img {
-    width: 100% !important;
-    height: 300px !important;
+.fa-box-open, .fa-brush {
+    font-size: 25px !important;
+}
+
+.grid-divisao {
+    max-width: 98.5% !important;
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.formatos>ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.formatos>ul>li {
+   text-align: center;
+   border-radius: 20px;
+   border: solid 1px lightgray;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+}
+
+.formatos>ul>li:hover {
+   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.09);
+    border-color: #c7d2eb; 
+}
+
+li>img {
+    max-width: 200px !important;
+    height: 200px !important;
     object-fit: cover !important;
     object-position: center !important;
-}
-
-.card-formato {
-    height: min-content !important;
-    display: flex;
-    flex-direction: column;
-}
-
-.card-formato>img {
     margin: auto;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: solid 1px lightgray;
+}
+
+.materiais>ul>li {
+    margin-top: 20px;
+    font-size: 20px;
 }
 
 #exemplo {
@@ -750,26 +779,9 @@ img {
     align-items: center;
 }
 
-#aumentar-texto {
-    font-size: 23px;
-}
-
-#diminuir-img {
-    height: 300px !important;
-    width: 320px !important;
-}
-
 #produtos>.grid>.card {
     max-width: 500px;
     height: 200px;
-}
-
-.grid-material {
-    grid-template-columns: repeat(4, 1fr) !important;
-}
-
-.card-material {
-    max-width: 300px !important;
 }
 
 @media (max-width: 900px) {
@@ -929,16 +941,6 @@ img {
         font-size: 16px;
     }
 
-    .grid-material {
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
-    }
-
-    .card-material {
-        max-width: 200px;
-        width: 100%;
-        margin: auto;
-    }
-
     #logo {
         width: 165px !important;
         height: 110px !important;
@@ -1061,7 +1063,7 @@ img {
 }
 
 .step-progress-nome {
-    color: #555;
+    color: gray;
     font-weight: 600;
 }
 
