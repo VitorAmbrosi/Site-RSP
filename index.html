@@ -17,13 +17,29 @@
     <meta property="og:image" content="./assets/img/logo.webp">
     <meta property="og:url" content="https://rspetiquetas.com.br">
     <meta name="google-site-verification" content="A7HMbnCsUc4LTlzNujQ3S7xIVo_dJ8L3oLxaNfSzVD8" />
+
     <title>RSP Etiquetas</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    </noscript>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet"
+        media="print" onload="this.media='all'"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="icon" type="image/webp" href="./assets/img/logo.webp">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+        crossorigin="anonymous">
+    <noscript>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet">
+    </noscript>
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+
 </head>
 
 <body>
@@ -34,7 +50,8 @@
     <header>
         <nav>
             <div class="nav-container">
-                <img src="./assets/img/logo.webp" alt="Logo RSP Etiquetas" id="logo" loading="lazy">
+                <img src="./assets/img/logo.webp" alt="Logo RSP Etiquetas" id="logo" width="165" height="110"
+                    loading="eager">
                 <button class="menu" onclick="alterarMenu()" aria-expanded="false" aria-label="Abrir menu">
                     <i class="fa-solid fa-bars"></i>
                 </button>
@@ -51,6 +68,7 @@
 
     <main>
         <section class="hero">
+            <img src="./assets/img/fundoAzul.webp" fetchpriority="high" loading="eager" width="1920" alt="" class="hero-bg">
             <h1>Etiquetas profissionais para Impressoras InkJet</h1>
             <p>Alta qualidade de impressão, secagem rápida e materiais desenvolvidos para impressoras Epson ColorWorks,
                 Primera e AfiniaLabel.</p>
@@ -84,19 +102,22 @@
 
                     <div class="card card-img-container">
                         <img src="./assets/img/laboratório.webp" alt="Laboratório" loading="lazy" class="img-card"
-                            width="300" height="200">
+                            width="342" height="228">
                         <b>Laboratórios e Farmácias de Manipulação</b>
                     </div>
                     <div class="card">
-                        <img src="./assets/img/alimentos.webp" alt="Alimentos" loading="lazy" class="img-card">
+                        <img src="./assets/img/alimentos.webp" alt="Alimentos" loading="lazy" class="img-card"
+                            width="342" height="228">
                         <b>Rótulos para alimentos</b>
                     </div>
                     <div class="card">
-                        <img src="./assets/img/vinhos.webp" alt="Vinho" loading="lazy" class="img-card">
+                        <img src="./assets/img/vinhos.webp" alt="Vinho" loading="lazy" class="img-card" width="342"
+                            height="228">
                         <b>Vinícolas e bebidas</b>
                     </div>
                     <div class="card">
-                        <img src="./assets/img/logistica.webp" alt="Logística" loading="lazy" class="img-card">
+                        <img src="./assets/img/logistica.webp" alt="Logística" loading="lazy" class="img-card"
+                            width="342" height="228">
                         <b>Logística</b>
                     </div>
 
@@ -120,7 +141,7 @@
 
                 <div class="card">
                     <img src="./assets/img/catalogoImpressoras.webp" alt="Catalogo de impressoras compatíveis"
-                        loading="lazy" class="img-card catalogo">
+                        loading="lazy" class="img-card catalogo" width="640" height="373">
                     <p class="texto-apresentacao">
                         Se você utiliza impressoras <strong>Epson ColorWorks, Primera ou AfiniaLabel</strong>, a RSP
                         Etiquetas fornece materiais especiais desenvolvidos para entregar <strong>impressão
@@ -147,11 +168,22 @@
                             <h3><i class="fa-solid fa-box-open"></i> Formatos Disponíveis</h3>
                             <p>Com ou sem borda para facilitar o destaque da etiqueta.</p>
                         </div>
-                        
+
                         <ul>
-                            <li><p><strong>Bobinas com larguras personalizadas</strong></p> <img src="./assets/img/bobinas.webp" alt="Bobinas"></li>
-                            <li><p><strong>Sanfona (dobrado) para alimentação contínua</strong></p> <img src="./assets/img/sanfona.webp" alt="Sanfona"></li>
-                            <li><p><strong>Rolos contínuos de 40m e 100m</strong></p> <img src="./assets/img/rolo.webp" alt="Rolos"></li>
+                            <li>
+                                <p><strong>Bobinas com larguras personalizadas</strong></p>
+                                <img src="./assets/img/bobinas.webp" alt="Bobinas" loading="lazy" width="1056"
+                                    height="844">
+                            </li>
+                            <li>
+                                <p><strong>Sanfona (dobrado) para alimentação contínua</strong></p>
+                                <img src="./assets/img/sanfona.webp" alt="Sanfona" loading="lazy" width="600"
+                                    height="600">
+                            </li>
+                            <li>
+                                <p><strong>Rolos contínuos de 40m e 100m</strong></p>
+                                <img src="./assets/img/rolo.webp" alt="Rolos" loading="lazy" width="600" height="600">
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -286,7 +318,7 @@
                                 <h3>Prévia</h3>
                                 <div id="exemplo-container">
                                     <img src="./assets/img/exemplo.webp" alt="Exemplo de rolo de etiquetas"
-                                        loading="lazy" id="exemplo">
+                                        loading="lazy" id="exemplo" width="400" height="400">
 
                                     <div id="etiqueta-dinamica" class="etiqueta-overlay">
                                         <div id="grade-colunas"></div>

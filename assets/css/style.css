@@ -57,14 +57,29 @@ nav a:hover::after {
 }
 
 .hero {
-    background-image: url('../img/fundoAzul.webp');
-    background-size: cover;
-    background-position: center;
-    color: #fff;
-    padding: 90px 20px;
-    text-align: center;
+  position: relative;
+  color: #fff;
+  padding: 90px 20px;
+  text-align: center;
+  overflow: hidden;
+  min-height: 300px;
 }
 
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100% !important;
+  object-fit: cover;
+  object-position: center center;
+  z-index: 0;
+  filter: blur(0.5px) brightness(0.85);
+}
+
+.hero > *:not(.hero-bg) {
+  position: relative;
+  z-index: 1;
+}
 
 .hero h1 {
     font-size: 46px;
@@ -997,8 +1012,8 @@ li>img {
     }
 
     .hero {
-        padding: 70px 16px;
-    }
+    padding: 60px 16px 80px;
+   }
 
     .hero h1 {
         font-size: 28px;
