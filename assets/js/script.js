@@ -462,14 +462,13 @@ const nomesPasso = {
 }
 
 function atualizarIndicadorProgresso(passo) {
-    const barra = document.getElementById('barra-progresso')
-    const numEl = document.getElementById('passo-atual-num')
-    const nomeEl = document.getElementById('passo-nome')
-    const total = steps.length
-
-    if (barra) barra.style.width = `${(passo / total) * 100}%`
-    if (numEl) numEl.textContent = passo
-    if (nomeEl) nomeEl.textContent = nomesPasso[passo] || ''
+    for (let i = 1; i <= steps.length; i++) {
+        const bolha = document.getElementById(`bolha-${i}`)
+        if (!bolha) continue
+        bolha.classList.remove('active', 'concluido')
+        if (i < passo) bolha.classList.add('concluido')
+        else if (i === passo) bolha.classList.add('active')
+    }
 }
 
 function mostrarPasso(passo) {
