@@ -315,13 +315,11 @@ function atualizarPrevia() {
 
 Largura.addEventListener('input', atualizarPrevia)
 Altura.addEventListener('input', atualizarPrevia)
-GapColunas.addEventListener('input', atualizarPrevia)
 GapLinhas.addEventListener('input', atualizarPrevia)
-GapBordas.addEventListener('input', atualizarPrevia)
 
 const maxLarguraOriginal = parseFloat(Largura.max) || 200
 
-Colunas.addEventListener('input', () => {
+function recalcularMaxLargura() {
     const numColunas = parseInt(Colunas.value) || 1
     const vBordas = parseFloat(GapBordas.value) || 0
     const vGapCol = parseFloat(GapColunas.value) || 0
@@ -332,7 +330,20 @@ Colunas.addEventListener('input', () => {
     if (parseFloat(Largura.value) > larguraMaxPorColuna) {
         Largura.value = larguraMaxPorColuna
     }
+}
 
+Colunas.addEventListener('input', () => {
+    recalcularMaxLargura()
+    atualizarPrevia()
+})
+
+GapBordas.addEventListener('input', () => {
+    recalcularMaxLargura()
+    atualizarPrevia()
+})
+
+GapColunas.addEventListener('input', () => {
+    recalcularMaxLargura()
     atualizarPrevia()
 })
 
