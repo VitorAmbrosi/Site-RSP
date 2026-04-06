@@ -315,10 +315,26 @@ function atualizarPrevia() {
 
 Largura.addEventListener('input', atualizarPrevia)
 Altura.addEventListener('input', atualizarPrevia)
-Colunas.addEventListener('input', atualizarPrevia)
 GapColunas.addEventListener('input', atualizarPrevia)
 GapLinhas.addEventListener('input', atualizarPrevia)
 GapBordas.addEventListener('input', atualizarPrevia)
+
+const maxLarguraOriginal = parseFloat(Largura.max) || 200
+
+Colunas.addEventListener('input', () => {
+    const numColunas = parseInt(Colunas.value) || 1
+    const vBordas = parseFloat(GapBordas.value) || 0
+    const vGapCol = parseFloat(GapColunas.value) || 0
+
+    const larguraMaxPorColuna = Math.floor((maxLarguraOriginal - (vBordas * 2) - (vGapCol * (numColunas - 1))) / numColunas)
+    Largura.max = larguraMaxPorColuna
+
+    if (parseFloat(Largura.value) > larguraMaxPorColuna) {
+        Largura.value = larguraMaxPorColuna
+    }
+
+    atualizarPrevia()
+})
 
 const exemploContainerEl = document.getElementById('exemplo-container')
 if (exemploContainerEl && typeof ResizeObserver !== 'undefined') {
@@ -327,7 +343,6 @@ if (exemploContainerEl && typeof ResizeObserver !== 'undefined') {
     })
     resizeObserver.observe(exemploContainerEl)
 }
-
 
 const select = document.getElementById('tipoEtiqueta')
 
