@@ -553,6 +553,10 @@ footer {
     background-color: rgba(211, 211, 211, 0.2);
 }
 
+#btn-topo:hover {
+    background-color: rgba(211, 211, 211, 0.4);
+}
+
 #honeypot {
     display: none;
 }
@@ -649,6 +653,7 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     display: block;
 }
 
@@ -678,9 +683,10 @@ img {
 
 @media (max-width: 520px) {
     .formato-img-wrap {
-        width: 84px;
-        min-width: 84px;
-        height: 70px;
+        aspect-ratio: auto;
+        width: 110px;
+        min-width: 110px;
+        height: 100%;
     }
 
     .formato-info strong .material-card {
