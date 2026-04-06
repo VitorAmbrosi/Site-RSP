@@ -269,30 +269,36 @@ function atualizarPrevia() {
     containerGrade.innerHTML = ''
 
     if (numColunas > 0 && vLargura > 0 && vAltura > 0) {
-        const larguraMaximaGrade = 48
-        const alturaMaximaGrade = 50
+        const exemploContainer = document.getElementById('exemplo-container')
+        const rect = exemploContainer.getBoundingClientRect()
+        const containerW = rect.width
+        const containerH = rect.height
 
-        const proporcaoEtiqueta = vAltura / vLargura
+        const areaMaxW = containerW * 0.48
+        const areaMaxH = containerH * 0.50
 
-        let finalW = larguraMaximaGrade;
-        let finalH = (finalW / numColunas) * proporcaoEtiqueta * numLinhas
+        const proporcaoGrade = (numColunas * vLargura) / (numLinhas * vAltura)
 
-        if (finalH > alturaMaximaGrade) {
-            const fatorAjuste = alturaMaximaGrade / finalH
-            finalH = alturaMaximaGrade
-            finalW = finalW * fatorAjuste
+        let finalW = areaMaxW
+        let finalH = finalW / proporcaoGrade
+
+        if (finalH > areaMaxH) {
+            finalH = areaMaxH
+            finalW = finalH * proporcaoGrade
         }
 
-        containerGrade.style.width = finalW + "%"
-        containerGrade.style.height = finalH + "%"
+        containerGrade.style.width = finalW + "px"
+        containerGrade.style.height = finalH + "px"
         containerGrade.style.gridTemplateColumns = `repeat(${numColunas}, 1fr)`
         containerGrade.style.gridTemplateRows = `repeat(${numLinhas}, 1fr)`
 
         containerGrade.style.columnGap = vGapColunas + "px"
         containerGrade.style.rowGap = vGapLinhas + "px"
-
-        containerGrade.style.padding = `${vGapBordas}px`
+        containerGrade.style.padding = vGapBordas + "px"
         containerGrade.style.boxSizing = "border-box"
+
+        containerGrade.style.top = (containerH * 0.40) + "px"
+        containerGrade.style.left = (containerW * 0.16) + "px"
 
         const totalQuadrados = numColunas * numLinhas
         for (let i = 0; i < totalQuadrados; i++) {
@@ -313,6 +319,14 @@ Colunas.addEventListener('input', atualizarPrevia)
 GapColunas.addEventListener('input', atualizarPrevia)
 GapLinhas.addEventListener('input', atualizarPrevia)
 GapBordas.addEventListener('input', atualizarPrevia)
+
+const exemploContainerEl = document.getElementById('exemplo-container')
+if (exemploContainerEl && typeof ResizeObserver !== 'undefined') {
+    const resizeObserver = new ResizeObserver(() => {
+        atualizarPrevia()
+    })
+    resizeObserver.observe(exemploContainerEl)
+}
 
 
 const select = document.getElementById('tipoEtiqueta')

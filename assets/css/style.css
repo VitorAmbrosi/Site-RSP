@@ -995,6 +995,8 @@ img {
     gap: 7px;
     justify-items: center;
     align-items: center;
+    min-width: 20px;
+    min-height: 20px;
 }
 
 .quadrado-coluna {
