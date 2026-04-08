@@ -1030,6 +1030,56 @@ img {
     }
 }
 
+#modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+}
+
+#modal.ativo {
+    display: flex;
+}
+
+#modal-container {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+#modal-container i {
+    color: #1db354;
+    font-size: 60px;
+    margin-bottom: 16px;
+}
+
+#btn-modal {
+    border: none;
+    width: 120px;
+}
+
+@media (max-width: 500px) {
+    #modal-container {
+        padding: 20px;
+    }
+
+    #modal-container {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 400px) {
+    #modal-container {
+        max-width: 250px;
+    }
+}
+
 @media (max-width: 900px) {
     .menu {
         display: block;

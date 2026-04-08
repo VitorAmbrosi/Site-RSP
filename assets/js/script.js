@@ -165,6 +165,7 @@ function enviarWhatsAppPronto() {
     const numero = "5554999126702"
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`
     window.open(url, '_blank')
+    abrirModal()
 }
 
 function alterarMenu() {
@@ -519,3 +520,17 @@ if (btnProximo) {
         }
     })
 }
+
+function abrirModal() {
+    document.getElementById('modal').classList.add('ativo')
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+}
+
+const btnModal = document.getElementById('btn-modal')
+
+btnModal.addEventListener('click', function() {
+    document.getElementById('modal').classList.remove('ativo')
+    document.body.style.overflow = ''
+    document.documentElement.style.overflow = ''
+})
