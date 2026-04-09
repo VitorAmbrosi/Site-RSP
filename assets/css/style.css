@@ -311,6 +311,7 @@ i {
     border-radius: 10px;
     padding: 14px;
 }
+
 #epson .card:last-child .grid div:hover {
     border-color: #b3c4e8;
     box-shadow: 0 4px 16px rgba(10, 61, 145, 0.08);
@@ -602,15 +603,18 @@ img {
     grid-template-columns: 50% 50%;
 }
 
-.formatos-header, .material-header {
+.formatos-header,
+.material-header {
     margin-bottom: 20px;
 }
 
-.formatos-header h3, .material-header h3 {
+.formatos-header h3,
+.material-header h3 {
     margin-bottom: 4px;
 }
 
-.formatos-header p, .material-header p {
+.formatos-header p,
+.material-header p {
     color: #555;
     font-size: 16px;
     margin: 0;
@@ -834,6 +838,7 @@ img {
     .aplicacao-card {
         flex-direction: row;
         align-items: center;
+        height: 90px;
     }
 
     .aplicacao-img-wrap {
@@ -841,6 +846,11 @@ img {
         width: 110px;
         min-width: 110px;
         height: 100%;
+        margin: none;
+    }
+
+    .aplicacao-img-wrap img {
+        height: 90px !important;
     }
 }
 
@@ -1199,7 +1209,7 @@ img {
         white-space: normal;
         font-size: 1rem;
         margin: 20px auto;
-        text-align: justify;
+        text-align: center;
         line-height: 1.6;
     }
 
