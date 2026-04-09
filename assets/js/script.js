@@ -212,21 +212,6 @@ window.addEventListener('resize', function () {
     }
 })
 
-let btnTopo = document.getElementById('btn-topo')
-window.onscroll = function () {
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        btnTopo.style.display = 'block'
-    } else {
-        btnTopo.style.display = 'none'
-    }
-}
-function voltarAoTopo() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    })
-}
-
 const campoParaBots = document.getElementById('bot')
 function verificarBot() {
     if (campoParaBots.value.trim()) {

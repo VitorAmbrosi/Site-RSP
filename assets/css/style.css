@@ -337,6 +337,13 @@ i {
     border: none;
 }
 
+@media (max-width: 520px) {
+    #whatsapp-button {
+        padding: 12px !important;
+        font-size: 16px !important;
+    }
+}
+
 #whatsapp-button:hover {
     cursor: pointer;
     background-color: #199446;
@@ -475,6 +482,12 @@ footer {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
+@media (max-width: 520px) {
+    .mapa-container {
+        height: 150px !important;
+    }
+}
+
 .mapa-area {
     flex: 1;
     display: flex;
@@ -536,27 +549,6 @@ footer {
     border: none;
     font-size: 50px;
     cursor: pointer;
-}
-
-#btn-topo {
-    position: fixed;
-    display: none;
-    left: 20px;
-    bottom: 20px;
-    color: white;
-    z-index: 9999;
-    border: none;
-    padding: 12px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 25px;
-    text-shadow: 0px 1px 2px rgba(0, 0, 0, 1);
-    background-color: transparent;
-    background-color: rgba(211, 211, 211, 0.2);
-}
-
-#btn-topo:hover {
-    background-color: rgba(211, 211, 211, 0.4);
 }
 
 #honeypot {
@@ -1348,11 +1340,6 @@ img {
         bottom: 14px;
         padding: 14px;
         border-radius: 999px;
-    }
-
-    #btn-topo {
-        left: 14px;
-        bottom: 14px;
     }
 }
 
