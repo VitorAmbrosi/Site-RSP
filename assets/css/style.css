@@ -10,7 +10,7 @@ body {
 header {
     background: white;
     color: black;
-    position: fixed;
+    position: sticky;
     top: 0;
     border-bottom: grey 1px solid;
     z-index: 1000;

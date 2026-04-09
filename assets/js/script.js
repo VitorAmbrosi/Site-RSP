@@ -521,7 +521,9 @@ if (btnProximo) {
     })
 }
 
+
 function abrirModal() {
+    document.querySelector('header').style.position = 'fixed'
     document.getElementById('modal').classList.add('ativo')
     document.body.style.overflow = 'hidden'
     document.documentElement.style.overflow = 'hidden'
@@ -530,6 +532,7 @@ function abrirModal() {
 const btnModal = document.getElementById('btn-modal')
 
 btnModal.addEventListener('click', function() {
+    document.querySelector('header').style.position = 'sticky'
     document.getElementById('modal').classList.remove('ativo')
     document.body.style.overflow = ''
     document.documentElement.style.overflow = ''
