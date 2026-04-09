@@ -63,7 +63,7 @@ nav a:hover::after {
     padding: 90px 20px;
     text-align: center;
     overflow: hidden;
-    min-height: 320px;
+    min-height: 350px;
 }
 
 .hero-bg {
@@ -74,7 +74,7 @@ nav a:hover::after {
     object-fit: cover;
     object-position: center center;
     z-index: 0;
-    filter: blur(0.5px) brightness(0.85);
+    filter: brightness(0.75);
 }
 
 .hero>*:not(.hero-bg) {
@@ -85,6 +85,7 @@ nav a:hover::after {
 .hero h1 {
     font-size: 46px;
     margin-bottom: 16px;
+    margin-top: 60px;
     letter-spacing: 0.02em;
 }
 
