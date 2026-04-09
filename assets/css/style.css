@@ -8,13 +8,14 @@ body {
 }
 
 header {
-    background: whitesmoke;
+    background: white;
     color: black;
-    position: sticky;
+    position: fixed;
     top: 0;
     border-bottom: grey 1px solid;
     z-index: 1000;
     padding: 0px;
+    width: 100%;
 }
 
 nav {
@@ -1090,7 +1091,7 @@ img {
         display: none;
         flex-direction: column;
         width: 100%;
-        background-color: whitesmoke;
+        background-color: white;
         padding: 20px 0;
         text-align: center;
         border-bottom: 1px solid grey;
