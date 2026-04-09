@@ -4,6 +4,10 @@ function AbrirWhatsApp() {
     window.open(url, '_blank')
 }
 
+document.querySelectorAll('.whats').forEach(elemento => {
+    elemento.addEventListener('click', AbrirWhatsApp)
+})
+
 const form = document.getElementById('formOrcamento')
 form.addEventListener('submit', function (event) {
     event.preventDefault()
@@ -168,7 +172,7 @@ function enviarWhatsAppPronto() {
     abrirModal()
 }
 
-function alterarMenu() {
+document.querySelector('.menu').addEventListener('click', function() {
     const header = document.getElementById('header')
     const menu = document.querySelector('.menu')
 
@@ -183,7 +187,7 @@ function alterarMenu() {
         menu.setAttribute('aria-expanded', 'false')
         document.body.style.overflow = ''
     }
-}
+})
 
 function fecharMenuMobile() {
     const header = document.getElementById('header')
