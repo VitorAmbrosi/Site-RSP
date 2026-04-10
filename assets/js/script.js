@@ -1,5 +1,36 @@
+const EMAILJS_SERVICE_ID = 'service_8nvrcqd'
+const EMAILJS_TEMPLATE_ID = 'template_wt2pbsh'
+
+function enviarEmail(e) {
+    const templateParams = {
+        nome: document.getElementById('nome').value.trim(),
+        empresa: document.getElementById('empresa').value.trim(),
+        email_usuario: document.getElementById('email').value.trim(),
+        telefone: document.getElementById('telefone').value.trim() || 'Não informado',
+        tamanho_rolo: document.getElementById('tamanho-rolo').value.trim(),
+        qtd_etiquetas: document.getElementById('qtd-etiquetas').value.trim() || 'Não informado',
+        tipo_impressora: document.getElementById('tipo-impressora').value.trim(),
+        especificacoes: document.getElementById('especificacoes').value.trim() || 'Nenhuma',
+        tipo_etiqueta: document.getElementById('tipoEtiqueta').value,
+        largura: document.getElementById('largura').value.trim(),
+        altura: document.getElementById('altura').value.trim(),
+        qtd_colunas: document.getElementById('qtd-colunas').value.trim(),
+        gap_colunas: document.getElementById('GapColunas').value.trim(),
+        gap_linhas: document.getElementById('GapLinhas').value.trim(),
+        gap_bordas: document.getElementById('GapBordas').value.trim(),
+    }
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+        .then(function (response) {
+            console.log('Email enviado.', response.status)
+        })
+        .catch(function (error) {
+            console.error('Erro ao enviar email.', error)
+        })
+}
+
 function AbrirWhatsApp() {
-    const numero = "5554999126702"
+    const numero = "5511941370042"
     const url = `https://wa.me/${numero}`
     window.open(url, '_blank')
 }
@@ -136,6 +167,7 @@ function enviarWhatsAppPronto() {
     const gapBordas = document.querySelector('input[id="GapBordas"]').value.trim()
     const impressora = document.querySelector('input[id="tipo-impressora"]').value.trim()
     const detalhes = document.querySelector('textarea[id="especificacoes"]').value.trim()
+    const qtdEtiquetas = document.querySelector('input[id="qtd-etiquetas"]').value.trim()
 
     const vLargura = parseFloat(largura) || 0
     const vColunas = parseInt(colunas) || 0
@@ -154,6 +186,7 @@ function enviarWhatsAppPronto() {
 
     *METRAGEM E EQUIPAMENTOS:*
     Tamanho do Rolo: ${tamanho} metros
+    Quantidade total de Etiquetas: ${qtdEtiquetas || 'Quantidade não informada'}
     Tipo de Impressora: ${impressora}
     Detalhes: ${detalhes || 'Nenhum detalhe informado'} 
 
@@ -166,13 +199,16 @@ function enviarWhatsAppPronto() {
     Tamanho das Bordas: ${gapBordas} mm
     Largura Total: ${larguraTotal} mm`
 
-    const numero = "5554999126702"
+    const numero = "5511941370042"
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`
     window.open(url, '_blank')
+
     abrirModal()
+
+    enviarEmail()
 }
 
-document.querySelector('.menu').addEventListener('click', function() {
+document.querySelector('.menu').addEventListener('click', function () {
     const header = document.getElementById('header')
     const menu = document.querySelector('.menu')
 
@@ -520,7 +556,7 @@ function abrirModal() {
 
 const btnModal = document.getElementById('btn-modal')
 
-btnModal.addEventListener('click', function() {
+btnModal.addEventListener('click', function () {
     document.querySelector('header').style.position = 'sticky'
     document.getElementById('modal').classList.remove('ativo')
     document.body.style.overflow = ''

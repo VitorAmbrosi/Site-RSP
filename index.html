@@ -73,10 +73,10 @@
         <section class="hero">
             <img src="./assets/img/fundoAzul.webp" fetchpriority="high" loading="eager" width="1920" alt=""
                 class="hero-bg">
-            <h1>Etiquetas profissionais para Impressoras InkJet</h1>
-            <p>Alta qualidade de impressão, secagem rápida e materiais desenvolvidos para impressoras Epson ColorWorks,
+            <h1>Etiquetas profissionais para Impressoras InkJet <br> em Bento Gonçalves</h1>
+            <p hidden>Alta qualidade de impressão, secagem rápida e materiais desenvolvidos para impressoras Epson ColorWorks,
                 Primera e AfiniaLabel.</p>
-            <a class="btn" href="#orcamento">Solicitar Orçamento Rápido</a>
+            <a class="btn" href="#orcamento">Solicitar Orçamento</a>
         </section>
 
         <div id="fundoGeral">
@@ -295,15 +295,18 @@
                                 class="validar-max">
                             <span class="erro-msg" id="erro-tamanho-rolo"></span>
 
+                            <label for="qtd-etiquetas">Quantidade total de etiquetas (opcional)</label>
+                            <input type="number" id="qtd-etiquetas" name="qtd-etiquetas" placeholder="Ex.: 100"
+                                aria-label="Quantidade total de etiquetas" min="0" inputmode="numeric">
+
                             <label for="tipo-impressora">Tipo de impressora*</label>
                             <input type="text" id="tipo-impressora" name="tipo-impressora"
                                 placeholder="Ex.: Epson CW-C4000" aria-label="Tipo de impressora utilizada">
                             <span class="erro-msg" id="erro-tipo-impressora"></span>
 
                             <label for="especificacoes">Especificações (opcional)</label>
-                            <textarea
-                                placeholder="Ex.: temperatura de uso, se será refrigerado, tipo de superfície, se terá contato com umidade, etc."
-                                name="especificacoes" id="especificacoes"></textarea>
+                            <textarea placeholder="Ex.: temperatura de uso, se será refrigerado, tipo de superfície, se terá contato com umidade, etc." name="especificacoes" id="especificacoes">
+                            </textarea>
                         </div>
 
                         <div class="form-step" data-step="3">
@@ -437,22 +440,19 @@
             <div>
                 <h3>RSP Etiquetas Ltda.</h3>
                 <p><strong>Nome Comercial:</strong> RSP Etiquetas</p>
-                <p><strong>CNPJ:</strong> 57.483.098/0001-00</p>
-                <p><strong>Inscr. Estadual:</strong> 010/0214665</p>
                 <p><strong>Ramo:</strong> Etiquetas Adesivas</p>
             </div>
             <div>
                 <h3><i class="fa-solid fa-location-dot"></i> Endereço</h3>
-                <p>Rua Ulysses Roman Ross, 17 - Andar Superior</p>
-                <p>Bairro Universitário</p>
-                <p>Bento Gonçalves - RS</p>
-                <p>CEP: 95.705-200</p>
+                <p>Rua Ulysses Roman Ross, 17 - Andar Superior
+                Bairro Universitário
+                Bento Gonçalves - RS</p>
+                <p><strong>CEP:</strong> 95.705-200</p>
             </div>
             <div>
                 <h3>Contato</h3>
-                <p><strong><i class="fa-solid fa-phone"></i> Telefone:</strong> (54) 9 9173-1783</p>
-                <p><strong><i class="fa-solid fa-envelope"></i> Email geral:</strong><br>atendimento@rspetiquetas.com.br</p>
-                <p><strong><i class="fa-solid fa-comments-dollar"></i> Financeiro / NFe:</strong><br>nfe@rspetiquetas.com.br</p>
+                <p><strong><i class="fa-solid fa-phone"></i> Telefone:</strong>(11) 94137-0042</p>
+                <p><strong><i class="fa-solid fa-envelope"></i> Email:</strong>atendimento@rspetiquetas.com.br</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -469,10 +469,14 @@
         <div id="modal-container">
             <i class="fa-solid fa-circle-check"></i>
             <h2>Solicitação enviada com sucesso!</h2>
-            <p>Obrigado pelo contato. Nossa equipe responde em até <strong>1 dia útil</strong>.</p>
+            <p>Obrigado pelo contato. Nossa equipe responderá em breve.</p>
             <button class="btn" id="btn-modal"">Fechar</button>   
         </div>
     </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>emailjs.init("0NuabZmB4YIQTjHzn")</script>
 
     <script src="./assets/js/script.js"></script>
 </body>
