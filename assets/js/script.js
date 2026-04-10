@@ -562,3 +562,20 @@ btnModal.addEventListener('click', function () {
     document.body.style.overflow = ''
     document.documentElement.style.overflow = ''
 })
+
+document.querySelectorAll('input[step="0.1"]').forEach(input => {
+    input.addEventListener('input', function() {
+        let v = this.value.replace(/[^0-9.]/g, '');
+        
+        const parts = v.split('.');
+        if (parts.length > 2) {
+            v = parts[0] + '.' + parts.slice(1).join('');
+        }
+
+        if (parts.length > 1) {
+            v = parts[0] + '.' + parts[1].substring(0, 1);
+        }
+        
+        this.value = v;
+    });
+});

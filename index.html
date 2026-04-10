@@ -248,7 +248,7 @@
 
             <section class="section center total bg-white" id="orcamento">
                 <h2>Solicite um Orçamento</h2>
-                <p>Resposta rápida da nossa equipe.</p>
+                <p hidden>Resposta rápida da nossa equipe.</p>
                 <div class="steps-progress" aria-label="Progresso do formulário">
                     <div class="steps-bolhas">
                         <div class="step-bolha active" id="bolha-1">
@@ -290,9 +290,9 @@
                         <div class="form-step" data-step="2">
                             <h3>Passo 2: Metragem e equipamento</h3>
                             <label for="tamanho-rolo">Tamanho do rolo* (metros)</label>
-                            <input type="number" id="tamanho-rolo" name="tamanho-rolo" placeholder="Ex.: 20"
+                            <input type="tel" id="tamanho-rolo" name="tamanho-rolo" placeholder="Ex.: 20.0"
                                 aria-label="Tamanho do rolo em metros" min="1" max="120" inputmode="numeric"
-                                class="validar-max">
+                                class="validar-max" step="0.1">
                             <span class="erro-msg" id="erro-tamanho-rolo"></span>
 
                             <label for="qtd-etiquetas">Quantidade total de etiquetas (opcional)</label>
@@ -327,16 +327,16 @@
                             <div id="dimensoes">
                                 <div class="campo-grupo">
                                     <label for="largura">Largura* (mm)</label>
-                                    <input type="number" id="largura" name="largura" placeholder="Largura da etiqueta"
+                                    <input type="tel" id="largura" name="largura" placeholder="Largura da etiqueta"
                                         aria-label="Largura da etiqueta em milímetros" min="1" inputmode="numeric"
-                                        max="200" class="validar-max">
+                                        max="200" class="validar-max" step="0.1">
                                     <span class="erro-msg" id="erro-largura"></span>
                                 </div>
                                 <div class="campo-grupo">
                                     <label for="altura">Altura* (mm)</label>
-                                    <input type="number" id="altura" name="altura" placeholder="Altura da etiqueta"
+                                    <input type="tel" id="altura" name="altura" placeholder="Altura da etiqueta"
                                         aria-label="Altura da etiqueta em milímetros" min="1" inputmode="numeric"
-                                        max="200" class="validar-max">
+                                        max="200" class="validar-max" step="0.1">
                                     <span class="erro-msg" id="erro-altura"></span>
                                 </div>
                             </div>
@@ -348,23 +348,23 @@
                             <div id="espacamentos">
                                 <div class="campo-grupo">
                                     <label for="GapColunas">Distância colunas* (mm)</label>
-                                    <input type="number" id="GapColunas" placeholder="Ex.: 5"
+                                    <input type="tel" id="GapColunas" placeholder="Ex.: 5"
                                         aria-label="Espaço entre cada coluna em milímetros" min="1" max="10"
-                                        inputmode="numeric" class="validar-max">
+                                        inputmode="numeric" class="validar-max" step="0.1">
                                     <span class="erro-msg" id="erro-GapColunas"></span>
                                 </div>
                                 <div class="campo-grupo">
                                     <label for="GapLinhas">Distância linhas* (mm)</label>
-                                    <input type="number" id="GapLinhas" placeholder="Ex.: 5"
+                                    <input type="tel" id="GapLinhas" placeholder="Ex.: 5"
                                         aria-label="Espaço entre cada linha em milímetros" min="1" max="10"
-                                        inputmode="numeric" class="validar-max">
+                                        inputmode="numeric" class="validar-max" step="0.1">
                                     <span class="erro-msg" id="erro-GapLinhas"></span>
                                 </div>
                             </div>
                             <label for="GapBordas">Tamanho das bordas* (mm)</label>
-                            <input type="number" id="GapBordas" placeholder="Ex.: 3"
+                            <input type="tel" id="GapBordas" placeholder="Ex.: 3"
                                 aria-label="Tamanho das bordas em milímetros" min="1" max="10" inputmode="numeric"
-                                class="validar-max">
+                                class="validar-max" step="0.1">
                             <span class="erro-msg" id="erro-GapBordas"></span>
 
                             <div id="exemplo-visual">
@@ -474,6 +474,7 @@
         </div>
     </div>
 
+    <div id="mensagem-alerta" style="display: none;"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>emailjs.init("0NuabZmB4YIQTjHzn")</script>
