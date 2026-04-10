@@ -176,28 +176,27 @@ function enviarWhatsAppPronto() {
 
     const larguraTotal = (vLargura * vColunas) + (vGapCol * (vColunas - 1)) + (vBorda * 2)
 
-    const mensagem = `Olá, gostaria de um orçamento:
+    const mensagem = `Olá, me chamo *${nome}* sou da *${empresa}* e gostaria de solicitar um orçamento:
 
-    *DADOS:*
-    Nome: ${nome}
-    Empresa: ${empresa}
-    Email: ${email}
-    Telefone: ${telefone || 'Número não informado'}
+        *Dados de contato:*
+        • Email: ${email}
+        • Telefone: ${telefone || 'Não informado'}
 
-    *METRAGEM E EQUIPAMENTOS:*
-    Tamanho do Rolo: ${tamanho} metros
-    Quantidade total de Etiquetas: ${qtdEtiquetas || 'Quantidade não informada'}
-    Tipo de Impressora: ${impressora}
-    Detalhes: ${detalhes || 'Nenhum detalhe informado'} 
+        *Quantidade e Equipamento:*
+        • Tamanho do Rolo: ${tamanho} metros
+        • Qtd. total de Etiquetas: ${qtdEtiquetas || 'Não informada'}
+        • Impressora: ${impressora}
+        • Detalhes: ${detalhes || 'Nenhum detalhe informado'}
 
-    *INFORMAÇÕES DA ETIQUETA:*
-    Tipo de Etiqueta: ${tipo}
-    Tamanho da Etiqueta: ${largura} mm X ${altura} mm
-    Quantidade de Colunas: ${colunas}
-    Espaço entre Colunas: ${gapColunas} mm
-    Espaço entre Linhas: ${gapLinhas} mm
-    Tamanho das Bordas: ${gapBordas} mm
-    Largura Total: ${larguraTotal} mm`
+        *Informações da etiqueta:*
+        • Tipo: ${tipo}
+        • Tamanho: ${largura}mm x ${altura}mm
+        • Colunas: ${colunas}
+        • Espaçamentos (Gap): C: ${gapColunas}mm / L: ${gapLinhas}mm
+        • Bordas: ${gapBordas}mm
+        • *Largura Total:* ${larguraTotal}mm
+        
+        Aguardamos o retorno com o orçamento. Obrigado(a)!`
 
     const numero = "5511941370042"
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`
@@ -564,9 +563,9 @@ btnModal.addEventListener('click', function () {
 })
 
 document.querySelectorAll('input[step="0.1"]').forEach(input => {
-    input.addEventListener('input', function() {
+    input.addEventListener('input', function () {
         let v = this.value.replace(/[^0-9.]/g, '')
-        
+
         const parts = v.split('.')
         if (parts.length > 2) {
             v = parts[0] + '.' + parts.slice(1).join('')
@@ -575,14 +574,14 @@ document.querySelectorAll('input[step="0.1"]').forEach(input => {
         if (parts.length > 1) {
             v = parts[0] + '.' + parts[1].substring(0, 1)
         }
-        
+
         this.value = v
     })
 })
 
 document.querySelectorAll('input:not([step="0.1"])').forEach(input => {
     if (input.type === 'number' || input.type === 'tel') {
-        input.addEventListener('keydown', function(e) {
+        input.addEventListener('keydown', function (e) {
             if (['.', ',', '+', '-', 'e'].includes(e.key)) {
                 e.preventDefault()
             }
