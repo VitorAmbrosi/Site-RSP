@@ -594,10 +594,14 @@ img {
     height: auto !important;
 }
 
-.fa-box-open,
-.fa-brush,
-.fa-clipboard-check {
-    font-size: 28px !important;
+.formato-info i, .material-card i, #epson .fa-circle-check, .aplicacao-card i {
+    color: #1db354;
+    font-size: 18px !important;
+    margin-right: 10px;
+}
+
+.rapido {
+    color: rgb(102, 102, 102);
 }
 
 .grid-divisao {

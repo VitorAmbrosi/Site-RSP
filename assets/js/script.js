@@ -6,9 +6,9 @@ function enviarEmail(e) {
         nome: document.getElementById('nome').value.trim(),
         empresa: document.getElementById('empresa').value.trim(),
         email_usuario: document.getElementById('email').value.trim(),
-        telefone: document.getElementById('telefone').value.trim() || 'Não informado',
+        telefone: document.getElementById('telefone').value.trim() || 'Telefone não informado',
         tamanho_rolo: document.getElementById('tamanho-rolo').value.trim(),
-        qtd_etiquetas: document.getElementById('qtd-etiquetas').value.trim() || 'Não informado',
+        qtd_etiquetas: document.getElementById('qtd-etiquetas').value.trim() || 'Quantidade não informada',
         tipo_impressora: document.getElementById('tipo-impressora').value.trim(),
         especificacoes: document.getElementById('especificacoes').value.trim() || 'Nenhuma',
         tipo_etiqueta: document.getElementById('tipoEtiqueta').value,
@@ -112,7 +112,7 @@ function validarFormulario() {
     }
 
     if (!valido) {
-        alerta.textContent = 'Por favor, preencha ou corrija os campos destacados.'
+        alerta.textContent = 'Por favor, preencha ou corrija os campos destacados em todos os passos.'
         alerta.style.display = 'block'
 
         setTimeout(() => {
