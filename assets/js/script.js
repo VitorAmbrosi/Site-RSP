@@ -1,7 +1,7 @@
 const EMAILJS_SERVICE_ID = 'service_8nvrcqd'
 const EMAILJS_TEMPLATE_ID = 'template_wt2pbsh'
 
-function enviarEmail(e) {
+function enviarEmail() {
     const templateParams = {
         nome: document.getElementById('nome').value.trim(),
         empresa: document.getElementById('empresa').value.trim(),

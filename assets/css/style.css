@@ -732,7 +732,7 @@ img {
 }
 
 .bopp-brilho::before {
-    background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 50%, #ffffff 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #e7e7e7 50%, #ffffff 100%);
 }
 
 .bopp-fosco::before {
@@ -1365,6 +1365,7 @@ img {
     max-width: 600px;
     gap: 0;
     margin-bottom: 28px;
+    margin-top: 40px;
 }
 
 
