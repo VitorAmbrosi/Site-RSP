@@ -61,7 +61,6 @@ function validarFormulario() {
     const gapLinhas = document.getElementById('GapLinhas')
     const gapBordas = document.getElementById('GapBordas')
     const impressora = document.getElementById('tipo-impressora')
-
     const alerta = document.getElementById('mensagem-alerta')
 
     const campos = [
@@ -78,7 +77,6 @@ function validarFormulario() {
         { input: gapBordas, erroId: 'erro-GapBordas', mensagem: 'Informe o tamanho das bordas.' },
         { input: impressora, erroId: 'erro-tipo-impressora', mensagem: 'Informe o tipo de impressora.' }
     ]
-
     campos.forEach(campo => {
         campo.input.classList.remove('erro')
         const spanErro = document.getElementById(campo.erroId)
@@ -86,9 +84,7 @@ function validarFormulario() {
             spanErro.textContent = ''
         }
     })
-
     let valido = true
-
     campos.forEach(campo => {
         if (!campo.input.value.trim()) {
             campo.input.classList.add('erro')
@@ -121,7 +117,6 @@ function validarFormulario() {
 
         return false
     }
-
     if (verificarBot()) {
         alerta.textContent = 'Erro ao processar sua solicitação. Tente novamente.'
         alerta.style.display = 'block'
@@ -132,7 +127,6 @@ function validarFormulario() {
 
         return false
     }
-
     return true
 }
 
