@@ -2,14 +2,18 @@ const EMAILJS_SERVICE_ID = 'service_8nvrcqd'
 const EMAILJS_TEMPLATE_ID = 'template_wt2pbsh'
 
 function enviarEmail() {
+    const formatoSelecionado = document.querySelector('input[name="formato"]:checked')
+    const tamanhoRoloSelecionado = document.querySelector('input[name="tamanho-rolo"]:checked')
+    const bordaSelecionada = document.querySelector('input[name="borda-etiqueta"]:checked')
+
     const templateParams = {
         nome: document.getElementById('nome').value.trim(),
         empresa: document.getElementById('empresa').value.trim(),
         email_usuario: document.getElementById('email').value.trim(),
-        telefone: document.getElementById('telefone').value.trim() || 'Telefone não informado',
-        tamanho_rolo: document.getElementById('tamanho-rolo').value.trim(),
-        qtd_etiquetas: document.getElementById('qtd-etiquetas').value.trim() || 'Quantidade não informada',
-        tipo_impressora: document.getElementById('tipo-impressora').value.trim(),
+        telefone: document.getElementById('telefone').value.trim(),
+        tamanho_rolo: tamanhoRoloSelecionado ? tamanhoRoloSelecionado.value + 'm' : 'Não informado',
+        qtd_etiquetas: document.getElementById('qtd-etiquetas').value.trim(),
+        tipo_impressora: document.getElementById('tipo-impressora').value.trim() || 'Não informado',
         especificacoes: document.getElementById('especificacoes').value.trim() || 'Nenhuma',
         tipo_etiqueta: document.getElementById('tipoEtiqueta').value,
         largura: document.getElementById('largura').value.trim(),
@@ -18,6 +22,8 @@ function enviarEmail() {
         gap_colunas: document.getElementById('GapColunas').value.trim(),
         gap_linhas: document.getElementById('GapLinhas').value.trim(),
         gap_bordas: document.getElementById('GapBordas').value.trim(),
+        formato: formatoSelecionado ? formatoSelecionado.value : 'Não informado',
+        borda_etiqueta: bordaSelecionada ? bordaSelecionada.value : 'Não informado',
     }
 
     emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
@@ -52,85 +58,103 @@ function validarFormulario() {
     const nome = document.getElementById('nome')
     const empresa = document.getElementById('empresa')
     const email = document.getElementById('email')
+    const telefone = document.getElementById('telefone')
     const tipoSelect = document.getElementById('tipoEtiqueta')
     const largura = document.getElementById('largura')
     const altura = document.getElementById('altura')
     const colunas = document.getElementById('qtd-colunas')
-    const tamanho = document.getElementById('tamanho-rolo')
     const gapColunas = document.getElementById('GapColunas')
     const gapLinhas = document.getElementById('GapLinhas')
     const gapBordas = document.getElementById('GapBordas')
-    const impressora = document.getElementById('tipo-impressora')
+    const qtdEtiquetas = document.getElementById('qtd-etiquetas')
     const alerta = document.getElementById('mensagem-alerta')
 
     const campos = [
         { input: nome, erroId: 'erro-nome', mensagem: 'Informe o nome.' },
         { input: empresa, erroId: 'erro-empresa', mensagem: 'Informe a empresa.' },
         { input: email, erroId: 'erro-email', mensagem: 'Informe um email válido.' },
+        { input: telefone, erroId: 'erro-telefone', mensagem: 'Informe o telefone para contato.' },
         { input: tipoSelect, erroId: 'erro-tipoEtiqueta', mensagem: 'Selecione o tipo de etiqueta.' },
         { input: largura, erroId: 'erro-largura', mensagem: 'Informe a largura da etiqueta.' },
         { input: altura, erroId: 'erro-altura', mensagem: 'Informe a altura da etiqueta.' },
         { input: colunas, erroId: 'erro-qtd-colunas', mensagem: 'Informe a quantidade de colunas.' },
-        { input: tamanho, erroId: 'erro-tamanho-rolo', mensagem: 'Informe o tamanho do rolo.' },
         { input: gapColunas, erroId: 'erro-GapColunas', mensagem: 'Informe o espaço entre colunas.' },
         { input: gapLinhas, erroId: 'erro-GapLinhas', mensagem: 'Informe o espaço entre linhas.' },
         { input: gapBordas, erroId: 'erro-GapBordas', mensagem: 'Informe o tamanho das bordas.' },
-        { input: impressora, erroId: 'erro-tipo-impressora', mensagem: 'Informe o tipo de impressora.' }
+        { input: qtdEtiquetas, erroId: 'erro-qtd-etiquetas', mensagem: 'Informe a quantidade total de etiquetas.' },
     ]
+
     campos.forEach(campo => {
         campo.input.classList.remove('erro')
         const spanErro = document.getElementById(campo.erroId)
-        if (spanErro) {
-            spanErro.textContent = ''
-        }
+        if (spanErro) spanErro.textContent = ''
     })
+
     let valido = true
+
     campos.forEach(campo => {
         if (!campo.input.value.trim()) {
             campo.input.classList.add('erro')
             const spanErro = document.getElementById(campo.erroId)
-            if (spanErro) {
-                spanErro.textContent = campo.mensagem
-            }
+            if (spanErro) spanErro.textContent = campo.mensagem
             valido = false
         }
     })
 
+    // Validação do telefone (mínimo 10 dígitos numéricos)
+    const telDigitos = telefone.value.replace(/\D/g, '')
+    if (telDigitos.length < 10) {
+        telefone.classList.add('erro')
+        const spanErroTel = document.getElementById('erro-telefone')
+        if (spanErroTel) spanErroTel.textContent = 'Informe o telefone para contato.'
+        valido = false
+    }
+
+    // Validação do email
     const emailValor = email.value.trim()
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (emailValor && !emailRegex.test(emailValor)) {
         email.classList.add('erro')
         const spanErroEmail = document.getElementById('erro-email')
-        if (spanErroEmail) {
-            spanErroEmail.textContent = 'Informe um email válido (ex.: seuemail@empresa.com).'
-        }
+        if (spanErroEmail) spanErroEmail.textContent = 'Informe um email válido (ex.: seuemail@empresa.com).'
         valido = false
     }
+
+    // Validação dos grupos de radio
+    const radioGrupos = [
+        { name: 'formato', erroId: 'erro-formato', mensagem: 'Selecione o formato do produto.' },
+        { name: 'tamanho-rolo', erroId: 'erro-tamanho-rolo', mensagem: 'Selecione o tamanho do rolo.' },
+        { name: 'borda-etiqueta', erroId: 'erro-borda-etiqueta', mensagem: 'Selecione o tipo de borda.' }
+    ]
+    radioGrupos.forEach(grupo => {
+        const selecionado = document.querySelector(`input[name="${grupo.name}"]:checked`)
+        const spanErro = document.getElementById(grupo.erroId)
+        if (!selecionado) {
+            if (spanErro) spanErro.textContent = grupo.mensagem
+            valido = false
+        } else {
+            if (spanErro) spanErro.textContent = ''
+        }
+    })
 
     if (!valido) {
         alerta.textContent = 'Por favor, preencha ou corrija os campos destacados em todos os passos.'
         alerta.style.display = 'block'
-
-        setTimeout(() => {
-            alerta.style.display = 'none'
-        }, 3000)
-
+        setTimeout(() => { alerta.style.display = 'none' }, 3000)
         return false
     }
+
     if (verificarBot()) {
         alerta.textContent = 'Erro ao processar sua solicitação. Tente novamente.'
         alerta.style.display = 'block'
-
-        setTimeout(() => {
-            alerta.style.display = 'none'
-        }, 3000)
-
+        setTimeout(() => { alerta.style.display = 'none' }, 3000)
         return false
     }
+
     return true
 }
 
-const camposMedida = document.querySelectorAll('.validar-max');
+const camposMedida = document.querySelectorAll('.validar-max')
 
 camposMedida.forEach(campo => {
     campo.addEventListener('input', (e) => {
@@ -155,13 +179,21 @@ function enviarWhatsAppPronto() {
     const largura = document.querySelector('input[id="largura"]').value.trim()
     const altura = document.querySelector('input[id="altura"]').value.trim()
     const colunas = document.querySelector('input[id="qtd-colunas"]').value.trim()
-    const tamanho = document.querySelector('input[id="tamanho-rolo"]').value.trim()
     const gapColunas = document.querySelector('input[id="GapColunas"]').value.trim()
     const gapLinhas = document.querySelector('input[id="GapLinhas"]').value.trim()
     const gapBordas = document.querySelector('input[id="GapBordas"]').value.trim()
     const impressora = document.querySelector('input[id="tipo-impressora"]').value.trim()
     const detalhes = document.querySelector('textarea[id="especificacoes"]').value.trim()
     const qtdEtiquetas = document.querySelector('input[id="qtd-etiquetas"]').value.trim()
+
+    const formatoSelecionado = document.querySelector('input[name="formato"]:checked')
+    const formato = formatoSelecionado ? formatoSelecionado.value : 'Não informado'
+
+    const tamanhoRoloSelecionado = document.querySelector('input[name="tamanho-rolo"]:checked')
+    const tamanho = tamanhoRoloSelecionado ? tamanhoRoloSelecionado.value + 'm' : 'Não informado'
+
+    const bordaSelecionada = document.querySelector('input[name="borda-etiqueta"]:checked')
+    const borda = bordaSelecionada ? bordaSelecionada.value : 'Não informado'
 
     const vLargura = parseFloat(largura) || 0
     const vColunas = parseInt(colunas) || 0
@@ -174,13 +206,15 @@ function enviarWhatsAppPronto() {
 
         *Dados de contato:*
         • Email: ${email}
-        • Telefone: ${telefone || 'Não informado'}
+        • Telefone: ${telefone}
 
-        *Quantidade e Equipamento:*
-        • Tamanho do Rolo: ${tamanho} metros
-        • Qtd. total de Etiquetas: ${qtdEtiquetas || 'Não informada'}
-        • Impressora: ${impressora}
-        • Detalhes: ${detalhes || 'Nenhum detalhe informado'}
+        *Quantidade e Formato:*
+        • Formato: ${formato}
+        • Tamanho do Rolo: ${tamanho}
+        • Tipo de Borda: ${borda}
+        • Qtd. total de Etiquetas: ${qtdEtiquetas}
+        • Impressora: ${impressora || 'Não informado'}
+        • Detalhes: ${detalhes || 'Nenhum'}
 
         *Informações da etiqueta:*
         • Tipo: ${tipo}
@@ -192,12 +226,12 @@ function enviarWhatsAppPronto() {
         
         Aguardamos o retorno com o orçamento. Obrigado(a)!`
 
-    const numero = "5511941370042"
+    // const numero = "5511941370042"
+    const numero = "5554999126702"
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`
     window.open(url, '_blank')
 
     abrirModal()
-
     enviarEmail()
 }
 
@@ -247,13 +281,8 @@ window.addEventListener('resize', function () {
 
 const campoParaBots = document.getElementById('bot')
 function verificarBot() {
-    if (campoParaBots.value.trim()) {
-        return true
-    } else {
-        return false
-    }
+    return campoParaBots.value.trim() ? true : false
 }
-
 
 const Largura = document.getElementById('largura')
 const Altura = document.getElementById('altura')
@@ -310,12 +339,10 @@ function atualizarPrevia() {
         containerGrade.style.height = finalH + "px"
         containerGrade.style.gridTemplateColumns = `repeat(${numColunas}, 1fr)`
         containerGrade.style.gridTemplateRows = `repeat(${numLinhas}, 1fr)`
-
         containerGrade.style.columnGap = vGapColunas + "px"
         containerGrade.style.rowGap = vGapLinhas + "px"
         containerGrade.style.padding = vGapBordas + "px"
         containerGrade.style.boxSizing = "border-box"
-
         containerGrade.style.top = (containerH * 0.40) + "px"
         containerGrade.style.left = (containerW * 0.16) + "px"
 
@@ -395,9 +422,11 @@ telefone.addEventListener('input', () => {
 
     if (numeroArray.length > 0) {
         numeroFormatado += `(${numeroArray.slice(0, 2).join("")})`
-    } if (numeroArray.length > 2) {
+    }
+    if (numeroArray.length > 2) {
         numeroFormatado += ` ${numeroArray.slice(2, 7).join("")}`
-    } if (numeroArray.length > 7) {
+    }
+    if (numeroArray.length > 7) {
         numeroFormatado += `-${numeroArray.slice(7, 11).join("")}`
     }
 
@@ -407,23 +436,21 @@ telefone.addEventListener('input', () => {
 const steps = document.querySelectorAll('.form-step')
 let passoAtual = 1
 
-
 const camposPorPasso = {
     1: [
         { id: 'nome', erroId: 'erro-nome', mensagem: 'Informe o nome.' },
         { id: 'empresa', erroId: 'erro-empresa', mensagem: 'Informe a empresa.' },
-        { id: 'email', erroId: 'erro-email', mensagem: 'Informe um email válido.' }
+        { id: 'email', erroId: 'erro-email', mensagem: 'Informe um email válido.' },
+        { id: 'telefone', erroId: 'erro-telefone', mensagem: 'Informe o telefone para contato.' }
     ],
     2: [
-        { id: 'tamanho-rolo', erroId: 'erro-tamanho-rolo', mensagem: 'Informe o tamanho do rolo.' },
-        { id: 'tipo-impressora', erroId: 'erro-tipo-impressora', mensagem: 'Informe o tipo de impressora.' }
+        { id: 'qtd-etiquetas', erroId: 'erro-qtd-etiquetas', mensagem: 'Informe a quantidade total de etiquetas.' }
     ],
     3: [
         { id: 'tipoEtiqueta', erroId: 'erro-tipoEtiqueta', mensagem: 'Selecione o tipo de etiqueta.' },
         { id: 'largura', erroId: 'erro-largura', mensagem: 'Informe a largura da etiqueta.' },
         { id: 'altura', erroId: 'erro-altura', mensagem: 'Informe a altura da etiqueta.' },
         { id: 'qtd-colunas', erroId: 'erro-qtd-colunas', mensagem: 'Informe a quantidade de colunas.' },
-        { id: 'tamanho-rolo', erroId: 'erro-tamanho-rolo', mensagem: 'Informe o tamanho do rolo.' },
         { id: 'GapColunas', erroId: 'erro-GapColunas', mensagem: 'Informe o espaço entre colunas.' },
         { id: 'GapLinhas', erroId: 'erro-GapLinhas', mensagem: 'Informe o espaço entre linhas.' },
         { id: 'GapBordas', erroId: 'erro-GapBordas', mensagem: 'Informe o tamanho das bordas.' }
@@ -452,8 +479,18 @@ function validarPasso(passo) {
         }
     })
 
-
     if (passo === 1) {
+        // Validação do telefone (mínimo 10 dígitos)
+        const telInput = document.getElementById('telefone')
+        const digitos = telInput.value.replace(/\D/g, '')
+        if (digitos.length < 10) {
+            telInput.classList.add('erro')
+            const spanErroTel = document.getElementById('erro-telefone')
+            if (spanErroTel) spanErroTel.textContent = 'Informe o telefone para contato.'
+            valido = false
+        }
+
+        // Validação do email
         const emailInput = document.getElementById('email')
         const emailValor = emailInput ? emailInput.value.trim() : ''
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -465,6 +502,25 @@ function validarPasso(passo) {
         }
     }
 
+    if (passo === 2) {
+        // Validação dos grupos de radio
+        const radioGrupos = [
+            { name: 'formato', erroId: 'erro-formato', mensagem: 'Selecione o formato do produto.' },
+            { name: 'tamanho-rolo', erroId: 'erro-tamanho-rolo', mensagem: 'Selecione o tamanho do rolo.' },
+            { name: 'borda-etiqueta', erroId: 'erro-borda-etiqueta', mensagem: 'Selecione o tipo de borda.' }
+        ]
+        radioGrupos.forEach(grupo => {
+            const selecionado = document.querySelector(`input[name="${grupo.name}"]:checked`)
+            const spanErro = document.getElementById(grupo.erroId)
+            if (!selecionado) {
+                if (spanErro) spanErro.textContent = grupo.mensagem
+                valido = false
+            } else {
+                if (spanErro) spanErro.textContent = ''
+            }
+        })
+    }
+
     if (!valido && alerta) {
         alerta.textContent = 'Por favor, preencha ou corrija os campos destacados.'
         alerta.style.display = 'block'
@@ -472,12 +528,6 @@ function validarPasso(passo) {
     }
 
     return valido
-}
-
-const nomesPasso = {
-    1: 'Dados e contato',
-    2: 'Metragem e equipamento',
-    3: 'Informações da etiqueta'
 }
 
 function atualizarIndicadorProgresso(passo) {
@@ -502,13 +552,8 @@ function mostrarPasso(passo) {
     const btnVoltar = document.getElementById('btn-voltar')
     const btnProximo = document.getElementById('btn-proximo')
 
-    if (btnVoltar) {
-        btnVoltar.disabled = passo === 1
-    }
-
-    if (btnProximo) {
-        btnProximo.textContent = passo === steps.length ? 'Revisar dados' : 'Próximo'
-    }
+    if (btnVoltar) btnVoltar.disabled = passo === 1
+    if (btnProximo) btnProximo.textContent = passo === steps.length ? 'Revisar dados' : 'Próximo'
 
     atualizarIndicadorProgresso(passo)
 }
@@ -539,7 +584,6 @@ if (btnProximo) {
     })
 }
 
-
 function abrirModal() {
     document.querySelector('header').style.position = 'fixed'
     document.getElementById('modal').classList.add('ativo')
@@ -564,7 +608,6 @@ document.querySelectorAll('input[step="0.1"]').forEach(input => {
         if (parts.length > 2) {
             v = parts[0] + '.' + parts.slice(1).join('')
         }
-
         if (parts.length > 1) {
             v = parts[0] + '.' + parts[1].substring(0, 1)
         }
@@ -581,4 +624,18 @@ document.querySelectorAll('input:not([step="0.1"])').forEach(input => {
             }
         })
     }
+})
+
+// Highlight visual dos cards de radio
+document.querySelectorAll('.opcoes-card-grupo').forEach(grupo => {
+    grupo.querySelectorAll('.opcao-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const radio = card.querySelector('input[type="radio"]')
+            if (!radio) return
+            document.querySelectorAll(`input[name="${radio.name}"]`).forEach(r => {
+                r.closest('.opcao-card').classList.remove('opcao-card--selecionado')
+            })
+            card.classList.add('opcao-card--selecionado')
+        })
+    })
 })

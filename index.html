@@ -15,7 +15,7 @@
     <meta name="google-site-verification" content="A7HMbnCsUc4LTlzNujQ3S7xIVo_dJ8L3oLxaNfSzVD8" />
     <meta name="robots" content="index, follow">
     <meta property="og:type" content="website">
-    
+
 
     <title>RSP Etiquetas | Etiquetas para Impressoras InkJet em Bento Gonçalves</title>
 
@@ -70,7 +70,8 @@
             <img src="./assets/img/fundoAzul.webp" fetchpriority="high" loading="eager" width="1920" alt=""
                 class="hero-bg">
             <h1>Etiquetas profissionais para Impressoras InkJet <br> em Bento Gonçalves</h1>
-            <p hidden>Alta qualidade de impressão, secagem rápida e materiais desenvolvidos para impressoras Epson ColorWorks,
+            <p hidden>Alta qualidade de impressão, secagem rápida e materiais desenvolvidos para impressoras Epson
+                ColorWorks,
                 Primera e AfiniaLabel.</p>
             <a class="btn" href="#orcamento">Solicitar Orçamento</a>
         </section>
@@ -177,14 +178,20 @@
                         </div>
                         <div class="material-container">
                             <div>
-                                <div class="material-card bopp-brilho"><i class="fa-regular fa-circle-check"></i>BOPP Brilho</div>
-                                <div class="material-card bopp-fosco"><i class="fa-regular fa-circle-check"></i>BOPP Fosco</div>
-                                <div class="material-card bopp-transparente"><i class="fa-regular fa-circle-check"></i>BOPP Transparente</div>
+                                <div class="material-card bopp-brilho"><i class="fa-regular fa-circle-check"></i>BOPP
+                                    Brilho</div>
+                                <div class="material-card bopp-fosco"><i class="fa-regular fa-circle-check"></i>BOPP
+                                    Fosco</div>
+                                <div class="material-card bopp-transparente"><i
+                                        class="fa-regular fa-circle-check"></i>BOPP Transparente</div>
                             </div>
                             <div>
-                                <div class="material-card papel-brilho"><i class="fa-regular fa-circle-check"></i>Papel Brilho</div>
-                                <div class="material-card papel-fosco"><i class="fa-regular fa-circle-check"></i>Papel Fosco</div>
-                                <div class="material-card bopp-metalizado"><i class="fa-regular fa-circle-check"></i>BOPP Metalizado</div>
+                                <div class="material-card papel-brilho"><i class="fa-regular fa-circle-check"></i>Papel
+                                    Brilho</div>
+                                <div class="material-card papel-fosco"><i class="fa-regular fa-circle-check"></i>Papel
+                                    Fosco</div>
+                                <div class="material-card bopp-metalizado"><i
+                                        class="fa-regular fa-circle-check"></i>BOPP Metalizado</div>
                             </div>
                         </div>
                     </div>
@@ -240,8 +247,8 @@
                     </div>
                     <br>
                     <p id="btns-container"><a class="btn" href="#orcamento">Solicitar orçamento</a> <button
-                            class="btn whats" id="whatsapp-button-header"
-                            aria-label="Falar no WhatsApp">Falar no WhatsApp</button></p>
+                            class="btn whats" id="whatsapp-button-header" aria-label="Falar no WhatsApp">Falar no
+                            WhatsApp</button></p>
                 </div>
             </section>
 
@@ -281,30 +288,82 @@
                                 inputmode="email" aria-label="Email para contato" autocomplete="email">
                             <span class="erro-msg" id="erro-email"></span>
 
-                            <label for="telefone">Telefone para contato (opcional)</label>
+                            <label for="telefone">Telefone para contato*</label>
                             <input type="tel" id="telefone" name="telefone" placeholder="Ex.: (00) 99999-9999"
                                 inputmode="numeric" aria-label="Telefone para contato">
+                            <span class="erro-msg" id="erro-telefone"></span>
                         </div>
 
                         <div class="form-step" data-step="2">
-                            <h3>Passo 2: Quantidade e equipamento</h3>
-                            <label for="tamanho-rolo">Tamanho do rolo* (metros)</label>
-                            <input type="tel" id="tamanho-rolo" name="tamanho-rolo" placeholder="Ex.: 20.0"
-                                aria-label="Tamanho do rolo em metros" min="1" max="120" inputmode="numeric"
-                                class="validar-max" step="0.1">
+                            <h3>Passo 2: Quantidade e formato</h3>
+
+                            <label>Formato do produto*</label>
+                            <div class="opcoes-card-grupo" id="grupo-formato">
+                                <label class="opcao-card" id="card-rolocontinuo">
+                                    <input type="radio" name="formato" value="Rolo Contínuo" id="formato-rolo">
+                                    <img src="./assets/img/comBorda.jpeg" alt="Rolo Contínuo">
+                                    <span>Rolo Contínuo</span>
+                                </label>
+                                <label class="opcao-card" id="card-etiqueta">
+                                    <input type="radio" name="formato" value="Etiqueta" id="formato-etiqueta">
+                                    <img src="./assets/img/bobinas.webp" alt="Etiqueta">
+                                    <span>Etiqueta</span>
+                                </label>
+                            </div>
+                            <span class="erro-msg" id="erro-formato"></span>
+
+                            <label>Tamanho do rolo*</label>
+                            <div class="opcoes-card-grupo" id="grupo-tamanho-rolo">
+                                <label class="opcao-card opcao-card--pequeno" id="card-40m">
+                                    <input type="radio" name="tamanho-rolo" value="40" id="rolo-40">
+                                    <span class="opcao-card__destaque">40m</span>
+                                </label>
+                                <label class="opcao-card opcao-card--pequeno" id="card-100m">
+                                    <input type="radio" name="tamanho-rolo" value="100" id="rolo-100">
+                                    <span class="opcao-card__destaque">100m</span>
+                                </label>
+                            </div>
                             <span class="erro-msg" id="erro-tamanho-rolo"></span>
 
-                            <label for="qtd-etiquetas">Quantidade total de etiquetas (opcional)</label>
+                            <label for="qtd-etiquetas">Quantidade total de etiquetas*</label>
                             <input type="number" id="qtd-etiquetas" name="qtd-etiquetas" placeholder="Ex.: 1500"
                                 aria-label="Quantidade total de etiquetas" min="0" inputmode="numeric">
+                            <span class="erro-msg" id="erro-qtd-etiquetas"></span>
 
-                            <label for="tipo-impressora">Tipo de impressora*</label>
+                            <label for="borda-etiqueta">Tipo de borda*</label>
+                            <div class="opcoes-card-grupo" id="grupo-borda">
+                                <label class="opcao-card" id="card-com-borda">
+                                    <input type="radio" name="borda-etiqueta" value="Com borda" id="borda-completa">
+                                    <img src="./assets/img/comBorda.jpeg" alt="Com borda">
+                                    <span>Com bordas</span>
+                                </label>
+                                <label class="opcao-card" id="card-borda-esq">
+                                    <input type="radio" name="borda-etiqueta" value="Borda esquerda"
+                                        id="borda-esquerda">
+                                    <img src="./assets/img/bordaEsquerda.jpeg" alt="Borda esquerda">
+                                    <span>Borda apenas na esquerda</span>
+                                </label>
+                                <label class="opcao-card" id="card-borda-dir">
+                                    <input type="radio" name="borda-etiqueta" value="Borda direita" id="borda-direita">
+                                    <img src="./assets/img/bordaDireita.jpeg" alt="Borda direita">
+                                    <span>Borda apenas na direita</span>
+                                </label>
+                                <label class="opcao-card" id="card-sem-borda">
+                                    <input type="radio" name="borda-etiqueta" value="Sem borda" id="borda-nenhuma">
+                                    <img src="./assets/img/semBorda.jpeg" alt="Sem borda">
+                                    <span>Sem bordas</span>
+                                </label>
+                            </div>
+                            <span class="erro-msg" id="erro-borda-etiqueta"></span>
+
+                            <label for="tipo-impressora">Tipo de impressora (opcional)</label>
                             <input type="text" id="tipo-impressora" name="tipo-impressora"
                                 placeholder="Ex.: Epson CW-C4000" aria-label="Tipo de impressora utilizada">
-                            <span class="erro-msg" id="erro-tipo-impressora"></span>
 
                             <label for="especificacoes">Especificações (opcional)</label>
-                            <textarea placeholder="Ex.: temperatura de uso, se será refrigerado, tipo de superfície, se terá contato com umidade, etc." name="especificacoes" id="especificacoes"></textarea>
+                            <textarea
+                                placeholder="Ex.: temperatura de uso, se será refrigerado, tipo de superfície, se terá contato com umidade, etc."
+                                name="especificacoes" id="especificacoes"></textarea>
                         </div>
 
                         <div class="form-step" data-step="3">
@@ -347,21 +406,21 @@
                                 <div class="campo-grupo">
                                     <label for="GapColunas">Distância colunas* (mm)</label>
                                     <input type="tel" id="GapColunas" placeholder="Ex.: 5"
-                                        aria-label="Espaço entre cada coluna em milímetros" min="1" max="10"
+                                        aria-label="Espaço entre cada coluna em milímetros" min="0" max="10"
                                         inputmode="numeric" class="validar-max" step="0.1">
                                     <span class="erro-msg" id="erro-GapColunas"></span>
                                 </div>
                                 <div class="campo-grupo">
                                     <label for="GapLinhas">Distância linhas* (mm)</label>
                                     <input type="tel" id="GapLinhas" placeholder="Ex.: 5"
-                                        aria-label="Espaço entre cada linha em milímetros" min="1" max="10"
+                                        aria-label="Espaço entre cada linha em milímetros" min="0" max="10"
                                         inputmode="numeric" class="validar-max" step="0.1">
                                     <span class="erro-msg" id="erro-GapLinhas"></span>
                                 </div>
                             </div>
                             <label for="GapBordas">Tamanho das bordas* (mm)</label>
                             <input type="tel" id="GapBordas" placeholder="Ex.: 3"
-                                aria-label="Tamanho das bordas em milímetros" min="1" max="10" inputmode="numeric"
+                                aria-label="Tamanho das bordas em milímetros" min="0" max="10" inputmode="numeric"
                                 class="validar-max" step="0.1">
                             <span class="erro-msg" id="erro-GapBordas"></span>
 
@@ -412,8 +471,7 @@
                             95.705-200
                         </p>
                         <p>Venha nos conhecer ou fale conosco através do botão abaixo.</p>
-                        <button class="btn whats" id="whatsapp-button-mapa"
-                            aria-label="Falar no WhatsApp">Fale Conosco
+                        <button class="btn whats" id="whatsapp-button-mapa" aria-label="Falar no WhatsApp">Fale Conosco
                         </button>
                     </div>
                     <div class="mapa-area">
@@ -443,8 +501,8 @@
             <div>
                 <h3><i class="fa-solid fa-location-dot"></i> Endereço</h3>
                 <p>Rua Ulysses Roman Ross, 17 - Andar Superior
-                Bairro Universitário
-                Bento Gonçalves - RS</p>
+                    Bairro Universitário
+                    Bento Gonçalves - RS</p>
                 <p><strong>CEP:</strong> 95.705-200</p>
             </div>
             <div>
@@ -472,12 +530,13 @@
         </div>
     </div>
 
-    <div id="mensagem-alerta" style="display: none;"></div>
+    <div id=" mensagem-alerta" style="display: none;">
+        </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>emailjs.init("0NuabZmB4YIQTjHzn")</script>
+        <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+        <script>emailjs.init("0NuabZmB4YIQTjHzn")</script>
 
-    <script src="./assets/js/script.js"></script>
+        <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
