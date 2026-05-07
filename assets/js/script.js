@@ -1,3 +1,56 @@
+// ─── Helpers: detectar formato e borda escolhidos no passo 2 ─────────────────
+
+function getFormato() {
+    const checked = document.querySelector('input[name="formato"]:checked')
+    return checked ? checked.value : null // 'Etiqueta' | 'Rolo Contínuo' | null
+}
+
+function temBorda() {
+    const checked = document.querySelector('input[name="borda-etiqueta"]:checked')
+    return checked ? checked.value !== 'Sem borda' : false
+}
+
+// ─── Atualizar visibilidade do passo 3 conforme escolhas do passo 2 ──────────
+
+function atualizarPasso3() {
+    const formato = getFormato()
+    const bordas = temBorda()
+
+    const camposEtiqueta = document.getElementById('campos-etiqueta')
+    const camposRolo = document.getElementById('campos-rolo')
+    const wrapBordasEtiqueta = document.getElementById('wrap-bordas-etiqueta')
+    const wrapBordasRolo = document.getElementById('wrap-bordas-rolo')
+
+    if (formato === 'Rolo Contínuo') {
+        camposEtiqueta.style.display = 'none'
+        camposRolo.style.display = 'block'
+        wrapBordasRolo.style.display = bordas ? 'block' : 'none'
+    } else {
+        // Etiqueta (ou nenhum selecionado — padrão)
+        camposEtiqueta.style.display = 'block'
+        camposRolo.style.display = 'none'
+        wrapBordasEtiqueta.style.display = bordas ? 'block' : 'none'
+    }
+
+    // Limpar erros e valores dos campos ocultos
+    if (!bordas) {
+        const gapBordas = document.getElementById('GapBordas')
+        const gapBordasRolo = document.getElementById('GapBordasRolo')
+        if (gapBordas) { gapBordas.value = ''; document.getElementById('erro-GapBordas').textContent = '' }
+        if (gapBordasRolo) { gapBordasRolo.value = ''; document.getElementById('erro-GapBordasRolo').textContent = '' }
+    }
+}
+
+// Ouvir mudanças no passo 2 para atualizar o passo 3 em tempo real
+document.querySelectorAll('input[name="formato"]').forEach(radio => {
+    radio.addEventListener('change', atualizarPasso3)
+})
+document.querySelectorAll('input[name="borda-etiqueta"]').forEach(radio => {
+    radio.addEventListener('change', atualizarPasso3)
+})
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 const EMAILJS_SERVICE_ID = 'service_8nvrcqd'
 const EMAILJS_TEMPLATE_ID = 'template_wt2pbsh'
 
@@ -5,6 +58,8 @@ function enviarEmail() {
     const formatoSelecionado = document.querySelector('input[name="formato"]:checked')
     const tamanhoRoloSelecionado = document.querySelector('input[name="tamanho-rolo"]:checked')
     const bordaSelecionada = document.querySelector('input[name="borda-etiqueta"]:checked')
+    const formato = formatoSelecionado ? formatoSelecionado.value : 'Não informado'
+    const isRolo = formato === 'Rolo Contínuo'
 
     const templateParams = {
         nome: document.getElementById('nome').value.trim(),
@@ -15,14 +70,22 @@ function enviarEmail() {
         qtd_etiquetas: document.getElementById('qtd-etiquetas').value.trim(),
         tipo_impressora: document.getElementById('tipo-impressora').value.trim() || 'Não informado',
         especificacoes: document.getElementById('especificacoes').value.trim() || 'Nenhuma',
-        tipo_etiqueta: document.getElementById('tipoEtiqueta').value,
-        largura: document.getElementById('largura').value.trim(),
-        altura: document.getElementById('altura').value.trim(),
-        qtd_colunas: document.getElementById('qtd-colunas').value.trim(),
-        gap_colunas: document.getElementById('GapColunas').value.trim(),
-        gap_linhas: document.getElementById('GapLinhas').value.trim(),
-        gap_bordas: document.getElementById('GapBordas').value.trim(),
-        formato: formatoSelecionado ? formatoSelecionado.value : 'Não informado',
+        tipo_etiqueta: isRolo
+            ? document.getElementById('tipoEtiquetaRolo').value
+            : document.getElementById('tipoEtiqueta').value,
+        largura: isRolo
+            ? document.getElementById('larguraRolo').value.trim()
+            : document.getElementById('largura').value.trim(),
+        altura: isRolo ? 'N/A' : document.getElementById('altura').value.trim(),
+        qtd_colunas: isRolo ? 'N/A' : document.getElementById('qtd-colunas').value.trim(),
+        gap_colunas: isRolo ? 'N/A' : document.getElementById('GapColunas').value.trim(),
+        gap_linhas: isRolo ? 'N/A' : document.getElementById('GapLinhas').value.trim(),
+        gap_bordas: temBorda()
+            ? (isRolo
+                ? document.getElementById('GapBordasRolo').value.trim()
+                : document.getElementById('GapBordas').value.trim())
+            : 'Sem borda',
+        formato: formato,
         borda_etiqueta: bordaSelecionada ? bordaSelecionada.value : 'Não informado',
     }
 
@@ -59,30 +122,35 @@ function validarFormulario() {
     const empresa = document.getElementById('empresa')
     const email = document.getElementById('email')
     const telefone = document.getElementById('telefone')
-    const tipoSelect = document.getElementById('tipoEtiqueta')
-    const largura = document.getElementById('largura')
-    const altura = document.getElementById('altura')
-    const colunas = document.getElementById('qtd-colunas')
-    const gapColunas = document.getElementById('GapColunas')
-    const gapLinhas = document.getElementById('GapLinhas')
-    const gapBordas = document.getElementById('GapBordas')
     const qtdEtiquetas = document.getElementById('qtd-etiquetas')
     const alerta = document.getElementById('mensagem-alerta')
 
+    const isRolo = getFormato() === 'Rolo Contínuo'
+    const bordas = temBorda()
+
+    // Campos comuns (passo 1 e 2)
     const campos = [
         { input: nome, erroId: 'erro-nome', mensagem: 'Informe o nome.' },
         { input: empresa, erroId: 'erro-empresa', mensagem: 'Informe a empresa.' },
         { input: email, erroId: 'erro-email', mensagem: 'Informe um email válido.' },
         { input: telefone, erroId: 'erro-telefone', mensagem: 'Informe o telefone para contato.' },
-        { input: tipoSelect, erroId: 'erro-tipoEtiqueta', mensagem: 'Selecione o tipo de etiqueta.' },
-        { input: largura, erroId: 'erro-largura', mensagem: 'Informe a largura da etiqueta.' },
-        { input: altura, erroId: 'erro-altura', mensagem: 'Informe a altura da etiqueta.' },
-        { input: colunas, erroId: 'erro-qtd-colunas', mensagem: 'Informe a quantidade de colunas.' },
-        { input: gapColunas, erroId: 'erro-GapColunas', mensagem: 'Informe o espaço entre colunas.' },
-        { input: gapLinhas, erroId: 'erro-GapLinhas', mensagem: 'Informe o espaço entre linhas.' },
-        { input: gapBordas, erroId: 'erro-GapBordas', mensagem: 'Informe o tamanho das bordas.' },
         { input: qtdEtiquetas, erroId: 'erro-qtd-etiquetas', mensagem: 'Informe a quantidade total de etiquetas.' },
     ]
+
+    // Campos do passo 3 conforme formato
+    if (isRolo) {
+        campos.push({ input: document.getElementById('tipoEtiquetaRolo'), erroId: 'erro-tipoEtiquetaRolo', mensagem: 'Selecione o tipo de etiqueta.' })
+        campos.push({ input: document.getElementById('larguraRolo'), erroId: 'erro-larguraRolo', mensagem: 'Informe a largura do rolo.' })
+        if (bordas) campos.push({ input: document.getElementById('GapBordasRolo'), erroId: 'erro-GapBordasRolo', mensagem: 'Informe o tamanho das bordas.' })
+    } else {
+        campos.push({ input: document.getElementById('tipoEtiqueta'), erroId: 'erro-tipoEtiqueta', mensagem: 'Selecione o tipo de etiqueta.' })
+        campos.push({ input: document.getElementById('largura'), erroId: 'erro-largura', mensagem: 'Informe a largura da etiqueta.' })
+        campos.push({ input: document.getElementById('altura'), erroId: 'erro-altura', mensagem: 'Informe a altura da etiqueta.' })
+        campos.push({ input: document.getElementById('qtd-colunas'), erroId: 'erro-qtd-colunas', mensagem: 'Informe a quantidade de colunas.' })
+        campos.push({ input: document.getElementById('GapColunas'), erroId: 'erro-GapColunas', mensagem: 'Informe o espaço entre colunas.' })
+        campos.push({ input: document.getElementById('GapLinhas'), erroId: 'erro-GapLinhas', mensagem: 'Informe o espaço entre linhas.' })
+        if (bordas) campos.push({ input: document.getElementById('GapBordas'), erroId: 'erro-GapBordas', mensagem: 'Informe o tamanho das bordas.' })
+    }
 
     campos.forEach(campo => {
         campo.input.classList.remove('erro')
@@ -120,7 +188,7 @@ function validarFormulario() {
         valido = false
     }
 
-    // Validação dos grupos de radio
+    // Validação dos grupos de radio (passo 2)
     const radioGrupos = [
         { name: 'formato', erroId: 'erro-formato', mensagem: 'Selecione o formato do produto.' },
         { name: 'tamanho-rolo', erroId: 'erro-tamanho-rolo', mensagem: 'Selecione o tamanho do rolo.' },
@@ -175,19 +243,14 @@ function enviarWhatsAppPronto() {
     const empresa = document.querySelector('input[id="empresa"]').value.trim()
     const email = document.querySelector('input[id="email"]').value.trim()
     const telefone = document.querySelector('input[id="telefone"]').value.trim()
-    const tipo = document.getElementById('tipoEtiqueta').value
-    const largura = document.querySelector('input[id="largura"]').value.trim()
-    const altura = document.querySelector('input[id="altura"]').value.trim()
-    const colunas = document.querySelector('input[id="qtd-colunas"]').value.trim()
-    const gapColunas = document.querySelector('input[id="GapColunas"]').value.trim()
-    const gapLinhas = document.querySelector('input[id="GapLinhas"]').value.trim()
-    const gapBordas = document.querySelector('input[id="GapBordas"]').value.trim()
     const impressora = document.querySelector('input[id="tipo-impressora"]').value.trim()
     const detalhes = document.querySelector('textarea[id="especificacoes"]').value.trim()
     const qtdEtiquetas = document.querySelector('input[id="qtd-etiquetas"]').value.trim()
 
     const formatoSelecionado = document.querySelector('input[name="formato"]:checked')
     const formato = formatoSelecionado ? formatoSelecionado.value : 'Não informado'
+    const isRolo = formato === 'Rolo Contínuo'
+    const bordas = temBorda()
 
     const tamanhoRoloSelecionado = document.querySelector('input[name="tamanho-rolo"]:checked')
     const tamanho = tamanhoRoloSelecionado ? tamanhoRoloSelecionado.value + 'm' : 'Não informado'
@@ -195,14 +258,14 @@ function enviarWhatsAppPronto() {
     const bordaSelecionada = document.querySelector('input[name="borda-etiqueta"]:checked')
     const borda = bordaSelecionada ? bordaSelecionada.value : 'Não informado'
 
-    const vLargura = parseFloat(largura) || 0
-    const vColunas = parseInt(colunas) || 0
-    const vGapCol = parseFloat(gapColunas) || 0
-    const vBorda = parseFloat(gapBordas) || 0
+    let mensagem
 
-    const larguraTotal = (vLargura * vColunas) + (vGapCol * (vColunas - 1)) + (vBorda * 2)
+    if (isRolo) {
+        const tipo = document.getElementById('tipoEtiquetaRolo').value
+        const larguraRolo = document.getElementById('larguraRolo').value.trim()
+        const gapBordasRolo = bordas ? document.getElementById('GapBordasRolo').value.trim() : null
 
-    const mensagem = `Olá, me chamo *${nome}* sou da *${empresa}* e gostaria de solicitar um orçamento:
+        mensagem = `Olá, me chamo *${nome}* sou da *${empresa}* e gostaria de solicitar um orçamento:
 
         *Dados de contato:*
         • Email: ${email}
@@ -212,7 +275,42 @@ function enviarWhatsAppPronto() {
         • Formato: ${formato}
         • Tamanho do Rolo: ${tamanho}
         • Tipo de Borda: ${borda}
-        • Qtd. total de Etiquetas: ${qtdEtiquetas}
+        • Quantidade de Rolos: ${qtdEtiquetas}
+        • Impressora: ${impressora || 'Não informado'}
+        • Detalhes: ${detalhes || 'Nenhum'}
+
+        *Informações do Rolo Contínuo:*
+        • Tipo: ${tipo}
+        • Largura do Rolo: ${larguraRolo}mm
+        ${gapBordasRolo ? `• Bordas: ${gapBordasRolo}mm` : '• Bordas: Sem borda'}
+        
+        Aguardamos o retorno com o orçamento. Obrigado(a)!`
+    } else {
+        const tipo = document.getElementById('tipoEtiqueta').value
+        const largura = document.querySelector('input[id="largura"]').value.trim()
+        const altura = document.querySelector('input[id="altura"]').value.trim()
+        const colunas = document.querySelector('input[id="qtd-colunas"]').value.trim()
+        const gapColunas = document.querySelector('input[id="GapColunas"]').value.trim()
+        const gapLinhas = document.querySelector('input[id="GapLinhas"]').value.trim()
+        const gapBordas = bordas ? document.getElementById('GapBordas').value.trim() : null
+
+        const vLargura = parseFloat(largura) || 0
+        const vColunas = parseInt(colunas) || 0
+        const vGapCol = parseFloat(gapColunas) || 0
+        const vBorda = parseFloat(gapBordas) || 0
+        const larguraTotal = (vLargura * vColunas) + (vGapCol * (vColunas - 1)) + (vBorda * 2)
+
+        mensagem = `Olá, me chamo *${nome}* sou da *${empresa}* e gostaria de solicitar um orçamento:
+
+        *Dados de contato:*
+        • Email: ${email}
+        • Telefone: ${telefone}
+
+        *Quantidade e Formato:*
+        • Formato: ${formato}
+        • Tamanho do Rolo: ${tamanho}
+        • Tipo de Borda: ${borda}
+        • Quantidade de Rolos: ${qtdEtiquetas}
         • Impressora: ${impressora || 'Não informado'}
         • Detalhes: ${detalhes || 'Nenhum'}
 
@@ -221,10 +319,11 @@ function enviarWhatsAppPronto() {
         • Tamanho: ${largura}mm x ${altura}mm
         • Colunas: ${colunas}
         • Espaçamentos (Gap): C: ${gapColunas}mm / L: ${gapLinhas}mm
-        • Bordas: ${gapBordas}mm
+        ${gapBordas ? `• Bordas: ${gapBordas}mm` : '• Bordas: Sem borda'}
         • *Largura Total:* ${larguraTotal}mm
         
         Aguardamos o retorno com o orçamento. Obrigado(a)!`
+    }
 
     // const numero = "5511941370042"
     const numero = "5554999126702"
@@ -445,22 +544,34 @@ const camposPorPasso = {
     ],
     2: [
         { id: 'qtd-etiquetas', erroId: 'erro-qtd-etiquetas', mensagem: 'Informe a quantidade total de etiquetas.' }
-    ],
-    3: [
-        { id: 'tipoEtiqueta', erroId: 'erro-tipoEtiqueta', mensagem: 'Selecione o tipo de etiqueta.' },
-        { id: 'largura', erroId: 'erro-largura', mensagem: 'Informe a largura da etiqueta.' },
-        { id: 'altura', erroId: 'erro-altura', mensagem: 'Informe a altura da etiqueta.' },
-        { id: 'qtd-colunas', erroId: 'erro-qtd-colunas', mensagem: 'Informe a quantidade de colunas.' },
-        { id: 'GapColunas', erroId: 'erro-GapColunas', mensagem: 'Informe o espaço entre colunas.' },
-        { id: 'GapLinhas', erroId: 'erro-GapLinhas', mensagem: 'Informe o espaço entre linhas.' },
-        { id: 'GapBordas', erroId: 'erro-GapBordas', mensagem: 'Informe o tamanho das bordas.' }
     ]
 }
 
+// Passo 3 é dinâmico — calculado em tempo real dentro de validarPasso
+
 function validarPasso(passo) {
-    const campos = camposPorPasso[passo] || []
+    const campos = (camposPorPasso[passo] || []).slice() // cópia
     const alerta = document.getElementById('mensagem-alerta')
     let valido = true
+
+    // Campos dinâmicos do passo 3
+    if (passo === 3) {
+        const isRolo = getFormato() === 'Rolo Contínuo'
+        const bordas = temBorda()
+        if (isRolo) {
+            campos.push({ id: 'tipoEtiquetaRolo', erroId: 'erro-tipoEtiquetaRolo', mensagem: 'Selecione o tipo de etiqueta.' })
+            campos.push({ id: 'larguraRolo', erroId: 'erro-larguraRolo', mensagem: 'Informe a largura do rolo.' })
+            if (bordas) campos.push({ id: 'GapBordasRolo', erroId: 'erro-GapBordasRolo', mensagem: 'Informe o tamanho das bordas.' })
+        } else {
+            campos.push({ id: 'tipoEtiqueta', erroId: 'erro-tipoEtiqueta', mensagem: 'Selecione o tipo de etiqueta.' })
+            campos.push({ id: 'largura', erroId: 'erro-largura', mensagem: 'Informe a largura da etiqueta.' })
+            campos.push({ id: 'altura', erroId: 'erro-altura', mensagem: 'Informe a altura da etiqueta.' })
+            campos.push({ id: 'qtd-colunas', erroId: 'erro-qtd-colunas', mensagem: 'Informe a quantidade de colunas.' })
+            campos.push({ id: 'GapColunas', erroId: 'erro-GapColunas', mensagem: 'Informe o espaço entre colunas.' })
+            campos.push({ id: 'GapLinhas', erroId: 'erro-GapLinhas', mensagem: 'Informe o espaço entre linhas.' })
+            if (bordas) campos.push({ id: 'GapBordas', erroId: 'erro-GapBordas', mensagem: 'Informe o tamanho das bordas.' })
+        }
+    }
 
     campos.forEach(campo => {
         const input = document.getElementById(campo.id)
@@ -556,6 +667,9 @@ function mostrarPasso(passo) {
     if (btnProximo) btnProximo.textContent = passo === steps.length ? 'Revisar dados' : 'Próximo'
 
     atualizarIndicadorProgresso(passo)
+
+    // Atualiza campos do passo 3 conforme escolhas do passo 2
+    if (passo === 3) atualizarPasso3()
 }
 
 const btnVoltar = document.getElementById('btn-voltar')

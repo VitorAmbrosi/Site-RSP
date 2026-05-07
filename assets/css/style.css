@@ -1481,7 +1481,7 @@ img {
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    border: 2px solid #d0d5dd;
+    border: 1px solid #d0d5dd;
     border-radius: 10px;
     padding: 14px 10px;
     cursor: pointer;
@@ -1505,8 +1505,8 @@ img {
 }
 
 .opcao-card img {
-    width: 110px;
-    height: 80px;
+    width: 99px;
+    height: 72px;
     object-fit: contain;
     border-radius: 4px;
 }
@@ -1530,13 +1530,14 @@ img {
 }
 
 .opcao-card__destaque {
-    font-size: 15   px;
+    font-size: 15px;
     font-weight: 700;
 }
 
 .opcao-card--selecionado .opcao-card__destaque {
     color: #0a3d91;
 }
+
 
 @media (max-width: 520px) {
     .opcoes-card-grupo {

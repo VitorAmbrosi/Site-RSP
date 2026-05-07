@@ -306,7 +306,7 @@
                                 </label>
                                 <label class="opcao-card" id="card-etiqueta">
                                     <input type="radio" name="formato" value="Etiqueta" id="formato-etiqueta">
-                                    <img src="./assets/img/bobinas.webp" alt="Etiqueta">
+                                    <img src="./assets/img/semBorda.jpeg" alt="Etiqueta">
                                     <span>Etiqueta</span>
                                 </label>
                             </div>
@@ -325,8 +325,8 @@
                             </div>
                             <span class="erro-msg" id="erro-tamanho-rolo"></span>
 
-                            <label for="qtd-etiquetas">Quantidade total de etiquetas*</label>
-                            <input type="number" id="qtd-etiquetas" name="qtd-etiquetas" placeholder="Ex.: 1500"
+                            <label for="qtd-etiquetas">Quantidade de rolos*</label>
+                            <input type="number" id="qtd-etiquetas" name="qtd-etiquetas" placeholder="Ex.: 10"
                                 aria-label="Quantidade total de etiquetas" min="0" inputmode="numeric">
                             <span class="erro-msg" id="erro-qtd-etiquetas"></span>
 
@@ -335,7 +335,7 @@
                                 <label class="opcao-card" id="card-com-borda">
                                     <input type="radio" name="borda-etiqueta" value="Com borda" id="borda-completa">
                                     <img src="./assets/img/comBorda.jpeg" alt="Com borda">
-                                    <span>Com bordas</span>
+                                    <span>Com bordas em ambos os lados</span>
                                 </label>
                                 <label class="opcao-card" id="card-borda-esq">
                                     <input type="radio" name="borda-etiqueta" value="Borda esquerda"
@@ -368,74 +368,107 @@
 
                         <div class="form-step" data-step="3">
                             <h3 class="legenda">Passo 3: Informações da etiqueta</h3>
-                            <label for="tipoEtiqueta">Tipo de etiqueta*</label>
-                            <select name="tipoEtiqueta" id="tipoEtiqueta" aria-label="Escolha o tipo de etiqueta">
-                                <option value="" selected hidden id="primeiro-option">Selecione o tipo de etiqueta
-                                </option>
 
-                                <option value="BOPP Brilho" class="corPreta">BOPP Brilho</option>
-                                <option value="BOPP Fosco" class="corPreta">BOPP Fosco</option>
-                                <option value="BOPP Transparente" class="corPreta">BOPP Transparente</option>
-                                <option value="BOPP Metalizado" class="corPreta">BOPP Metalizado</option>
-                                <option value="Papel Brilho" class="corPreta">Papel Brilho</option>
-                                <option value="Papel Fosco" class="corPreta">Papel Fosco</option>
-                            </select>
-                            <span class="erro-msg" id="erro-tipoEtiqueta"></span>
-                            <div id="dimensoes">
-                                <div class="campo-grupo">
-                                    <label for="largura">Largura* (mm)</label>
-                                    <input type="tel" id="largura" name="largura" placeholder="Largura da etiqueta"
-                                        aria-label="Largura da etiqueta em milímetros" min="1" inputmode="numeric"
-                                        max="200" class="validar-max" step="0.1">
-                                    <span class="erro-msg" id="erro-largura"></span>
-                                </div>
-                                <div class="campo-grupo">
-                                    <label for="altura">Altura* (mm)</label>
-                                    <input type="tel" id="altura" name="altura" placeholder="Altura da etiqueta"
-                                        aria-label="Altura da etiqueta em milímetros" min="1" inputmode="numeric"
-                                        max="200" class="validar-max" step="0.1">
-                                    <span class="erro-msg" id="erro-altura"></span>
-                                </div>
-                            </div>
-                            <label for="qtd-colunas">Quantidade de colunas*</label>
-                            <input type="number" id="qtd-colunas" name="qtd-colunas" placeholder="Ex.: 2"
-                                aria-label="Quantidade de colunas por linha" min="1" max="5" inputmode="numeric"
-                                class="validar-max">
-                            <span class="erro-msg" id="erro-qtd-colunas"></span>
-                            <div id="espacamentos">
-                                <div class="campo-grupo">
-                                    <label for="GapColunas">Distância colunas* (mm)</label>
-                                    <input type="tel" id="GapColunas" placeholder="Ex.: 5"
-                                        aria-label="Espaço entre cada coluna em milímetros" min="0" max="10"
-                                        inputmode="numeric" class="validar-max" step="0.1">
-                                    <span class="erro-msg" id="erro-GapColunas"></span>
-                                </div>
-                                <div class="campo-grupo">
-                                    <label for="GapLinhas">Distância linhas* (mm)</label>
-                                    <input type="tel" id="GapLinhas" placeholder="Ex.: 5"
-                                        aria-label="Espaço entre cada linha em milímetros" min="0" max="10"
-                                        inputmode="numeric" class="validar-max" step="0.1">
-                                    <span class="erro-msg" id="erro-GapLinhas"></span>
-                                </div>
-                            </div>
-                            <label for="GapBordas">Tamanho das bordas* (mm)</label>
-                            <input type="tel" id="GapBordas" placeholder="Ex.: 3"
-                                aria-label="Tamanho das bordas em milímetros" min="0" max="10" inputmode="numeric"
-                                class="validar-max" step="0.1">
-                            <span class="erro-msg" id="erro-GapBordas"></span>
-
-                            <div id="exemplo-visual">
-                                <h3>Prévia</h3>
-                                <div id="exemplo-container">
-                                    <img src="./assets/img/exemplo.webp" alt="Exemplo de rolo de etiquetas"
-                                        loading="lazy" id="exemplo" width="400" height="400">
-
-                                    <div id="etiqueta-dinamica" class="etiqueta-overlay">
-                                        <div id="grade-colunas"></div>
-                                        <span id="txt-largura">Largura</span>
-                                        <span id="txt-altura">Altura</span>
-                                        <span id="txt-rolo">Largura Total</span>
+                            <div id="campos-etiqueta">
+                                <label for="tipoEtiqueta">Tipo de etiqueta*</label>
+                                <select name="tipoEtiqueta" id="tipoEtiqueta" aria-label="Escolha o tipo de etiqueta">
+                                    <option value="" selected hidden id="primeiro-option">Selecione o tipo de etiqueta
+                                    </option>
+                                    <option value="BOPP Brilho" class="corPreta">BOPP Brilho</option>
+                                    <option value="BOPP Fosco" class="corPreta">BOPP Fosco</option>
+                                    <option value="BOPP Transparente" class="corPreta">BOPP Transparente</option>
+                                    <option value="BOPP Metalizado" class="corPreta">BOPP Metalizado</option>
+                                    <option value="Papel Brilho" class="corPreta">Papel Brilho</option>
+                                    <option value="Papel Fosco" class="corPreta">Papel Fosco</option>
+                                </select>
+                                <span class="erro-msg" id="erro-tipoEtiqueta"></span>
+                                <div id="dimensoes">
+                                    <div class="campo-grupo">
+                                        <label for="largura">Largura* (mm)</label>
+                                        <input type="tel" id="largura" name="largura" placeholder="Largura da etiqueta"
+                                            aria-label="Largura da etiqueta em milímetros" min="1" inputmode="numeric"
+                                            max="200" class="validar-max" step="0.1">
+                                        <span class="erro-msg" id="erro-largura"></span>
                                     </div>
+                                    <div class="campo-grupo">
+                                        <label for="altura">Altura* (mm)</label>
+                                        <input type="tel" id="altura" name="altura" placeholder="Altura da etiqueta"
+                                            aria-label="Altura da etiqueta em milímetros" min="1" inputmode="numeric"
+                                            max="200" class="validar-max" step="0.1">
+                                        <span class="erro-msg" id="erro-altura"></span>
+                                    </div>
+                                </div>
+                                <label for="qtd-colunas">Quantidade de colunas*</label>
+                                <input type="number" id="qtd-colunas" name="qtd-colunas" placeholder="Ex.: 2"
+                                    aria-label="Quantidade de colunas por linha" min="1" max="5" inputmode="numeric"
+                                    class="validar-max">
+                                <span class="erro-msg" id="erro-qtd-colunas"></span>
+                                <div id="espacamentos">
+                                    <div class="campo-grupo">
+                                        <label for="GapColunas">Distância colunas* (mm)</label>
+                                        <input type="tel" id="GapColunas" placeholder="Ex.: 5"
+                                            aria-label="Espaço entre cada coluna em milímetros" min="0" max="10"
+                                            inputmode="numeric" class="validar-max" step="0.1">
+                                        <span class="erro-msg" id="erro-GapColunas"></span>
+                                    </div>
+                                    <div class="campo-grupo">
+                                        <label for="GapLinhas">Distância linhas* (mm)</label>
+                                        <input type="tel" id="GapLinhas" placeholder="Ex.: 5"
+                                            aria-label="Espaço entre cada linha em milímetros" min="0" max="10"
+                                            inputmode="numeric" class="validar-max" step="0.1">
+                                        <span class="erro-msg" id="erro-GapLinhas"></span>
+                                    </div>
+                                </div>
+
+                                <div id="wrap-bordas-etiqueta" style="display:none;">
+                                    <label for="GapBordas">Tamanho das bordas* (mm)</label>
+                                    <input type="tel" id="GapBordas" placeholder="Ex.: 3"
+                                        aria-label="Tamanho das bordas em milímetros" min="0" max="10" inputmode="numeric"
+                                        class="validar-max" step="0.1">
+                                    <span class="erro-msg" id="erro-GapBordas"></span>
+                                </div>
+
+                                <div id="exemplo-visual">
+                                    <h3>Prévia</h3>
+                                    <div id="exemplo-container">
+                                        <img src="./assets/img/exemplo.webp" alt="Exemplo de rolo de etiquetas"
+                                            loading="lazy" id="exemplo" width="400" height="400">
+                                        <div id="etiqueta-dinamica" class="etiqueta-overlay">
+                                            <div id="grade-colunas"></div>
+                                            <span id="txt-largura">Largura</span>
+                                            <span id="txt-altura">Altura</span>
+                                            <span id="txt-rolo">Largura Total</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="campos-rolo" style="display:none;">
+                                 <label for="tipoEtiqueta">Tipo de etiqueta*</label>
+                                <select name="tipoEtiqueta" id="tipoEtiqueta" aria-label="Escolha o tipo de etiqueta">
+                                    <option value="" selected hidden id="primeiro-option">Selecione o tipo de etiqueta
+                                    </option>
+                                    <option value="BOPP Brilho" class="corPreta">BOPP Brilho</option>
+                                    <option value="BOPP Fosco" class="corPreta">BOPP Fosco</option>
+                                    <option value="BOPP Transparente" class="corPreta">BOPP Transparente</option>
+                                    <option value="BOPP Metalizado" class="corPreta">BOPP Metalizado</option>
+                                    <option value="Papel Brilho" class="corPreta">Papel Brilho</option>
+                                    <option value="Papel Fosco" class="corPreta">Papel Fosco</option>
+                                </select>
+                                <span class="erro-msg" id="erro-tipoEtiqueta"></span>
+
+                                <label for="larguraRolo">Largura do rolo* (mm)</label>
+                                <input type="tel" id="larguraRolo" name="larguraRolo" placeholder="Ex.: 100"
+                                    aria-label="Largura do rolo em milímetros" min="1" inputmode="numeric"
+                                    max="200" class="validar-max" step="0.1">
+                                <span class="erro-msg" id="erro-larguraRolo"></span>
+
+                                <div id="wrap-bordas-rolo" style="display:none;">
+                                    <label for="GapBordasRolo">Tamanho das bordas* (mm)</label>
+                                    <input type="tel" id="GapBordasRolo" placeholder="Ex.: 3"
+                                        aria-label="Tamanho das bordas do rolo em milímetros" min="0" max="10"
+                                        inputmode="numeric" class="validar-max" step="0.1">
+                                    <span class="erro-msg" id="erro-GapBordasRolo"></span>
                                 </div>
                             </div>
                         </div>
