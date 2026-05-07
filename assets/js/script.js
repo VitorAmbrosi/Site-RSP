@@ -320,7 +320,7 @@ function enviarWhatsAppPronto() {
         • Colunas: ${colunas}
         • Espaçamentos (Gap): C: ${gapColunas}mm / L: ${gapLinhas}mm
         ${gapBordas ? `• Bordas: ${gapBordas}mm` : '• Bordas: Sem borda'}
-        • *Largura Total:* ${larguraTotal}mm
+        • Largura Total: ${larguraTotal}mm
         
         Aguardamos o retorno com o orçamento. Obrigado(a)!`
     }
